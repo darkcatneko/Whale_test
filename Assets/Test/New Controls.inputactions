@@ -1,0 +1,34 @@
+{
+    "name": "New Controls",
+    "maps": [
+        {
+            "name": "New action map",
+            "id": "f611880c-f373-4607-a660-ab5cbe16fcf5",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "PassThrough",
+                    "id": "dcaa60bc-09b9-4d9c-96e5-b3ca3a0dbbaf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c1c969b6-f93e-4796-9599-1231302e0dc5",
+                    "path": "<Mouse>/press",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

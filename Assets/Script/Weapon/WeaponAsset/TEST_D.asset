@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Unlock: 1
   Weapon_BreakLevel: 1
-  WeaponID: 0
+  WeaponID: 3
   Weapon_Name: TEST_D
   WeaponType: 4
   Durability: 14000000190000001e0000002300000028000000
@@ -28,3 +28,4 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: -1, y: 1}
   - {x: 1, y: -1}
+  MainSkillCD: 0

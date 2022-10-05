@@ -13,11 +13,7 @@ public class FreeGameState : Istate
     }
     public void OnStateStay()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Controller.ChangeState(StateEnum.Hold_State);
-        }
-        
+            
     }
     public void OnStateExit()
     {

@@ -6,4 +6,5 @@ public enum WeaponEnum
    Lunge,
    Hit,
    Penetrate,
+   None,
 }

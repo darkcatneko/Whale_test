@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private StateEnum currentState;
     private Dictionary<StateEnum, Istate> allStateDict;
+    public Camera MainCam;
 
     public BattleMap GameMap;
     public MainPlayer m_MainPlayer;
@@ -26,6 +27,7 @@ public class GameController : MonoBehaviour
     {
         Application.targetFrameRate = 60;
         QualitySettings.vSyncCount = 0;
+        MainCam = Camera.main;
         allStateDict = new Dictionary<StateEnum, Istate>
         {
             {StateEnum.NOTHING, null},
@@ -60,4 +62,5 @@ public class GameController : MonoBehaviour
         allStateDict[currentState].OnStateEnter(this);
     }
     
+
 }

@@ -118,6 +118,25 @@ public class BattleMap : MonoBehaviour
         }
         
     }
+    public void BlockImFocus(Vector2 Origin,int FocusCount,Vector2[] BlockFocused)
+    {
+        for (int i = 0; i < ThisMap.Length; i++)
+        {
+            for (int j = 0; j < ThisMap[i].ThisRow.Length; j++)
+            {
+                ThisMap[i].ThisRow[j].m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1);
+            }
+        }
+        ThisMap[(int)Origin.y].ThisRow[(int)Origin.x].m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0);
+        for (int i = 0; i < FocusCount; i++)
+        {
+            ThisMap[(int)BlockFocused[i].y].ThisRow[(int)BlockFocused[i].x].m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(1, 0, 0);
+        }
+    }
+    public void FingerLifted(Vector2 Origin)
+    {
+        ThisMap[(int)Origin.y].ThisRow[(int)Origin.x].m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(1, 0, 0);
+    }
     //public void MixBlock(Vector2[] Rune, Vector2 Origin,WeaponEnum Type)
     //{
     //    float EnergyCount = 0;
@@ -254,6 +273,43 @@ public class BattleMap : MonoBehaviour
         }
         
         Debug.Log(MostType.ToString());
+    }
+    public void MixTwoBlock(Vector2 FirstBlock, Vector2 SecondBlock)
+    {
+        int ThisBlockLevel = 0;
+        if (FindBlock(FirstBlock).ThisBlockLevel == FindBlock(SecondBlock).ThisBlockLevel&& FindBlock(FirstBlock).ThisBlockType == FindBlock(SecondBlock).ThisBlockType)
+        {
+            Debug.Log("SameBlock");
+            //確認等級  
+            ThisBlockLevel = (int)FindBlock(FirstBlock).ThisBlockLevel;
+            //破壞方塊       
+            Destroy(FindBlock(FirstBlock).m_ThisBlockObject);
+            Destroy(FindBlock(SecondBlock).m_ThisBlockObject);
+            //修正等級       
+            FindBlock(SecondBlock).ThisBlockLevel = Mathf.Clamp(ThisBlockLevel + 1, 0, 5);
+            SpawnSingleMapObject(FindBlock(SecondBlock).ThisBlockType, Mathf.Clamp(ThisBlockLevel + 1, 0, 5), (int)SecondBlock.y, (int)SecondBlock.x);
+            //生成雜件
+            ThisMap[(int)FirstBlock.y].ThisRow[(int)FirstBlock.x].SetRandomMapBlock();
+            SpawnSingleMapObject(ThisMap[(int)FirstBlock.y].ThisRow[(int)FirstBlock.x].ThisBlockType, 0, (int)FirstBlock.y, (int)FirstBlock.x);
+        }
+        else
+        {
+            RefreshMap();
+        }
+    }
+    public MapBlockClass FindBlock(Vector2 Position)
+    {
+        return ThisMap[(int)Position.y].ThisRow[(int)Position.x];
+    }
+    public void RefreshMap()
+    {
+        for (int i = 0; i < ThisMap.Length; i++)
+        {
+            for (int j = 0; j < ThisMap[i].ThisRow.Length; j++)
+            {
+                ThisMap[i].ThisRow[j].m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1);
+            }
+        }
     }
     public void TextTest(MapBlockRow[] TM)
     {

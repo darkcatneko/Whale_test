@@ -13,7 +13,18 @@ public class FreeGameState : Istate
     }
     public void OnStateStay()
     {
-            
+        if (Input.touchCount>0)
+        {
+            if (Input.GetTouch(0).phase == UnityEngine.TouchPhase.Began)
+            {
+                Controller.ChangeState(StateEnum.Hold_State);
+            }
+
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            Controller.ChangeState(StateEnum.Hold_State);
+        }
     }
     public void OnStateExit()
     {

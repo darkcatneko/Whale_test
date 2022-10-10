@@ -7,6 +7,7 @@ public enum StateEnum
     Attack_State,
     Defence_State,
     Setting_State,
+    Ready_State,
     NOTHING
 }
    

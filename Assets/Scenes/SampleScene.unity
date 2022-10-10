@@ -1866,6 +1866,7 @@ GameObject:
   - component: {fileID: 783896125}
   - component: {fileID: 783896124}
   - component: {fileID: 783896127}
+  - component: {fileID: 783896128}
   m_Layer: 0
   m_Name: GameSystem
   m_TagString: Untagged
@@ -1897,6 +1898,7 @@ MonoBehaviour:
   - {fileID: 1409668972}
   - {fileID: 666055566}
   Test_1: {fileID: 11400000, guid: 49c5e4e77644c8648bb4f6d2bcb64e7d, type: 2}
+  TurnPoint: 0
 --- !u!114 &783896125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1996,30 +1998,35 @@ MonoBehaviour:
   - {fileID: 8426804878645720084, guid: f015ac55f13c0b941b57b6b5e982fad9, type: 3}
   - {fileID: 1980339929995732401, guid: 8e7fade2f73966f4a9d46d80ead01fb0, type: 3}
   - {fileID: 3245008692381896628, guid: 9e7f73b15a5a2c04183a70b1b206de58, type: 3}
+  - {fileID: 5272416925968643181, guid: a2bddb292c0ee40418b48f52f403a83d, type: 3}
   SlashBlocks:
   - {fileID: 7675393789896559473, guid: 41edad7865aa9d54898eedc02970c516, type: 3}
   - {fileID: 2758786810155334211, guid: 434b2335698fedd469b17a28e54d3a47, type: 3}
   - {fileID: 3842051413925177694, guid: 00d5a5e9de65ef342a25a615ba8e84a6, type: 3}
   - {fileID: 8300881936963648877, guid: 390205c1511aa2143959a3630b03b2c4, type: 3}
   - {fileID: 3642556319552701134, guid: 74c18f767e2de6b40a9d7d3d255016b6, type: 3}
+  - {fileID: 2805444010677461339, guid: d9206dbf70daae346a313ca8a1f5bcbe, type: 3}
   LungeBlocks:
   - {fileID: 6535032478113550289, guid: 06c10c97e782222489081383d593d960, type: 3}
   - {fileID: 8903278546402174229, guid: 134d41ff9e807cc4b9c4441188bb6393, type: 3}
   - {fileID: 4738486621486673249, guid: 95f40a01b2e8a5f4ea4529dd902d2fcd, type: 3}
   - {fileID: 8188184689591428495, guid: 4421aa2795a63ac479552dd06d613f01, type: 3}
   - {fileID: 6148934635215063130, guid: 99a2257fe6af85b4896e3c9ef755d3d8, type: 3}
+  - {fileID: 5011314406565604147, guid: c443e84ae8b2b9c438d859bd61d4ea1b, type: 3}
   HitBlocks:
   - {fileID: 5594615628072223186, guid: 5cdc3f7e15a9ba5469c90c7b6882b8be, type: 3}
   - {fileID: 919462491908403819, guid: 3fb621a3d5d3f014cb569528685ea6b3, type: 3}
   - {fileID: 7166539283246584732, guid: 22e83efbe8fe52c4e86b21bbb9e743ff, type: 3}
   - {fileID: 7834560987730166678, guid: 2d16bf47f7d334442b9d5a09fa191801, type: 3}
   - {fileID: 2983713063247413239, guid: f87fbd76f8bb1094c8f6def1c6a924b0, type: 3}
+  - {fileID: 6527344449874741957, guid: eabd426f90fadcb478b5551217bb6d70, type: 3}
   PenetrateBlocks:
   - {fileID: 1031493240503758516, guid: af4f00aedeb864d4d919343c5ac16fd8, type: 3}
   - {fileID: 786062010775747346, guid: b21dba68d7879ed4ba7375d7ad647dab, type: 3}
   - {fileID: 5929962914095384168, guid: 9d41c59451a481243bf9e45b6245380f, type: 3}
   - {fileID: 1212491403838538164, guid: 39f7ac53b7f651246872490e3e5c1729, type: 3}
   - {fileID: 5625553913824286047, guid: 4aa9b1bf9478e7c49ae2c5e646d4965d, type: 3}
+  - {fileID: 7813396741246161002, guid: 78b5d0a10de3b4342a705208c7188d0e, type: 3}
   Board: {fileID: 357634140}
   MapStartPoint: {fileID: 4405467287993586750}
   texttest: {fileID: 1554653209}
@@ -2056,6 +2063,18 @@ MonoBehaviour:
   Armor: 0
   Heal: 0
   Crit: 0
+--- !u!114 &783896128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783896123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1557be9eb5f0785408482f9518a0cb35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

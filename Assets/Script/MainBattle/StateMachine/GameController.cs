@@ -17,11 +17,15 @@ public class GameController : MonoBehaviour
     #region Canvas
     public Button[] WeaponButton = new Button[5];
     #endregion
-
     #region PCTEST
     public WeaponSO Test_1;
 
-    #endregion   
+    #endregion
+    #region GameUseMath
+    public int TurnPoint = 0;
+    #endregion
+
+
 
     private void Awake()
     {
@@ -36,7 +40,8 @@ public class GameController : MonoBehaviour
             {StateEnum.Hold_State, new HoldGameState()},
             {StateEnum.Attack_State, new AttackGameState()},
             {StateEnum.Defence_State, new DefenceGameState()},
-            {StateEnum.Setting_State, new SettingGameState()}
+            {StateEnum.Setting_State, new SettingGameState()},
+            {StateEnum.Ready_State, new ReadyTurnState()}
         };
 
         ChangeState(StateEnum.Start_State);

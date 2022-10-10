@@ -120,7 +120,15 @@ public class HoldGameState : Istate
                                 if (FocusCount == 2)
                                 {
                                     Debug.Log("twoBlock!!");
-                                    Controller.GameMap.MixTwoBlock(TwoFocusBlock[0], TwoFocusBlock[1]);
+                                    if (Controller.GameMap.MixTwoBlock(TwoFocusBlock[0], TwoFocusBlock[1]))
+                                    {
+                                        Controller.TurnPoint--;
+                                        if (Controller.TurnPoint <= 0)
+                                        {
+                                            //¶i§ðÀ»
+
+                                        }
+                                    }                           
                                     FocusCount = 0;
                                 }
                             }

@@ -17,7 +17,7 @@ public class StartGameState : Istate
     }
     public void OnStateStay()
     {
-        Controller.ChangeState(StateEnum.Free_State); 
+        Controller.ChangeState(StateEnum.Ready_State); 
 
     }
     public void OnStateExit()

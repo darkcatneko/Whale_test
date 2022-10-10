@@ -274,27 +274,29 @@ public class BattleMap : MonoBehaviour
         
         Debug.Log(MostType.ToString());
     }
-    public void MixTwoBlock(Vector2 FirstBlock, Vector2 SecondBlock)
+    public bool MixTwoBlock(Vector2 FirstBlock, Vector2 SecondBlock)
     {
         int ThisBlockLevel = 0;
         if (FindBlock(FirstBlock).ThisBlockLevel == FindBlock(SecondBlock).ThisBlockLevel&& FindBlock(FirstBlock).ThisBlockType == FindBlock(SecondBlock).ThisBlockType)
         {
-            Debug.Log("SameBlock");
+            Debug.Log("SameBlock");            
             //確認等級  
             ThisBlockLevel = (int)FindBlock(FirstBlock).ThisBlockLevel;
             //破壞方塊       
             Destroy(FindBlock(FirstBlock).m_ThisBlockObject);
             Destroy(FindBlock(SecondBlock).m_ThisBlockObject);
             //修正等級       
-            FindBlock(SecondBlock).ThisBlockLevel = Mathf.Clamp(ThisBlockLevel + 1, 0, 5);
-            SpawnSingleMapObject(FindBlock(SecondBlock).ThisBlockType, Mathf.Clamp(ThisBlockLevel + 1, 0, 5), (int)SecondBlock.y, (int)SecondBlock.x);
+            FindBlock(SecondBlock).ThisBlockLevel = Mathf.Clamp(ThisBlockLevel + 1, 0, 6);
+            SpawnSingleMapObject(FindBlock(SecondBlock).ThisBlockType, Mathf.Clamp(ThisBlockLevel + 1, 0, 6), (int)SecondBlock.y, (int)SecondBlock.x);
             //生成雜件
             ThisMap[(int)FirstBlock.y].ThisRow[(int)FirstBlock.x].SetRandomMapBlock();
             SpawnSingleMapObject(ThisMap[(int)FirstBlock.y].ThisRow[(int)FirstBlock.x].ThisBlockType, 0, (int)FirstBlock.y, (int)FirstBlock.x);
+            return true;
         }
         else
-        {
+        {           
             RefreshMap();
+            return false;
         }
     }
     public MapBlockClass FindBlock(Vector2 Position)
@@ -310,6 +312,21 @@ public class BattleMap : MonoBehaviour
                 ThisMap[i].ThisRow[j].m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1);
             }
         }
+    }
+    public int TurnPointGain(int BasicTurnPoint)
+    {
+        int Lv5turrent = 0;
+        for (int i = 0; i < ThisMap.Length; i++)
+        {
+            for (int j = 0; j < ThisMap[i].ThisRow.Length; j++)
+            {
+                if (ThisMap[i].ThisRow[j].ThisBlockLevel==6)
+                {
+                    Lv5turrent++;
+                }                               
+            }
+        }
+        return BasicTurnPoint + Lv5turrent;
     }
     public void TextTest(MapBlockRow[] TM)
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "WeaponSO", menuName = "NewWeapon")]
 public class WeaponSO : ScriptableObject
@@ -19,7 +20,7 @@ public class WeaponSO : ScriptableObject
 
     //BasicSkill
     //MainSkill
-    //MainSkillCD
+    public int MainSkillCD;
     //Story
 }
 

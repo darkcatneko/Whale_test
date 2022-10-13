@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Unlock: 1
   Weapon_BreakLevel: 1
-  WeaponID: 0
+  WeaponID: 2
   Weapon_Name: TEST_C
   WeaponType: 3
   Durability: 0f00000014000000190000001e00000023000000
   Atk: 160000001b00000021000000260000002c000000
   Armor: 1000000014000000180000001c00000020000000
+  Heal: 0000000000000000000000000000000000000000
   Crit: 0000000000000000000000000000000000000000
   RuneHoverPoints:
   - {x: 0, y: 0}
@@ -27,3 +28,4 @@ MonoBehaviour:
   - {x: 1, y: 1}
   - {x: -1, y: 1}
   - {x: -1, y: -1}
+  MainSkillCD: 0

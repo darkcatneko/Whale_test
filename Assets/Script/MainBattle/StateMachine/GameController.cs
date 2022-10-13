@@ -3,21 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
-
+using UnityEngine.UI;
+using TMPro;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private StateEnum currentState;
     private Dictionary<StateEnum, Istate> allStateDict;
+    public Camera MainCam;
 
     public BattleMap GameMap;
-
+    public MainPlayer m_MainPlayer;
+    public WeaponData W_Data;
+    #region Canvas
+    public Button[] WeaponButton = new Button[5];
+    #endregion
     #region PCTEST
     public WeaponSO Test_1;
+
     #endregion
+    #region GameUseMath
+    public int TurnPoint = 0;
+    #endregion
+
+
 
     private void Awake()
     {
-
+        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;
+        MainCam = Camera.main;
         allStateDict = new Dictionary<StateEnum, Istate>
         {
             {StateEnum.NOTHING, null},
@@ -26,7 +40,8 @@ public class GameController : MonoBehaviour
             {StateEnum.Hold_State, new HoldGameState()},
             {StateEnum.Attack_State, new AttackGameState()},
             {StateEnum.Defence_State, new DefenceGameState()},
-            {StateEnum.Setting_State, new SettingGameState()}
+            {StateEnum.Setting_State, new SettingGameState()},
+            {StateEnum.Ready_State, new ReadyTurnState()}
         };
 
         ChangeState(StateEnum.Start_State);
@@ -51,5 +66,6 @@ public class GameController : MonoBehaviour
         currentState = newState;
         allStateDict[currentState].OnStateEnter(this);
     }
+    
 
 }

@@ -10,10 +10,13 @@ public class GameController : MonoBehaviour
     [SerializeField] private StateEnum currentState;
     private Dictionary<StateEnum, Istate> allStateDict;
     public Camera MainCam;
+    public BossController M_BossController;
+    public StageInfoSO ThisStage;
 
     public BattleMap GameMap;
     public MainPlayer m_MainPlayer;
     public WeaponData W_Data;
+    public MainCharacterData C_Data;    
     #region Canvas
     public Button[] WeaponButton = new Button[5];
     #endregion
@@ -23,6 +26,8 @@ public class GameController : MonoBehaviour
     #endregion
     #region GameUseMath
     public int TurnPoint = 0;
+    public int MaxMP = 0;
+    public int NowMP = 0;   
     #endregion
 
 
@@ -42,14 +47,12 @@ public class GameController : MonoBehaviour
             {StateEnum.Defence_State, new DefenceGameState()},
             {StateEnum.Setting_State, new SettingGameState()},
             {StateEnum.Ready_State, new ReadyTurnState()}
-        };
-
-        ChangeState(StateEnum.Start_State);
+        };       
     }
 
     void Start()
     {
-        
+        ChangeState(StateEnum.Start_State);
     }
 
     // Update is called once per frame

@@ -279,7 +279,7 @@ public class BattleMap : MonoBehaviour
         int ThisBlockLevel = 0;
         if (FindBlock(FirstBlock).ThisBlockLevel == FindBlock(SecondBlock).ThisBlockLevel&& FindBlock(FirstBlock).ThisBlockType == FindBlock(SecondBlock).ThisBlockType)
         {
-            Debug.Log("SameBlock");            
+            //Debug.Log("SameBlock");            
             //½T»{µ¥¯Å  
             ThisBlockLevel = (int)FindBlock(FirstBlock).ThisBlockLevel;
             //¯}Ãa¤è¶ô       

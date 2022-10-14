@@ -119,14 +119,16 @@ public class HoldGameState : Istate
                                 FocusCount++;
                                 if (FocusCount == 2)
                                 {
-                                    Debug.Log("twoBlock!!");
+                                    //Debug.Log("twoBlock!!");
                                     if (Controller.GameMap.MixTwoBlock(TwoFocusBlock[0], TwoFocusBlock[1]))
                                     {
-                                        Controller.TurnPoint--;
+                                        Controller.TurnPoint--;      
+                                        //操作動數-1                
+                                        Controller.NowMP = Mathf.Clamp((int)(Controller.NowMP + Controller.GameMap.FindBlock(TwoFocusBlock[1]).ThisBlockLevel), 0, (int)Controller.MaxMP);
+                                        //增加量條
                                         if (Controller.TurnPoint <= 0)
                                         {
-                                            //進攻擊
-
+                                            Controller.ChangeState(StateEnum.Attack_State);
                                         }
                                     }                           
                                     FocusCount = 0;
@@ -134,7 +136,7 @@ public class HoldGameState : Istate
                             }
                             else
                             {
-                                Debug.Log("SameBlock!!");
+                                //Debug.Log("SameBlock!!");
                             }
                             return;
                         default:

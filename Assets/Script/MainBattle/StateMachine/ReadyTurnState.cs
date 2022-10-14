@@ -9,6 +9,7 @@ public class ReadyTurnState : Istate
     {
         Controller = controller;
         Controller.TurnPoint = Controller.GameMap.TurnPointGain(3);//¥ý°òÂ¦3
+        controller.M_BossController.BossChooseAttack();//©ÇÃ~§ðÀ»
         controller.ChangeState(StateEnum.Free_State);
     }
     public void OnStateStay()

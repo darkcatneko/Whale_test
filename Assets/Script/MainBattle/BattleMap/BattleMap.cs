@@ -299,9 +299,21 @@ public class BattleMap : MonoBehaviour
             return false;
         }
     }
+    public void DestroyAndRefreshSingleBlock(Vector2 pos)
+    {
+        StartCoroutine("DestroyAndRefreshSingleBlockIEnumerator", pos);
+    }
+    public IEnumerator DestroyAndRefreshSingleBlockIEnumerator(Vector2 pos)
+    {
+        FindBlock(pos).m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 1);
+        yield return new WaitForSeconds(3f);
+        Destroy(FindBlock(pos).m_ThisBlockObject);
+        ThisMap[(int)pos.y].ThisRow[(int)pos.x].SetRandomMapBlock();
+        SpawnSingleMapObject(ThisMap[(int)pos.y].ThisRow[(int)pos.x].ThisBlockType, 0, (int)pos.y, (int)pos.x);
+    }
     public MapBlockClass FindBlock(Vector2 Position)
     {
-        return ThisMap[(int)Position.y].ThisRow[(int)Position.x];
+        return ThisMap[(int)Position.y].ThisRow[(int)Position.x];       
     }
     public void RefreshMap()
     {
@@ -311,7 +323,7 @@ public class BattleMap : MonoBehaviour
             {
                 ThisMap[i].ThisRow[j].m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1);
             }
-        }
+        }       
     }
     public int TurnPointGain(int BasicTurnPoint)
     {

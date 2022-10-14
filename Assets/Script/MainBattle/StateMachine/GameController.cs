@@ -69,6 +69,9 @@ public class GameController : MonoBehaviour
         currentState = newState;
         allStateDict[currentState].OnStateEnter(this);
     }
-    
 
+    private void OnApplicationQuit()
+    {
+        m_MainPlayer.Reset();
+    }
 }

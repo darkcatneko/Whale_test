@@ -7,6 +7,7 @@ public class BossController : MonoBehaviour
     public GameController GameMaster;
     private Dictionary<Boss, BossIstate> allBossDict;
     private Boss ThisRoundBoss;
+    public List<Vector2> BlockReadyToBreak = new List<Vector2>();
     #region BossStat
     public int CD_To_Next_Attack;
     public float MaxHealth; public float NowHealth;
@@ -28,6 +29,10 @@ public class BossController : MonoBehaviour
     }
     public void ResetCD()
     {
+    }
+    public void BossChooseAttack()
+    {
+        allBossDict[ThisRoundBoss]?.BossChooseAttack();
     }
     public void BossNormalAttack()
     {
@@ -73,5 +78,10 @@ public class BossController : MonoBehaviour
         Damage = Mathf.RoundToInt(Damage);
         NowHealth -= Damage;
         Debug.Log(Damage);
+    }
+    public void BossAttackDamage(float Percentage)
+    {
+        GameMaster.m_MainPlayer.NowArmor -= Mathf.FloorToInt(Percentage * ATK);
+        Debug.Log("Boss打出了" + Mathf.FloorToInt(Percentage * ATK) + "點傷害");
     }
 }

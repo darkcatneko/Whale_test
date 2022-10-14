@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TEST_C
   m_EditorClassIdentifier: 
   Unlock: 1
-  Weapon_BreakLevel: 1
+  Weapon_BreakLevel: 0
   WeaponID: 2
   Weapon_Name: TEST_C
   WeaponType: 3

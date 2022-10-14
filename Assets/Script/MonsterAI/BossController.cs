@@ -72,6 +72,6 @@ public class BossController : MonoBehaviour
         Damage = Mathf.Clamp(Damage - DEF, 1, Damage);
         Damage = Mathf.RoundToInt(Damage);
         NowHealth -= Damage;
-        //Debug.Log(Damage);
+        Debug.Log(Damage);
     }
 }

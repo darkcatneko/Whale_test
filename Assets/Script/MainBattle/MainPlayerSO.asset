@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MainPlayerSO
   m_EditorClassIdentifier: 
   WeaponPool: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
-  BringingWeaponID: 0000000001000000020000000300000004000000
+  BringingWeaponID: 0500000006000000070000000800000009000000
   ThisRound_MainCharacter_ID: 0
   WeaponPack:
   - m_WeaponType: 0
@@ -42,10 +42,10 @@ MonoBehaviour:
     m_WeaponCD: 0
     m_RuneHoverPoints: []
   ThisRoundCharacter: {fileID: 11400000, guid: 1f91cfcddc089374fa268eb6b11370fe, type: 2}
-  Attack: 1158
-  MaxArmor: 234
-  NowArmor: 184
-  Heal: 100
-  Crit: 12
+  Attack: 2336
+  MaxArmor: 10825
+  NowArmor: 10825
+  Heal: 685
+  Crit: 0
   Buff_Amount: 1
   Regen_Buff_Amount: 1

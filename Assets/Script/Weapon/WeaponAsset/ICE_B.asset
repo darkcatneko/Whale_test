@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df724688bd0b74945a71911e99c07333, type: 3}
+  m_Name: ICE_B
+  m_EditorClassIdentifier: 
+  Unlock: 0
+  Weapon_BreakLevel: 1
+  WeaponID: 6
+  Weapon_Name: ICE_B
+  WeaponType: 2
+  Durability: 14000000190000001e0000002300000028000000
+  Atk: 0002000080020000000300008003000000040000
+  Armor: 8403000065040000460500002706000008070000
+  Heal: 0000000000000000000000000000000000000000
+  Crit: 0000000000000000000000000000000000000000
+  RuneHoverPoints: []
+  MainSkillCD: 0

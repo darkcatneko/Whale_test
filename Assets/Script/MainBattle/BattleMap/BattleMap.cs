@@ -16,7 +16,7 @@ public class BattleMap : MonoBehaviour
     public Transform Board;
     public Transform MapStartPoint;
 
-    public TextMeshProUGUI texttest;
+    
 
 
     void Start()
@@ -357,18 +357,18 @@ public class BattleMap : MonoBehaviour
         }
         return BasicTurnPoint + Lv5turrent;
     }
-    public void TextTest(MapBlockRow[] TM)
-    {
-        texttest.text = "";
-        for (int i = 4; i >-1; i--)
-        {
-            texttest.text +=  "\r\n";
-            for (int j = 0; j < TM[i].ThisRow.Length; j++)
-            {
-                texttest.text += ThisMap[i].ThisRow[j].ThisBlockLevel + " ";
-            }
-        }
-    }
+    //public void TextTest(MapBlockRow[] TM)
+    //{
+    //    texttest.text = "";
+    //    for (int i = 4; i >-1; i--)
+    //    {
+    //        texttest.text +=  "\r\n";
+    //        for (int j = 0; j < TM[i].ThisRow.Length; j++)
+    //        {
+    //            texttest.text += ThisMap[i].ThisRow[j].ThisBlockLevel + " ";
+    //        }
+    //    }
+    //}
 }
 [System.Serializable]
 public class MapBlockRow

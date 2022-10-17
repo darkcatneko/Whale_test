@@ -85,7 +85,7 @@ public class BossController : MonoBehaviour
         Damage = Mathf.Clamp(Damage - DEF, 1, Damage);
         Damage = Mathf.RoundToInt(Damage);
         NowHealth -= Damage;
-        Debug.Log(Damage);
+        Debug.Log("我打出了" + Damage + "點傷害");
     }
     public void BossAttackDamage(float Percentage)
     {

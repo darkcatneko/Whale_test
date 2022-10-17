@@ -51,7 +51,7 @@ public class MainPlayer : ScriptableObject
         }
         Regen = Heal * LevelReg * Regen_Buff_Amount;
         Regen = Mathf.RoundToInt(Regen);
-        Debug.Log(Regen);
+        Debug.LogWarning("我回了" + Regen + "點");
         NowArmor = (int)Mathf.Clamp(Regen + NowArmor, 0, MaxArmor);
     }
     public void Reset()

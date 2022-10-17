@@ -19,6 +19,9 @@ public class GameController : MonoBehaviour
     public MainCharacterData C_Data;    
     #region Canvas
     public Button[] WeaponButton = new Button[5];
+    public TextMeshProUGUI BossHealth;
+    public TextMeshProUGUI PlayerHealth;
+    public TextMeshProUGUI DamageLog;
     #endregion
     #region PCTEST
     public WeaponSO Test_1;
@@ -59,6 +62,8 @@ public class GameController : MonoBehaviour
     void Update()
     {
         allStateDict[currentState]?.OnStateStay();
+        BossHealth.text = M_BossController.NowHealth + " / " + M_BossController.MaxHealth;
+        PlayerHealth.text = m_MainPlayer.NowArmor + " / " + m_MainPlayer.MaxArmor;
     }
     public void ChangeState(StateEnum newState)
     {

@@ -277,7 +277,7 @@ public class BattleMap : MonoBehaviour
     public bool MixTwoBlock(Vector2 FirstBlock, Vector2 SecondBlock)
     {
         int ThisBlockLevel = 0;
-        if (FindBlock(FirstBlock).ThisBlockLevel == FindBlock(SecondBlock).ThisBlockLevel&& FindBlock(FirstBlock).ThisBlockType == FindBlock(SecondBlock).ThisBlockType)
+        if (FindBlock(FirstBlock).ThisBlockLevel == FindBlock(SecondBlock).ThisBlockLevel && FindBlock(FirstBlock).ThisBlockType == FindBlock(SecondBlock).ThisBlockType)
         {
             //Debug.Log("SameBlock");            
             //½T»{µ¥¯Å  
@@ -294,7 +294,24 @@ public class BattleMap : MonoBehaviour
             return true;
         }
         else
-        {           
+        {
+            MapBlockClass temp1; MapBlockClass temp2;
+            if ((Mathf.Abs(FirstBlock.x - SecondBlock.x)==1&&FirstBlock.y == SecondBlock.y)|| (Mathf.Abs(FirstBlock.y - SecondBlock.y) == 1 && FirstBlock.x == SecondBlock.x))
+            {
+                temp1 = FindBlock(FirstBlock);
+                int tempLev = (int)FindBlock(SecondBlock).ThisBlockLevel; WeaponEnum tempType = FindBlock(SecondBlock).ThisBlockType;
+                
+                Destroy(FindBlock(SecondBlock).m_ThisBlockObject);
+                FindBlock(SecondBlock).ThisBlockLevel = temp1.ThisBlockLevel;
+                FindBlock(SecondBlock).ThisBlockType = temp1.ThisBlockType;
+                SpawnSingleMapObject(temp1.ThisBlockType, (int)temp1.ThisBlockLevel, (int)SecondBlock.y, (int)SecondBlock.x);
+
+                Destroy(FindBlock(FirstBlock).m_ThisBlockObject);
+                FindBlock(FirstBlock).ThisBlockLevel = tempLev;
+                FindBlock(FirstBlock).ThisBlockType = tempType;
+                SpawnSingleMapObject(tempType, tempLev, (int)FirstBlock.y, (int)FirstBlock.x);
+                return true;
+            }
             RefreshMap();
             return false;
         }

@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using System;
 public class BossController : MonoBehaviour
 {
     public GameController GameMaster;
     private Dictionary<Boss, BossIstate> allBossDict;
     private Boss ThisRoundBoss;
     public List<Vector2> BlockReadyToBreak = new List<Vector2>();
+    public float AttackUsedTime;
+    private UnityEvent DelayUse = new UnityEvent();
     #region BossStat
     public int CD_To_Next_Attack;
     public float MaxHealth; public float NowHealth;
@@ -37,6 +41,10 @@ public class BossController : MonoBehaviour
     public void BossNormalAttack()
     {
         allBossDict[ThisRoundBoss]?.BossNormalAttack();
+    }
+    public void BossSpecialAttack()
+    {
+        allBossDict[ThisRoundBoss]?.BossSpecialAttack();
     }
     public void Set_Stat(int CD, float Health, float atk, float def, float res0, float res1, float res2, float res3, float res4)
     {
@@ -83,5 +91,19 @@ public class BossController : MonoBehaviour
     {
         GameMaster.m_MainPlayer.NowArmor -= Mathf.FloorToInt(Percentage * ATK);
         Debug.Log("Boss打出了" + Mathf.FloorToInt(Percentage * ATK) + "點傷害");
+    }
+    public Boss GetBoss()
+    {
+        return ThisRoundBoss;
+    }
+    public void WaitMoveFunction(Action ac, float Time)
+    {
+        DelayUse.AddListener(()=> { ac();DelayUse.RemoveAllListeners(); });
+        Invoke("WaitMove", Time);
+    }
+    public void WaitMove()
+    {
+        DelayUse.Invoke();
+        Debug.Log("Bruh");
     }
 }

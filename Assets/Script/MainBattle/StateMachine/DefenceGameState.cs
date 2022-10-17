@@ -13,9 +13,9 @@ public class DefenceGameState : Istate
         if (Controller.M_BossController.CD_To_Next_Attack ==0)
         {
             Debug.Log("BossAttack");
-            Controller.M_BossController.BossNormalAttack();
+            Controller.CallBossAttack();
         }
-        Controller.ChangeState(StateEnum.Ready_State);
+        
     }
     public void OnStateStay()
     {

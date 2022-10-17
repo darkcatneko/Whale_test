@@ -69,7 +69,18 @@ public class GameController : MonoBehaviour
         currentState = newState;
         allStateDict[currentState].OnStateEnter(this);
     }
-
+    public IEnumerator BossAttackFullFunction()
+    {
+        M_BossController.BossNormalAttack();
+        Debug.Log("©µ®É"+M_BossController.AttackUsedTime);
+        yield return new WaitForSeconds(M_BossController.AttackUsedTime);
+        M_BossController.AttackUsedTime = 0;
+        ChangeState(StateEnum.Ready_State);
+    }
+    public void CallBossAttack()
+    {
+        StartCoroutine("BossAttackFullFunction");
+    }
     private void OnApplicationQuit()
     {
         m_MainPlayer.Reset();

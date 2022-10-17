@@ -277,7 +277,7 @@ public class BattleMap : MonoBehaviour
     public bool MixTwoBlock(Vector2 FirstBlock, Vector2 SecondBlock)
     {
         int ThisBlockLevel = 0;
-        if (FindBlock(FirstBlock).ThisBlockLevel == FindBlock(SecondBlock).ThisBlockLevel&& FindBlock(FirstBlock).ThisBlockType == FindBlock(SecondBlock).ThisBlockType)
+        if (FindBlock(FirstBlock).ThisBlockLevel == FindBlock(SecondBlock).ThisBlockLevel && FindBlock(FirstBlock).ThisBlockType == FindBlock(SecondBlock).ThisBlockType)
         {
             //Debug.Log("SameBlock");            
             //½T»{µ¥¯Å  
@@ -294,14 +294,43 @@ public class BattleMap : MonoBehaviour
             return true;
         }
         else
-        {           
+        {
+            MapBlockClass temp1; MapBlockClass temp2;
+            if ((Mathf.Abs(FirstBlock.x - SecondBlock.x)==1&&FirstBlock.y == SecondBlock.y)|| (Mathf.Abs(FirstBlock.y - SecondBlock.y) == 1 && FirstBlock.x == SecondBlock.x))
+            {
+                temp1 = FindBlock(FirstBlock);
+                int tempLev = (int)FindBlock(SecondBlock).ThisBlockLevel; WeaponEnum tempType = FindBlock(SecondBlock).ThisBlockType;
+                
+                Destroy(FindBlock(SecondBlock).m_ThisBlockObject);
+                FindBlock(SecondBlock).ThisBlockLevel = temp1.ThisBlockLevel;
+                FindBlock(SecondBlock).ThisBlockType = temp1.ThisBlockType;
+                SpawnSingleMapObject(temp1.ThisBlockType, (int)temp1.ThisBlockLevel, (int)SecondBlock.y, (int)SecondBlock.x);
+
+                Destroy(FindBlock(FirstBlock).m_ThisBlockObject);
+                FindBlock(FirstBlock).ThisBlockLevel = tempLev;
+                FindBlock(FirstBlock).ThisBlockType = tempType;
+                SpawnSingleMapObject(tempType, tempLev, (int)FirstBlock.y, (int)FirstBlock.x);
+                return true;
+            }
             RefreshMap();
             return false;
         }
     }
+    public void DestroyAndRefreshSingleBlock(Vector2 pos)
+    {
+        StartCoroutine("DestroyAndRefreshSingleBlockIEnumerator", pos);
+    }
+    public IEnumerator DestroyAndRefreshSingleBlockIEnumerator(Vector2 pos)
+    {
+        FindBlock(pos).m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 1);
+        yield return new WaitForSeconds(3f);
+        Destroy(FindBlock(pos).m_ThisBlockObject);
+        ThisMap[(int)pos.y].ThisRow[(int)pos.x].SetRandomMapBlock();
+        SpawnSingleMapObject(ThisMap[(int)pos.y].ThisRow[(int)pos.x].ThisBlockType, 0, (int)pos.y, (int)pos.x);
+    }
     public MapBlockClass FindBlock(Vector2 Position)
     {
-        return ThisMap[(int)Position.y].ThisRow[(int)Position.x];
+        return ThisMap[(int)Position.y].ThisRow[(int)Position.x];       
     }
     public void RefreshMap()
     {
@@ -311,7 +340,7 @@ public class BattleMap : MonoBehaviour
             {
                 ThisMap[i].ThisRow[j].m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1);
             }
-        }
+        }       
     }
     public int TurnPointGain(int BasicTurnPoint)
     {

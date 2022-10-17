@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ICE_C
   m_EditorClassIdentifier: 
   Unlock: 0
-  Weapon_BreakLevel: 1
+  Weapon_BreakLevel: 0
   WeaponID: 7
   Weapon_Name: ICE_C
   WeaponType: 3

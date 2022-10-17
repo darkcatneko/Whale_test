@@ -52,6 +52,14 @@ public class MainPlayer : ScriptableObject
         Regen = Heal * LevelReg * Regen_Buff_Amount;
         Regen = Mathf.RoundToInt(Regen);
         Debug.Log(Regen);
-        NowArmor =(int)Mathf.Clamp(Regen + NowArmor, 0, MaxArmor);
+        NowArmor = (int)Mathf.Clamp(Regen + NowArmor, 0, MaxArmor);
+    }
+    public void Reset()
+    {
+        Attack = 0;
+        MaxArmor = 0;
+        NowArmor = 0;
+        Heal = 0;
+        Crit = 0;
     }
 }

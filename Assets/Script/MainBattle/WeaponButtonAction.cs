@@ -58,7 +58,7 @@ public class WeaponButtonAction : MonoBehaviour
         }
         LastFocus = new Vector2(10, 10);
 
-        GM.GameMap.TextTest(GM.GameMap.ThisMap);
+        //GM.GameMap.TextTest(GM.GameMap.ThisMap);
 
         GM.ChangeState(StateEnum.Free_State);
     }

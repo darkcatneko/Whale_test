@@ -110,6 +110,7 @@ public class HoldGameState : Istate
                             Controller.GameMap.FingerLifted(new Vector2(hit1.transform.GetComponent<BlockIdentity>().ThisColumn, hit1.transform.GetComponent<BlockIdentity>().ThisRow));
                             TwoFocusBlock[FocusCount] = new Vector2(hit1.transform.GetComponent<BlockIdentity>().ThisColumn, hit1.transform.GetComponent<BlockIdentity>().ThisRow);
                             FocusCount++;
+                            Controller.ChangeState(StateEnum.Free_State);
                             return;
                         case 1:
                             if (new Vector2(hit1.transform.GetComponent<BlockIdentity>().ThisColumn, hit1.transform.GetComponent<BlockIdentity>().ThisRow) != TwoFocusBlock[0])
@@ -132,7 +133,9 @@ public class HoldGameState : Istate
                                         }
                                     }                           
                                     FocusCount = 0;
+                                    Controller.ChangeState(StateEnum.Free_State);
                                 }
+                                Controller.ChangeState(StateEnum.Free_State);
                             }
                             else
                             {

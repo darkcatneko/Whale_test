@@ -18,11 +18,25 @@ public class WeaponButtonAction : MonoBehaviour
     }
     public void OnPointerDown()
     {
-        GM.ChangeState(StateEnum.Hold_State);
+        GM.ChangeState(StateEnum.Skill_State);
+    }
+    public void OnHover()
+    {
+        if (GM.GetState()==StateEnum.Free_State)
+        {
+            GM.ChangeState(StateEnum.Skill_State);
+        }       
+    }
+    public void OnHoverExit()
+    {
+        if (GM.GetState() == StateEnum.Skill_State)
+        {
+            GM.ChangeState(StateEnum.Free_State);
+        }
     }
     public void Ondrag()
     {
-        Ray ray = MainCam.ScreenPointToRay(Input.touches[0].position);
+        Ray ray = MainCam.ScreenPointToRay(Input.mousePosition);//要改回touch
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
@@ -37,7 +51,7 @@ public class WeaponButtonAction : MonoBehaviour
     }
     public void OnPointerUp()
     {
-        Ray ray = MainCam.ScreenPointToRay(Input.touches[0].position);
+        Ray ray = MainCam.ScreenPointToRay(Input.mousePosition);//要改回touch
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {

@@ -18,11 +18,19 @@ public class AttackGameState : Istate
                     if (Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockType == WeaponEnum.Armor)
                     {
                         Controller.m_MainPlayer.Regenerate((int)Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockLevel);
+                        if (Controller.GameMap.ThisMap[i].ThisRow[j].AmmoLeft>0)
+                        {
+                            Controller.GameMap.ThisMap[i].ThisRow[j].AmmoLeft--;
+                        }                       
                         TowerCount[0]++;
                     }
                     else
                     {
                         Controller.M_BossController.Be_Attack(Controller.m_MainPlayer.Attack, (int)Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockLevel, Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockType, Controller.m_MainPlayer.Buff_Amount);
+                        if (Controller.GameMap.ThisMap[i].ThisRow[j].AmmoLeft > 0)
+                        {
+                            Controller.GameMap.ThisMap[i].ThisRow[j].AmmoLeft--;
+                        }
                         TowerCount[(int)Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockType]++;
                     }                   
                 }

@@ -49,7 +49,8 @@ public class GameController : MonoBehaviour
             {StateEnum.Attack_State, new AttackGameState()},
             {StateEnum.Defence_State, new DefenceGameState()},
             {StateEnum.Setting_State, new SettingGameState()},
-            {StateEnum.Ready_State, new ReadyTurnState()}
+            {StateEnum.Ready_State, new ReadyTurnState()},
+            {StateEnum.Skill_State, new SkillGameState()}
         };       
     }
 
@@ -82,6 +83,38 @@ public class GameController : MonoBehaviour
         M_BossController.AttackUsedTime = 0;
         ChangeState(StateEnum.Ready_State);
     }
+    public void ReadyTurnFunc()
+    {
+        StartCoroutine("ReadyTurn");
+    }
+    private IEnumerator ReadyTurn()
+    {
+        bool delay = false;
+        for (int i = 0; i < GameMap.ThisMap.Length; i++)
+        {
+            for (int j = 0; j < GameMap.ThisMap[i].ThisRow.Length; j++)
+            {
+                if (GameMap.ThisMap[i].ThisRow[j].AmmoLeft <= 0 && GameMap.ThisMap[i].ThisRow[j].ThisBlockLevel > 0)
+                {
+                    delay = true;
+                    GameMap.DestroyAndRefreshSingleBlock(new Vector2(j, i));
+                }
+            }
+        }
+        if (delay)
+        {
+            yield return new WaitForSeconds(3);
+            TurnPoint = GameMap.TurnPointGain(3);//¥ý°òÂ¦3
+            M_BossController.BossChooseAttack();//©ÇÃ~§ðÀ»
+            ChangeState(StateEnum.Free_State);
+        }
+        else
+        {
+            TurnPoint = GameMap.TurnPointGain(3);//¥ý°òÂ¦3
+            M_BossController.BossChooseAttack();//©ÇÃ~§ðÀ»
+            ChangeState(StateEnum.Free_State);
+        }
+    }
     public void CallBossAttack()
     {
         StartCoroutine("BossAttackFullFunction");
@@ -89,5 +122,9 @@ public class GameController : MonoBehaviour
     private void OnApplicationQuit()
     {
         m_MainPlayer.Reset();
+    }
+    public StateEnum GetState()
+    {
+        return currentState;
     }
 }

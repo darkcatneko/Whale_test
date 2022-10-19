@@ -12,6 +12,7 @@ public class MainPlayer : ScriptableObject
     public WeaponPackClass[] WeaponPack = new WeaponPackClass[5];
     public MainCharacterSO ThisRoundCharacter;
 
+    public int SkillActivation = 0;
 
     public int Attack;
     public int MaxArmor;

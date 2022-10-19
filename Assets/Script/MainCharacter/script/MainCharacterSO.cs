@@ -10,6 +10,7 @@ public class MainCharacterSO : ScriptableObject
     public string Name;
     public Sprite CharacterImage;
     public int SkillUseMP;
-    public UnityEvent BasicSkill;
-    public UnityEvent PassiveSkill;
+    public List<Vector2> RuneHoverPoints = new List<Vector2>();
+    //public UnityEvent BasicSkill;
+    //public UnityEvent PassiveSkill;
 }

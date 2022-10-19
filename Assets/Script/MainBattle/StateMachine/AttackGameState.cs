@@ -8,6 +8,7 @@ public class AttackGameState : Istate
     private int[] TowerCount = new int[5];
     public void OnStateEnter(GameController controller)
     {
+        Debug.Log("¶i§ðÀ»");
         Controller = controller;
         for (int i = 0; i < Controller.GameMap.ThisMap.Length; i++)
         {

@@ -118,6 +118,7 @@ public class HoldGameState : Istate
                                 Controller.GameMap.FingerLifted(new Vector2(hit1.transform.GetComponent<BlockIdentity>().ThisColumn, hit1.transform.GetComponent<BlockIdentity>().ThisRow));
                                 TwoFocusBlock[FocusCount] = new Vector2(hit1.transform.GetComponent<BlockIdentity>().ThisColumn, hit1.transform.GetComponent<BlockIdentity>().ThisRow);
                                 FocusCount++;
+                                Controller.ChangeState(StateEnum.Free_State); 
                                 if (FocusCount == 2)
                                 {
                                     //Debug.Log("twoBlock!!");
@@ -133,24 +134,24 @@ public class HoldGameState : Istate
                                         }
                                     }                           
                                     FocusCount = 0;
-                                    Controller.ChangeState(StateEnum.Free_State);
+                                    //Controller.ChangeState(StateEnum.Free_State);
                                 }
-                                Controller.ChangeState(StateEnum.Free_State);
+                                
                             }
                             else
                             {
                                 //Debug.Log("SameBlock!!");
                             }
-                            return;
-                        default:
-                            break;
+                            return;                        
                     }
+                    
                 }
                 else
                 {
                     TwoFocusBlock = new Vector2[2];
                     FocusCount = 0;
                     Controller.GameMap.RefreshMap();
+                    Controller.ChangeState(StateEnum.Free_State);
                 }
             }
             else
@@ -158,6 +159,7 @@ public class HoldGameState : Istate
                 TwoFocusBlock = new Vector2[2];
                 FocusCount = 0;
                 Controller.GameMap.RefreshMap();
+                Controller.ChangeState(StateEnum.Free_State);
             }
         }
     }

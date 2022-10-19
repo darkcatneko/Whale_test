@@ -76,5 +76,5 @@ public class WeaponButtonAction : MonoBehaviour
 
         GM.ChangeState(StateEnum.Free_State);
     }
-   
+    
 }

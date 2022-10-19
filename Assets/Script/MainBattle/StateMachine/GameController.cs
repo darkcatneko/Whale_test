@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
     public MainCharacterData C_Data;    
     #region Canvas
     public Button[] WeaponButton = new Button[5];
+    public Button MainCharacterSkillButton;
     public TextMeshProUGUI BossHealth;
     public TextMeshProUGUI PlayerHealth;
     public TextMeshProUGUI DamageLog;
@@ -81,6 +82,7 @@ public class GameController : MonoBehaviour
         Debug.Log("延時"+M_BossController.AttackUsedTime);
         yield return new WaitForSeconds(M_BossController.AttackUsedTime);
         M_BossController.AttackUsedTime = 0;
+        Debug.Log("準備跳轉");
         ChangeState(StateEnum.Ready_State);
     }
     public void ReadyTurnFunc()

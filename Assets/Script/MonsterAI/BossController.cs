@@ -82,15 +82,40 @@ public class BossController : MonoBehaviour
                 break;
         }
         Damage = Atk * LevelAtk * resistance[(int)type-1] * Buff ;
+        CharacterPassiveCheck(type, Damage);
         Damage = Mathf.Clamp(Damage - DEF, 1, Damage);
         Damage = Mathf.RoundToInt(Damage);
         NowHealth -= Damage;
         Debug.Log("我打出了" + Damage + "點傷害");
     }
+    public float CharacterPassiveCheck(WeaponEnum DamageType,float Damage)
+    {
+        switch(GameMaster.m_MainPlayer.ThisRound_MainCharacter_ID)
+        {
+            case 0:
+                if (DamageType == WeaponEnum.Slash)
+                {
+                    return Damage * 1.5f;
+                }
+                return Damage;
+        }
+        return Damage;
+    }
     public void BossAttackDamage(float Percentage)
     {
         GameMaster.m_MainPlayer.NowArmor -= Mathf.FloorToInt(Percentage * ATK);
         Debug.Log("Boss打出了" + Mathf.FloorToInt(Percentage * ATK) + "點傷害");
+    }
+    public void BossBreakSingleBlock(Vector2 Vc)
+    {
+        if (GameMaster.GameMap.FindBlock(Vc).ShieldLeft>0)
+        {
+            GameMaster.GameMap.FindBlock(Vc).ShieldLeft--;
+        }
+        else
+        {
+            GameMaster.GameMap.DestroyAndRefreshSingleBlock(Vc);
+        }       
     }
     public Boss GetBoss()
     {

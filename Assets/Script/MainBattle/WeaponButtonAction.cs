@@ -59,16 +59,16 @@ public class WeaponButtonAction : MonoBehaviour
             {
                 //Debug.Log(hit.transform.GetComponent<BlockIdentity>().ThisColumn + "    " + hit.transform.GetComponent<BlockIdentity>().ThisRow);
                 //´ú¸Õ²Å¤å
-                GM.GameMap.MixBlock2(ButtonWeapon.m_RuneHoverPoints.ToArray(), new Vector2(hit.transform.GetComponent<BlockIdentity>().ThisColumn, hit.transform.GetComponent<BlockIdentity>().ThisRow));
+                //GM.GameMap.MixBlock2(ButtonWeapon.m_RuneHoverPoints.ToArray(), new Vector2(hit.transform.GetComponent<BlockIdentity>().ThisColumn, hit.transform.GetComponent<BlockIdentity>().ThisRow));
             }
             else if (LastFocus != new Vector2(10, 10))
             {
-                GM.GameMap.MixBlock2(ButtonWeapon.m_RuneHoverPoints.ToArray(), LastFocus);
+               // GM.GameMap.MixBlock2(ButtonWeapon.m_RuneHoverPoints.ToArray(), LastFocus);
             }
         }
         else if (LastFocus!= new Vector2(10,10))
         {
-            GM.GameMap.MixBlock2(ButtonWeapon.m_RuneHoverPoints.ToArray(), LastFocus);
+           // GM.GameMap.MixBlock2(ButtonWeapon.m_RuneHoverPoints.ToArray(), LastFocus);
         }
         LastFocus = new Vector2(10, 10);
 

@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
     public MainCharacterData C_Data;    
     #region Canvas
     public Button[] WeaponButton = new Button[5];
+    public Button MainCharacterSkillButton;
     public TextMeshProUGUI BossHealth;
     public TextMeshProUGUI PlayerHealth;
     public TextMeshProUGUI DamageLog;
@@ -81,6 +82,7 @@ public class GameController : MonoBehaviour
         Debug.Log("延時"+M_BossController.AttackUsedTime);
         yield return new WaitForSeconds(M_BossController.AttackUsedTime);
         M_BossController.AttackUsedTime = 0;
+        Debug.Log("準備跳轉");
         ChangeState(StateEnum.Ready_State);
     }
     public void ReadyTurnFunc()
@@ -89,31 +91,59 @@ public class GameController : MonoBehaviour
     }
     private IEnumerator ReadyTurn()
     {
-        bool delay = false;
+        int delay = 0;
         for (int i = 0; i < GameMap.ThisMap.Length; i++)
         {
+            
             for (int j = 0; j < GameMap.ThisMap[i].ThisRow.Length; j++)
-            {
+            {               
+                if (CharacterReadyPassive(new Vector2(j, i)))
+                {
+                        delay++;
+                }                
                 if (GameMap.ThisMap[i].ThisRow[j].AmmoLeft <= 0 && GameMap.ThisMap[i].ThisRow[j].ThisBlockLevel > 0)
                 {
-                    delay = true;
+                    delay++;
                     GameMap.DestroyAndRefreshSingleBlock(new Vector2(j, i));
                 }
             }
         }
-        if (delay)
+        if (delay>0)
         {
             yield return new WaitForSeconds(3);
             TurnPoint = GameMap.TurnPointGain(3);//先基礎3
             M_BossController.BossChooseAttack();//怪獸攻擊
+            if (m_MainPlayer.SkillActivation>0)
+            {
+                m_MainPlayer.SkillActivation--;
+            }
             ChangeState(StateEnum.Free_State);
         }
         else
         {
             TurnPoint = GameMap.TurnPointGain(3);//先基礎3
             M_BossController.BossChooseAttack();//怪獸攻擊
+            if (m_MainPlayer.SkillActivation > 0)
+            {
+                m_MainPlayer.SkillActivation--;
+            }
             ChangeState(StateEnum.Free_State);
         }
+    }
+    public bool CharacterReadyPassive(Vector2 Pos)
+    {
+        
+        switch(m_MainPlayer.ThisRound_MainCharacter_ID)
+        {
+            case 0:                
+                if (GameMap.FindBlock(Pos).ThisBlockType == WeaponEnum.Slash&& GameMap.FindBlock(Pos).ThisBlockLevel > 0&&m_MainPlayer.SkillActivation == 0)
+                {                    
+                    Destroy(GameMap.FindBlock(Pos).m_ThisBlockObject);
+                    GameMap.SpawnSingleMapObject(WeaponEnum.Slash, (int)GameMap.FindBlock(Pos).ThisBlockLevel-1, (int)Pos.y, (int)Pos.x, GameMap.StartAmmo,0);
+                }
+                return true;
+        }
+        return false;
     }
     public void CallBossAttack()
     {

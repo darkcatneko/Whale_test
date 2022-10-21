@@ -54,7 +54,7 @@ public class WormBoAI : BossIstate
             {
                 for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                 {
-                    Controller.GameMaster.GameMap.DestroyAndRefreshSingleBlock(Controller.BlockReadyToBreak[i]);
+                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);                    
                 }
             }
             Controller.BlockReadyToBreak = new List<Vector2>();
@@ -95,7 +95,7 @@ public class WormBoAI : BossIstate
             {
                 for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                 {
-                    Controller.GameMaster.GameMap.DestroyAndRefreshSingleBlock(Controller.BlockReadyToBreak[i]);
+                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
                 }
             }
             Controller.BlockReadyToBreak = new List<Vector2>();
@@ -169,7 +169,7 @@ public class WormBoAI : BossIstate
                                 Controller.BossAttackDamage(0.7f);
                                 for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                                 {
-                                    Controller.GameMaster.GameMap.DestroyAndRefreshSingleBlock(Controller.BlockReadyToBreak[i]);
+                                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
                                 }
                                 Controller.BlockReadyToBreak = new List<Vector2>();
                                 BossAction.RemoveAllListeners();
@@ -234,7 +234,7 @@ public class WormBoAI : BossIstate
                                     Controller.BossAttackDamage(0.6f);
                                     for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                                     {
-                                        Controller.GameMaster.GameMap.DestroyAndRefreshSingleBlock(Controller.BlockReadyToBreak[i]);
+                                        Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
                                     }
                                     Controller.BlockReadyToBreak = new List<Vector2>();
                                     BossAction.RemoveAllListeners();
@@ -286,7 +286,7 @@ public class WormBoAI : BossIstate
                                     Controller.BossAttackDamage(1.5f);
                                     for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                                     {
-                                        Controller.GameMaster.GameMap.DestroyAndRefreshSingleBlock(Controller.BlockReadyToBreak[i]);
+                                        Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
                                     }
                                     Controller.BlockReadyToBreak = new List<Vector2>();
                                     BossAction.RemoveAllListeners();
@@ -347,7 +347,7 @@ public class WormBoAI : BossIstate
                                     Controller.BossAttackDamage(0.7f);
                                     for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                                     {
-                                        Controller.GameMaster.GameMap.DestroyAndRefreshSingleBlock(Controller.BlockReadyToBreak[i]);
+                                        Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
                                     }
                                     Controller.BlockReadyToBreak = new List<Vector2>();
                                     BossAction.RemoveAllListeners();
@@ -388,7 +388,7 @@ public class WormBoAI : BossIstate
                                     {
                                         for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                                         {
-                                            Controller.GameMaster.GameMap.DestroyAndRefreshSingleBlock(Controller.BlockReadyToBreak[i]);
+                                            Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
                                         }
                                     }
                                     Controller.BlockReadyToBreak = new List<Vector2>();
@@ -453,7 +453,7 @@ public class WormBoAI : BossIstate
             }
             for (int i = 0; i < Temp.Length; i++)
             {
-                Controller.GameMaster.GameMap.DestroyAndRefreshSingleBlock(Temp[i]);
+                Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
             }
             //µ¹¶Ë®`
             for (int i = 0; i < 5; i++)
@@ -513,7 +513,7 @@ public class WormBoAI : BossIstate
             {
                 for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                 {
-                    Controller.GameMaster.GameMap.DestroyAndRefreshSingleBlock(Controller.BlockReadyToBreak[i]);
+                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
                 }
             }
             Controller.BlockReadyToBreak = new List<Vector2>();

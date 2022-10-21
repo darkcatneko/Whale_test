@@ -7,6 +7,7 @@ public class DefenceGameState : Istate
     public GameController Controller { get; set; }
     public void OnStateEnter(GameController controller)
     {
+        Debug.Log("¨¾¿m");
         Controller = controller;
         //¦©°£¤ýªºCD
         Controller.M_BossController.CD_To_Next_Attack--;

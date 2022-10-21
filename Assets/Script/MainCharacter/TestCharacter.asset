@@ -15,10 +15,12 @@ MonoBehaviour:
   ID: 0
   Name: "\u8FA3\u6912\u4EBA"
   CharacterImage: {fileID: 0}
-  SkillUseMP: 70
-  BasicSkill:
-    m_PersistentCalls:
-      m_Calls: []
-  PassiveSkill:
-    m_PersistentCalls:
-      m_Calls: []
+  SkillUseMP: 50
+  RuneHoverPoints:
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: 1, y: 1}
+  - {x: 1, y: -1}
+  - {x: -1, y: 0}
+  - {x: -1, y: 1}
+  - {x: -1, y: -1}

@@ -8,6 +8,7 @@ public class ReadyTurnState : Istate
     public void OnStateEnter(GameController controller)
     {
         Controller = controller;
+        Debug.Log("¶i·Ç³Æ");
         Controller.ReadyTurnFunc();
     }
     public void OnStateStay()

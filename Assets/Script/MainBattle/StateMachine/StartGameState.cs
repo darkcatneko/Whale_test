@@ -45,5 +45,10 @@ public class StartGameState : Istate
     {
         Controller.m_MainPlayer.ThisRoundCharacter = Controller.C_Data.GetCharacterInformation(Controller.m_MainPlayer.ThisRound_MainCharacter_ID);
         Controller.MaxMP = Controller.m_MainPlayer.ThisRoundCharacter.SkillUseMP;
+        for (int i = 0; i < Controller.C_Data.GetCharacterInformation(Controller.m_MainPlayer.ThisRound_MainCharacter_ID).RuneHoverPoints.Count; i++)
+        {
+            Controller.MainCharacterSkillButton.GetComponent<MainCharacterSkill>().RuneHoverPoints.Add(Controller.C_Data.GetCharacterInformation(Controller.m_MainPlayer.ThisRound_MainCharacter_ID).RuneHoverPoints[i]);
+        }
+        Controller.MainCharacterSkillButton.GetComponent<MainCharacterSkill>().InstallSkill();
     }
 }

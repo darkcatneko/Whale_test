@@ -42,6 +42,7 @@ MonoBehaviour:
     m_WeaponCD: 0
     m_RuneHoverPoints: []
   ThisRoundCharacter: {fileID: 11400000, guid: 1f91cfcddc089374fa268eb6b11370fe, type: 2}
+  SkillActivation: 0
   Attack: 0
   MaxArmor: 0
   NowArmor: 0

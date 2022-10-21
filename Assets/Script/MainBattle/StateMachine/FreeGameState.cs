@@ -9,6 +9,7 @@ public class FreeGameState : Istate
     public void OnStateEnter(GameController controller)
     {
         //可以開始操作
+        Debug.Log("可自由");
         Controller = controller;
     }
     public void OnStateStay()

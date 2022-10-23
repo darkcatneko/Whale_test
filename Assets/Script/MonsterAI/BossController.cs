@@ -82,13 +82,16 @@ public class BossController : MonoBehaviour
                 break;
         }
         Damage = Atk * LevelAtk * resistance[(int)type-1] * Buff ;
-        CharacterPassiveCheck(type, Damage);
+        //Debug.LogError(Damage);
+        Damage = CharacterPassiveCheck(type, Damage,level);
+        //Debug.LogWarning(Damage);
         Damage = Mathf.Clamp(Damage - DEF, 1, Damage);
         Damage = Mathf.RoundToInt(Damage);
         NowHealth -= Damage;
+        CharacterPassiveExtraAttackCheck(Damage);
         Debug.Log("我打出了" + Damage + "點傷害");
     }
-    public float CharacterPassiveCheck(WeaponEnum DamageType,float Damage)
+    public float CharacterPassiveCheck(WeaponEnum DamageType,float Damage,float WeaponLevel)
     {
         switch(GameMaster.m_MainPlayer.ThisRound_MainCharacter_ID)
         {
@@ -98,8 +101,29 @@ public class BossController : MonoBehaviour
                     return Damage * 1.5f;
                 }
                 return Damage;
+            case 2:
+                
+                if (WeaponLevel<=3&&WeaponLevel>=1)
+                {
+                    return Damage * 0.65f;
+                }
+                return Damage;
         }
         return Damage;
+    }
+    public void CharacterPassiveExtraAttackCheck(float Damage)
+    {
+        switch (GameMaster.m_MainPlayer.ThisRound_MainCharacter_ID)
+        {
+            case 3:
+                if (GameMaster.NowMP>=30||GameMaster.m_MainPlayer.SkillActivation>0)
+                {
+                    //Debug.LogError("追傷" + Mathf.FloorToInt(Damage * 0.3f));
+                    NowHealth -= Mathf.FloorToInt(Damage * 0.3f);
+                }
+               
+                return;
+        }
     }
     public void BossAttackDamage(float Percentage)
     {

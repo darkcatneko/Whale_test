@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponPool: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   BringingWeaponID: 0500000006000000070000000800000009000000
-  ThisRound_MainCharacter_ID: 0
+  ThisRound_MainCharacter_ID: 3
   WeaponPack:
   - m_WeaponType: 0
     m_WeaponID: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
     m_Durability: 0
     m_WeaponCD: 0
     m_RuneHoverPoints: []
-  ThisRoundCharacter: {fileID: 11400000, guid: 1f91cfcddc089374fa268eb6b11370fe, type: 2}
+  ThisRoundCharacter: {fileID: 11400000, guid: 53686cb769de67a4cb2deb312fafaa13, type: 2}
   SkillActivation: 0
   Attack: 0
   MaxArmor: 0

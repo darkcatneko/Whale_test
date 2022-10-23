@@ -28,6 +28,7 @@ public class AttackGameState : Istate
                     else
                     {
                         Controller.M_BossController.Be_Attack(Controller.m_MainPlayer.Attack, (int)Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockLevel, Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockType, Controller.m_MainPlayer.Buff_Amount);
+                        CharacterPassiveEnergyCharge();
                         if (Controller.GameMap.ThisMap[i].ThisRow[j].AmmoLeft > 0)
                         {
                             Controller.GameMap.ThisMap[i].ThisRow[j].AmmoLeft--;
@@ -52,6 +53,15 @@ public class AttackGameState : Istate
     {
 
     }
+    public void CharacterPassiveEnergyCharge()
+    {
+        switch(Controller.m_MainPlayer.ThisRound_MainCharacter_ID)
+        {
+            case 3:
+                Controller.NowMP = Mathf.Clamp(Controller.NowMP+1,0, Controller.MaxMP);
+                return;
+        }
+    }
     public bool BossSpecialMoveDestroy(Boss boss)
     {
         bool complete = false;
@@ -75,4 +85,5 @@ public class AttackGameState : Istate
         Debug.Log("bruh");
         return complete;
     }
+    
 }

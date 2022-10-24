@@ -190,7 +190,7 @@ public class BattleMap : MonoBehaviour
     //                ThisMap[(int)(Origin.y + Rune[i].y)].ThisRow[(int)(Origin.x + Rune[i].x)].SetRandomMapBlock();
     //                SpawnSingleMapObject(ThisMap[(int)(Origin.y + Rune[i].y)].ThisRow[(int)(Origin.x + Rune[i].x)].ThisBlockType, 0, (int)(Origin.y + Rune[i].y), (int)(Origin.x + Rune[i].x));
     //            }
-                
+
     //        }
     //    }
     //    Debug.Log(EnergyCount.ToString());
@@ -283,15 +283,24 @@ public class BattleMap : MonoBehaviour
     //            }
     //        }
     //    }
-        
+
     //    Debug.Log(MostType.ToString());
     //}
-    public bool MixTwoBlock(Vector2 FirstBlock, Vector2 SecondBlock)
+    public bool MixTwoBlock(Vector2 FirstBlock, Vector2 SecondBlock, GameController GM)
     {
         int ThisBlockLevel = 0;
         if (FindBlock(FirstBlock).ThisBlockLevel == FindBlock(SecondBlock).ThisBlockLevel && FindBlock(FirstBlock).ThisBlockType == FindBlock(SecondBlock).ThisBlockType)
         {
-            //Debug.Log("SameBlock");            
+            //主戰者被動
+            switch(GM.m_MainPlayer.ThisRound_MainCharacter_ID)
+            {
+                case 2:
+                    if (FindBlock(FirstBlock).ThisBlockLevel == 4 || FindBlock(FirstBlock).ThisBlockLevel == 5)
+                    {
+                        GM.TurnPoint++;
+                    }
+                    break;
+            }            
             //確認等級  
             ThisBlockLevel = (int)FindBlock(FirstBlock).ThisBlockLevel;
             //破壞方塊       
@@ -365,7 +374,7 @@ public class BattleMap : MonoBehaviour
             }
         }       
     }
-    public int TurnPointGain(int BasicTurnPoint)
+    public int TurnPointGain(int BasicTurnPoint,GameController Controller)
     {
         int Lv5turrent = 0;
         for (int i = 0; i < ThisMap.Length; i++)
@@ -376,6 +385,26 @@ public class BattleMap : MonoBehaviour
                 {
                     Lv5turrent++;
                 }                               
+            }
+        }
+        if (GM.m_MainPlayer.ThisRound_MainCharacter_ID == 2)
+        {
+            
+            bool CanAddTurn = true;
+            for (int i = 0; i < Controller.GameMap.ThisMap.Length; i++)
+            {
+                for (int j = 0; j < Controller.GameMap.ThisMap[i].ThisRow.Length; j++)
+                {
+
+                    if (Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockLevel == 4 || Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockLevel == 5)
+                    {
+                        CanAddTurn = false;
+                    }
+                }
+            }
+            if (CanAddTurn)
+            {
+                BasicTurnPoint++;
             }
         }
         return BasicTurnPoint + Lv5turrent;

@@ -53,7 +53,7 @@ public class HoldGameState : Istate
                                         if (FocusCount == 2)
                                         {
                                             Debug.Log("twoBlock!!");
-                                            Controller.GameMap.MixTwoBlock(TwoFocusBlock[0], TwoFocusBlock[1]);
+                                            Controller.GameMap.MixTwoBlock(TwoFocusBlock[0], TwoFocusBlock[1], Controller);
                                             FocusCount = 0;
                                         }
                                     }
@@ -122,7 +122,7 @@ public class HoldGameState : Istate
                                 if (FocusCount == 2)
                                 {
                                     //Debug.Log("twoBlock!!");
-                                    if (Controller.GameMap.MixTwoBlock(TwoFocusBlock[0], TwoFocusBlock[1]))
+                                    if (Controller.GameMap.MixTwoBlock(TwoFocusBlock[0], TwoFocusBlock[1],Controller))
                                     {
                                         Controller.TurnPoint--;      
                                         //¾Þ§@°Ê¼Æ-1                

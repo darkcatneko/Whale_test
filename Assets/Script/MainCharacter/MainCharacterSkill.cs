@@ -19,7 +19,9 @@ public class MainCharacterSkill : MonoBehaviour
         MainCharacterSkillData = new Dictionary<int, UnityAction>
         {
             {0, OnSlashMainCharacterPointerUp},
-            {1, OnIIresPointerUp }
+            {1, OnIIresPointerUp },
+            {2, OnLungeMainPointerUp },
+            {3, OnAssassinMainCharacterPointerUp }
         };
                
     }
@@ -197,6 +199,131 @@ public class MainCharacterSkill : MonoBehaviour
         }
         GM.m_MainPlayer.SkillActivation++;
         GM.ChangeState(StateEnum.Free_State);
+    }
+    public IEnumerator LungeMainCharacterFunc(Vector2 Origin)
+    {
+        int ToolCount = 1;
+        yield return new WaitForSeconds(4f);
+        for (int i = 0; i < RuneHoverPoints.Count; i++)
+        {
+            if (GM.GameMap.FindBlock(RuneHoverPoints[i] + Origin).ThisBlockLevel>0)
+            {
+                ToolCount++;
+            }            
+        }
+        for (int i = 0; i < RuneHoverPoints.Count; i++)
+        {
+            if (RuneHoverPoints[i] == new Vector2(0, 0))
+            {
+                Destroy(GM.GameMap.FindBlock(RuneHoverPoints[i] + Origin).m_ThisBlockObject);
+                GM.GameMap.SpawnSingleMapObject(WeaponEnum.Lunge, Mathf.Clamp(ToolCount,1,5), (int)(RuneHoverPoints[i].y + Origin.y), (int)(RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo, 0);
+                GM.GameMap.FindBlock(RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Lunge;
+            }
+            else
+            {                
+                Vector2 pos = RuneHoverPoints[i] + Origin;
+                Destroy(GM.GameMap.FindBlock(pos).m_ThisBlockObject);
+                GM.GameMap.ThisMap[(int)pos.y].ThisRow[(int)pos.x].SetRandomMapBlock();
+                GM.GameMap.SpawnSingleMapObject(GM.GameMap.ThisMap[(int)pos.y].ThisRow[(int)pos.x].ThisBlockType, 0, (int)pos.y, (int)pos.x, 0, 0);
+            }
+        }
+        GM.TurnPoint++;
+        GM.m_MainPlayer.SkillActivation++;
+        GM.ChangeState(StateEnum.Free_State);
+    }
+    public void OnLungeMainPointerUp()
+    {
+
+        Ray ray = MainCam.ScreenPointToRay(Input.mousePosition);//要改回touch
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (GM.NowMP == GM.MaxMP)
+            {
+                if (hit.transform.tag == "Block")
+                {
+                    StartCoroutine("LungeMainCharacterFunc", new Vector2(hit.transform.GetComponent<BlockIdentity>().ThisColumn, hit.transform.GetComponent<BlockIdentity>().ThisRow));
+                }
+                else if (LastFocus != new Vector2(10, 10))
+                {
+                    StartCoroutine("LungeMainCharacterFunc", LastFocus);
+                }
+            }
+            else
+            {
+                GM.ChangeState(StateEnum.Free_State);
+            }
+        }
+        else if (LastFocus != new Vector2(10, 10))
+        {
+            if (GM.NowMP == GM.MaxMP)
+            {
+                StartCoroutine("LungeMainCharacterFunc", LastFocus);
+            }
+            else
+            {
+                GM.ChangeState(StateEnum.Free_State);
+            }
+        }
+        LastFocus = new Vector2(10, 10);
+
+        //GM.GameMap.TextTest(GM.GameMap.ThisMap);
+
+
+    }
+    public IEnumerator AssassinMainCharacterFunc(Vector2 Origin)
+    {
+        yield return new WaitForSeconds(4f);        
+        for (int i = 0; i < RuneHoverPoints.Count; i++)
+        {
+            if (GM.GameMap.FindBlock(RuneHoverPoints[i] + Origin).ThisBlockLevel>0)
+            {
+                Debug.Log("穿透技能額外攻擊");
+                GM.M_BossController.Be_Attack(GM.m_MainPlayer.Attack, (int)GM.GameMap.FindBlock(RuneHoverPoints[i] + Origin).ThisBlockLevel, WeaponEnum.Penetrate, GM.m_MainPlayer.Buff_Amount);
+            }           
+        }
+        GM.m_MainPlayer.SkillActivation++;
+        GM.ChangeState(StateEnum.Free_State);
+    }
+    public void OnAssassinMainCharacterPointerUp()
+    {
+
+        Ray ray = MainCam.ScreenPointToRay(Input.mousePosition);//要改回touch
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (GM.NowMP == GM.MaxMP)
+            {
+                if (hit.transform.tag == "Block")
+                {
+                    StartCoroutine("AssassinMainCharacterFunc", new Vector2(hit.transform.GetComponent<BlockIdentity>().ThisColumn, hit.transform.GetComponent<BlockIdentity>().ThisRow));
+                }
+                else if (LastFocus != new Vector2(10, 10))
+                {
+                    StartCoroutine("AssassinMainCharacterFunc", LastFocus);
+                }
+            }
+            else
+            {
+                GM.ChangeState(StateEnum.Free_State);
+            }
+        }
+        else if (LastFocus != new Vector2(10, 10))
+        {
+            if (GM.NowMP == GM.MaxMP)
+            {
+                StartCoroutine("AssassinMainCharacterFunc", LastFocus);
+            }
+            else
+            {
+                GM.ChangeState(StateEnum.Free_State);
+            }
+        }
+        LastFocus = new Vector2(10, 10);
+
+        //GM.GameMap.TextTest(GM.GameMap.ThisMap);
+
+
     }
     private void OnApplicationQuit()
     {

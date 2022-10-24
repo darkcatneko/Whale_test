@@ -111,7 +111,7 @@ public class GameController : MonoBehaviour
         if (delay>0)
         {
             yield return new WaitForSeconds(3);
-            TurnPoint = GameMap.TurnPointGain(3);//先基礎3
+            TurnPoint = GameMap.TurnPointGain(3,this);//先基礎3
             M_BossController.BossChooseAttack();//怪獸攻擊
             if (m_MainPlayer.SkillActivation>0)
             {
@@ -121,7 +121,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            TurnPoint = GameMap.TurnPointGain(3);//先基礎3
+            TurnPoint = GameMap.TurnPointGain(3, this);//先基礎3
             M_BossController.BossChooseAttack();//怪獸攻擊
             if (m_MainPlayer.SkillActivation > 0)
             {

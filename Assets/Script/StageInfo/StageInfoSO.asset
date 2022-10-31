@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cc03beecb3dcb246a324ed8411d0670, type: 3}
   m_Name: StageInfoSO
   m_EditorClassIdentifier: 
-  ThisRoundBoss: 0
+  ThisRoundBoss: 1

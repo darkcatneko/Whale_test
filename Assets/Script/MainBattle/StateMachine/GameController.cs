@@ -84,6 +84,26 @@ public class GameController : MonoBehaviour
         Debug.Log("延時"+M_BossController.AttackUsedTime);
         yield return new WaitForSeconds(M_BossController.AttackUsedTime);
         M_BossController.AttackUsedTime = 0;
+        if (M_BossController.GetBoss() == Boss.MainBoss&&M_BossController.NowSkillName == "SpecialAttackE")
+        {
+            bool CanHeal = false;
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    if (GameMap.FindBlock(new Vector2(j, i)).ThisBlockLevel>0)
+                    {
+                        CanHeal = true;
+                    }
+                    
+                }
+            }
+            if (CanHeal)
+            {
+                m_MainPlayer.NowArmor = Mathf.Clamp(m_MainPlayer.NowArmor + Mathf.FloorToInt(m_MainPlayer.MaxArmor * 0.5f),0, m_MainPlayer.MaxArmor);
+            }
+            M_BossController.NowSkillName = "";
+        }
         Debug.Log("準備跳轉");
         ChangeState(StateEnum.Ready_State);
     }

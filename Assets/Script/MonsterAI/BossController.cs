@@ -11,6 +11,7 @@ public class BossController : MonoBehaviour
     private Boss ThisRoundBoss;
     public List<Vector2> BlockReadyToBreak = new List<Vector2>();
     public float AttackUsedTime;
+    public string NowSkillName = "";
     private UnityEvent DelayUse = new UnityEvent();
     #region BossStat
     public int CD_To_Next_Attack;
@@ -23,7 +24,8 @@ public class BossController : MonoBehaviour
     {
         allBossDict = new Dictionary<Boss, BossIstate>
         {
-            {Boss.WormBo,new WormBoAI()}
+            {Boss.WormBo,new WormBoAI()},
+            {Boss.MainBoss,new MainBossAI()}
         };
     }
     public void SetBossData(Boss WhichBoss)
@@ -130,6 +132,11 @@ public class BossController : MonoBehaviour
         GameMaster.m_MainPlayer.NowArmor -= Mathf.FloorToInt(Percentage * ATK);
         Debug.Log("Boss打出了" + Mathf.FloorToInt(Percentage * ATK) + "點傷害");
     }
+    public void BossAttackPercentageDamage(float Percentage)
+    {
+        GameMaster.m_MainPlayer.NowArmor -= Mathf.FloorToInt(Percentage * GameMaster.m_MainPlayer.MaxArmor);
+        Debug.Log("Boss打出了" + Mathf.FloorToInt(Percentage * GameMaster.m_MainPlayer.MaxArmor) + "點傷害");
+    }
     public void BossBreakSingleBlock(Vector2 Vc)
     {
         if (GameMaster.GameMap.FindBlock(Vc).ShieldLeft>0)
@@ -140,6 +147,17 @@ public class BossController : MonoBehaviour
         {
             GameMaster.GameMap.DestroyAndRefreshSingleBlock(Vc);
         }       
+    }
+    public void BossBreakSingleBlock_MutiHit(Vector2 Vc,int hit)
+    {
+        if(GameMaster.GameMap.FindBlock(Vc).ShieldLeft- hit > 0)
+        {
+            GameMaster.GameMap.FindBlock(Vc).ShieldLeft-= hit;
+        }
+        else
+        {
+            GameMaster.GameMap.DestroyAndRefreshSingleBlock(Vc);
+        }
     }
     public Boss GetBoss()
     {

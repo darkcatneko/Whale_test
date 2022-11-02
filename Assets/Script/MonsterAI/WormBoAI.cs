@@ -453,7 +453,7 @@ public class WormBoAI : BossIstate
             }
             for (int i = 0; i < Temp.Length; i++)
             {
-                Controller.BossBreakSingleBlock(Temp[i]);
+                Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
             }
             //µ¹¶Ë®`
             for (int i = 0; i < 5; i++)

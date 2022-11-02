@@ -17,5 +17,4 @@ public interface BossIstate
 public enum Boss
 {
     WormBo,
-    MainBoss,
 }

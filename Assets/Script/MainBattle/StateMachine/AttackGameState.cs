@@ -38,7 +38,10 @@ public class AttackGameState : Istate
                 }
             }
         }
-        BossSpecialCheck();
+        if (BossSpecialMoveDestroy(Boss.WormBo)&&Controller.M_BossController.GetBoss() == Boss.WormBo)
+        {
+            Controller.M_BossController.BossSpecialAttack();            
+        }
         TowerCount = new int[5];
         Controller.ChangeState(StateEnum.Defence_State);
     }
@@ -49,33 +52,6 @@ public class AttackGameState : Istate
     public void OnStateExit()
     {
 
-    }
-    public void BossSpecialCheck()
-    {
-        if (BossSpecialMoveDestroy(Boss.WormBo) && Controller.M_BossController.GetBoss() == Boss.WormBo)
-        {
-            Controller.M_BossController.BossSpecialAttack();
-        }
-        if (Controller.M_BossController.GetBoss() == Boss.MainBoss && Controller.M_BossController.NowSkillName == "SpecialAttackB")
-        {
-            for (int i = 1; i < TowerCount.Length; i++)
-            {
-                if (TowerCount[i] > 0)
-                {
-                    Controller.M_BossController.BossSpecialAttack();
-                }
-            }
-        }
-        if (Controller.M_BossController.GetBoss() == Boss.MainBoss && Controller.M_BossController.NowSkillName == "SpecialAttackE")
-        {
-            for (int i = 1; i < TowerCount.Length; i++)
-            {
-                if (TowerCount[i] > 0)
-                {
-                    Controller.M_BossController.BossSpecialAttack();
-                }
-            }
-        }
     }
     public void CharacterPassiveEnergyCharge()
     {

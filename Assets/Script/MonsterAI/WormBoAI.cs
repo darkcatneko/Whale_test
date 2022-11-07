@@ -42,6 +42,7 @@ public class WormBoAI : BossIstate
             int spot = Random.Range(0, temp.Count);
             for (int i = 0; i < 5; i++)
             {
+                Controller.GenWarning(new Vector2(temp[spot].x, i));
                 Controller.BlockReadyToBreak.Add(new Vector2(temp[spot].x, i));
                 Controller.GameMaster.GameMap.FindBlock(new Vector2(temp[spot].x, i)).m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 1, 1);
             }
@@ -57,6 +58,7 @@ public class WormBoAI : BossIstate
                     Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);                    
                 }
             }
+            
             Controller.BlockReadyToBreak = new List<Vector2>();
             BossAction.RemoveAllListeners();
         });
@@ -81,6 +83,8 @@ public class WormBoAI : BossIstate
             int spot = Random.Range(0, temp.Count);
             for (int i = 0; i < 5; i++)
             {
+                Controller.GenWarning(new Vector2(temp[spot].x, i));
+                Controller.GenWarning(new Vector2(i, temp[spot].y));
                 Controller.BlockReadyToBreak.Add(new Vector2(temp[spot].x, i));
                 Controller.BlockReadyToBreak.Add(new Vector2(i, temp[spot].y));
                 Controller.GameMaster.GameMap.FindBlock(new Vector2(temp[spot].x, i)).m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 1, 1);
@@ -98,6 +102,7 @@ public class WormBoAI : BossIstate
                     Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
                 }
             }
+            
             Controller.BlockReadyToBreak = new List<Vector2>();
             BossAction.RemoveAllListeners();
         });
@@ -119,6 +124,7 @@ public class WormBoAI : BossIstate
                 Controller.BossAttackDamage(1f);
             }
             Controller.AttackUsedTime += 3f;
+            
             Controller.BlockReadyToBreak = new List<Vector2>();
             BossAction.RemoveAllListeners();
         });
@@ -159,6 +165,7 @@ public class WormBoAI : BossIstate
                             temp = Random5Block();
                             for (int i = 0; i < 5; i++)
                             {
+                                Controller.GenWarning(temp[i]);
                                 Controller.BlockReadyToBreak.Add(temp[i]);
                                 Controller.GameMaster.GameMap.FindBlock(temp[i]).m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 1, 1);
                             }
@@ -171,6 +178,7 @@ public class WormBoAI : BossIstate
                                 {
                                     Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
                                 }
+                                
                                 Controller.BlockReadyToBreak = new List<Vector2>();
                                 BossAction.RemoveAllListeners();
                             });//´¶§ðBÅF¥X
@@ -193,6 +201,7 @@ public class WormBoAI : BossIstate
                                 int Row = Random.Range(0, 5);
                                 for (int i = 0; i < 5; i++)
                                 {
+                                    Controller.GenWarning(new Vector2(Row, i));
                                     Controller.BlockReadyToBreak.Add(new Vector2(Row, i));
                                     Controller.GameMaster.GameMap.FindBlock(new Vector2(Row, i)).m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 1, 1);
                                 }
@@ -236,6 +245,7 @@ public class WormBoAI : BossIstate
                                     {
                                         Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
                                     }
+                                    
                                     Controller.BlockReadyToBreak = new List<Vector2>();
                                     BossAction.RemoveAllListeners();
                                 });
@@ -246,6 +256,7 @@ public class WormBoAI : BossIstate
                                 int Column = Random.Range(0, 5);
                                 for (int i = 0; i < 5; i++)
                                 {
+                                    Controller.GenWarning(new Vector2(i, Column));
                                     Controller.BlockReadyToBreak.Add(new Vector2(i, Column));
                                     Controller.GameMaster.GameMap.FindBlock(new Vector2(i, Column)).m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 1, 1);
                                 }
@@ -288,6 +299,7 @@ public class WormBoAI : BossIstate
                                     {
                                         Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
                                     }
+                                    
                                     Controller.BlockReadyToBreak = new List<Vector2>();
                                     BossAction.RemoveAllListeners();
                                 });
@@ -307,6 +319,7 @@ public class WormBoAI : BossIstate
                                 temp1 = Random5Block();
                                 for (int i = 0; i < 5; i++)
                                 {
+                                    Controller.GenWarning(temp1[i]);
                                     Controller.BlockReadyToBreak.Add(temp1[i]);
                                     Controller.GameMaster.GameMap.FindBlock(temp1[i]).m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 1, 1);
                                 }
@@ -337,6 +350,7 @@ public class WormBoAI : BossIstate
                                             }
                                         }
                                     }
+                                    Controller.GenWarning(temp[spot]);
                                     Controller.BlockReadyToBreak.Add(temp[spot]);
                                     Controller.GameMaster.GameMap.FindBlock(temp[spot]).m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 1, 1);
                                 }
@@ -349,6 +363,7 @@ public class WormBoAI : BossIstate
                                     {
                                         Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
                                     }
+                                   
                                     Controller.BlockReadyToBreak = new List<Vector2>();
                                     BossAction.RemoveAllListeners();
                                 });//´¶§ðBÅF¥X
@@ -375,6 +390,8 @@ public class WormBoAI : BossIstate
                                     {
                                         spot1 = Random.Range(0, temp.Count);
                                     }
+                                    Controller.GenWarning(temp[spot]);
+                                    Controller.GenWarning(temp[spot1]);
                                     Controller.BlockReadyToBreak.Add(temp[spot]);
                                     Controller.BlockReadyToBreak.Add(temp[spot1]);
                                     Controller.GameMaster.GameMap.FindBlock(temp[spot]).m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 1, 1);
@@ -391,6 +408,7 @@ public class WormBoAI : BossIstate
                                             Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
                                         }
                                     }
+                                    
                                     Controller.BlockReadyToBreak = new List<Vector2>();
                                     BossAction.RemoveAllListeners();
                                 });
@@ -502,6 +520,7 @@ public class WormBoAI : BossIstate
         if (temp.Count > 0)
         {
             int spot = Random.Range(0, temp.Count);
+            Controller.GenWarning(temp[spot]);
             Controller.BlockReadyToBreak.Add(temp[spot]);
             Controller.GameMaster.GameMap.FindBlock(temp[spot]).m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 1, 1);
         }
@@ -516,6 +535,7 @@ public class WormBoAI : BossIstate
                     Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
                 }
             }
+            
             Controller.BlockReadyToBreak = new List<Vector2>();
             BossAction.RemoveAllListeners();
         });

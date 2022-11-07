@@ -114,6 +114,7 @@ public class GameController : MonoBehaviour
     private IEnumerator ReadyTurn()
     {
         int delay = 0;
+        M_BossController.DestroyWarning();
         for (int i = 0; i < GameMap.ThisMap.Length; i++)
         {
             
@@ -133,6 +134,7 @@ public class GameController : MonoBehaviour
         if (delay>0)
         {
             yield return new WaitForSeconds(3);
+            
             TurnPoint = GameMap.TurnPointGain(3,this);//¥ý°òÂ¦3
             M_BossController.BossChooseAttack();//©ÇÃ~§ðÀ»
             if (m_MainPlayer.SkillActivation>0)
@@ -143,6 +145,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
+            
             TurnPoint = GameMap.TurnPointGain(3, this);//¥ý°òÂ¦3
             M_BossController.BossChooseAttack();//©ÇÃ~§ðÀ»
             if (m_MainPlayer.SkillActivation > 0)

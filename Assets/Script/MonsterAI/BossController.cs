@@ -13,6 +13,11 @@ public class BossController : MonoBehaviour
     public float AttackUsedTime;
     public string NowSkillName = "";
     private UnityEvent DelayUse = new UnityEvent();
+    #region ¯S®Ä
+    public List<GameObject> WarningPrefabs = new List<GameObject>();
+    [SerializeField] GameObject WarningPrefab;
+    #endregion
+
     #region BossStat
     public int CD_To_Next_Attack;
     public float MaxHealth; public float NowHealth;
@@ -172,5 +177,18 @@ public class BossController : MonoBehaviour
     {
         DelayUse.Invoke();
         Debug.Log("Bruh");
+    }
+    public void GenWarning(Vector2 Pos)
+    {
+       GameObject B = Instantiate(WarningPrefab, new Vector3(GameMaster.GameMap.MapStartPoint.transform.position.x + 1.2f * Pos.x, 0.53f, GameMaster.GameMap.MapStartPoint.transform.position.z + 1.2f * Pos.y), Quaternion.identity);
+       WarningPrefabs.Add(B);
+    }
+    public void DestroyWarning()
+    {
+        for (int i = 0; i < WarningPrefabs.Count; i++)
+        {
+            Destroy(WarningPrefabs[i]);
+        }
+        WarningPrefabs = new List<GameObject>();
     }
 }

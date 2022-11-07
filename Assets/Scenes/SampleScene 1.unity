@@ -2499,6 +2499,7 @@ MonoBehaviour:
   GameMaster: {fileID: 783896124}
   BlockReadyToBreak: []
   AttackUsedTime: 0
+  NowSkillName: 
   CD_To_Next_Attack: 0
   MaxHealth: 0
   NowHealth: 0

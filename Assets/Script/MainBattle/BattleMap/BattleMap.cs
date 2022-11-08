@@ -18,7 +18,10 @@ public class BattleMap : MonoBehaviour
     public Transform Board;
     public Transform MapStartPoint;
     public int StartAmmo;
-    
+    #region ¯}Ãa¯S®Ä
+    [SerializeField] GameObject DestroyBlockPrefab;
+    [SerializeField] GameObject SpawnBlockPrefab;
+    #endregion
 
 
     void Start()
@@ -353,12 +356,17 @@ public class BattleMap : MonoBehaviour
         StartCoroutine("DestroyAndRefreshSingleBlockIEnumerator", pos);
     }
     public IEnumerator DestroyAndRefreshSingleBlockIEnumerator(Vector2 pos)
-    {
+    {       
         FindBlock(pos).m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 1);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
         Destroy(FindBlock(pos).m_ThisBlockObject);
+        GameObject B = Instantiate(DestroyBlockPrefab, new Vector3(MapStartPoint.transform.position.x + 1.2f * pos.x, 0.6f, MapStartPoint.transform.position.z + 1.2f * pos.y), Quaternion.identity);
+        GM.M_BossController.DestroyWarning();
+        yield return new WaitForSeconds(1f);
         ThisMap[(int)pos.y].ThisRow[(int)pos.x].SetRandomMapBlock();
         SpawnSingleMapObject(ThisMap[(int)pos.y].ThisRow[(int)pos.x].ThisBlockType, 0, (int)pos.y, (int)pos.x,0,0);
+        GameObject A = Instantiate(SpawnBlockPrefab, new Vector3(MapStartPoint.transform.position.x + 1.2f * pos.x, 0.6f, MapStartPoint.transform.position.z + 1.2f * pos.y), Quaternion.identity);
+        Destroy(B);
     }
     public MapBlockClass FindBlock(Vector2 Position)
     {

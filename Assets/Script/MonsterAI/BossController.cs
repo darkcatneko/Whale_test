@@ -185,10 +185,16 @@ public class BossController : MonoBehaviour
     }
     public void DestroyWarning()
     {
-        for (int i = 0; i < WarningPrefabs.Count; i++)
+        if (WarningPrefabs.Count>0)
         {
-            Destroy(WarningPrefabs[i]);
-        }
+            for (int i = 0; i < WarningPrefabs.Count; i++)
+            {
+                if (WarningPrefabs[i] != null)
+                {
+                    Destroy(WarningPrefabs[i]);
+                }
+            }
+        }        
         WarningPrefabs = new List<GameObject>();
     }
 }

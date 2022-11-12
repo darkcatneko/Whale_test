@@ -8,6 +8,7 @@ public enum StateEnum
     Defence_State,
     Setting_State,
     Ready_State,
+    Skill_State,
     NOTHING
 }
    

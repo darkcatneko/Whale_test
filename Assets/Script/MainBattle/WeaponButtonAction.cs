@@ -18,11 +18,25 @@ public class WeaponButtonAction : MonoBehaviour
     }
     public void OnPointerDown()
     {
-        GM.ChangeState(StateEnum.Hold_State);
+        GM.ChangeState(StateEnum.Skill_State);
+    }
+    public void OnHover()
+    {
+        if (GM.GetState()==StateEnum.Free_State)
+        {
+            GM.ChangeState(StateEnum.Skill_State);
+        }       
+    }
+    public void OnHoverExit()
+    {
+        if (GM.GetState() == StateEnum.Skill_State)
+        {
+            GM.ChangeState(StateEnum.Free_State);
+        }
     }
     public void Ondrag()
     {
-        Ray ray = MainCam.ScreenPointToRay(Input.touches[0].position);
+        Ray ray = MainCam.ScreenPointToRay(Input.mousePosition);//要改回touch
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
@@ -37,7 +51,7 @@ public class WeaponButtonAction : MonoBehaviour
     }
     public void OnPointerUp()
     {
-        Ray ray = MainCam.ScreenPointToRay(Input.touches[0].position);
+        Ray ray = MainCam.ScreenPointToRay(Input.mousePosition);//要改回touch
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
@@ -45,22 +59,22 @@ public class WeaponButtonAction : MonoBehaviour
             {
                 //Debug.Log(hit.transform.GetComponent<BlockIdentity>().ThisColumn + "    " + hit.transform.GetComponent<BlockIdentity>().ThisRow);
                 //測試符文
-                GM.GameMap.MixBlock2(ButtonWeapon.m_RuneHoverPoints.ToArray(), new Vector2(hit.transform.GetComponent<BlockIdentity>().ThisColumn, hit.transform.GetComponent<BlockIdentity>().ThisRow));
+                //GM.GameMap.MixBlock2(ButtonWeapon.m_RuneHoverPoints.ToArray(), new Vector2(hit.transform.GetComponent<BlockIdentity>().ThisColumn, hit.transform.GetComponent<BlockIdentity>().ThisRow));
             }
             else if (LastFocus != new Vector2(10, 10))
             {
-                GM.GameMap.MixBlock2(ButtonWeapon.m_RuneHoverPoints.ToArray(), LastFocus);
+               // GM.GameMap.MixBlock2(ButtonWeapon.m_RuneHoverPoints.ToArray(), LastFocus);
             }
         }
         else if (LastFocus!= new Vector2(10,10))
         {
-            GM.GameMap.MixBlock2(ButtonWeapon.m_RuneHoverPoints.ToArray(), LastFocus);
+           // GM.GameMap.MixBlock2(ButtonWeapon.m_RuneHoverPoints.ToArray(), LastFocus);
         }
         LastFocus = new Vector2(10, 10);
 
-        GM.GameMap.TextTest(GM.GameMap.ThisMap);
+        //GM.GameMap.TextTest(GM.GameMap.ThisMap);
 
         GM.ChangeState(StateEnum.Free_State);
     }
-   
+    
 }

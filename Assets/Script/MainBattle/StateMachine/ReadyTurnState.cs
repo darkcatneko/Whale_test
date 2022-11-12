@@ -8,8 +8,9 @@ public class ReadyTurnState : Istate
     public void OnStateEnter(GameController controller)
     {
         Controller = controller;
-        Controller.TurnPoint = Controller.GameMap.TurnPointGain(3);//先基礎3
-        controller.ChangeState(StateEnum.Free_State);
+        Debug.Log("進準備");        
+        Controller.ReadyTurnFunc();
+        
     }
     public void OnStateStay()
     {
@@ -19,4 +20,5 @@ public class ReadyTurnState : Istate
     {
 
     }
+    
 }

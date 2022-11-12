@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfd833f6db92bc7478ae2be89bbb6c2f, type: 3}
+  m_Name: MainPlayerSO
+  m_EditorClassIdentifier: 
+  WeaponPool: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  BringingWeaponID: 0500000006000000070000000800000009000000
+  ThisRound_MainCharacter_ID: 1
+  WeaponPack:
+  - m_WeaponType: 0
+    m_WeaponID: 0
+    m_Durability: 0
+    m_WeaponCD: 0
+    m_RuneHoverPoints: []
+  - m_WeaponType: 0
+    m_WeaponID: 0
+    m_Durability: 0
+    m_WeaponCD: 0
+    m_RuneHoverPoints: []
+  - m_WeaponType: 0
+    m_WeaponID: 0
+    m_Durability: 0
+    m_WeaponCD: 0
+    m_RuneHoverPoints: []
+  - m_WeaponType: 0
+    m_WeaponID: 0
+    m_Durability: 0
+    m_WeaponCD: 0
+    m_RuneHoverPoints: []
+  - m_WeaponType: 0
+    m_WeaponID: 0
+    m_Durability: 0
+    m_WeaponCD: 0
+    m_RuneHoverPoints: []
+  ThisRoundCharacter: {fileID: 11400000, guid: 6f365baf6a739564fb83443e3780f505, type: 2}
+  SkillActivation: 0
+  Attack: 0
+  MaxArmor: 0
+  NowArmor: 0
+  Heal: 0
+  Crit: 0
+  Buff_Amount: 1
+  Regen_Buff_Amount: 1

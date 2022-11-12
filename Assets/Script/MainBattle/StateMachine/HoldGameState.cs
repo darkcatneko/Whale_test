@@ -20,13 +20,12 @@ public class HoldGameState : Istate
             {
                 case TouchPhase.Moved:
                     Ray ray = Controller.MainCam.ScreenPointToRay(Input.touches[0].position);
-                    
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit))
                     {
                         if (hit.transform.tag == "Block")
                         {
-                            Controller.GameMap.BlockImFocus(new Vector2(hit.transform.GetComponent<BlockIdentity>().ThisColumn, hit.transform.GetComponent<BlockIdentity>().ThisRow),FocusCount,TwoFocusBlock);
+                            Controller.GameMap.BlockImFocus(new Vector2(hit.transform.GetComponent<BlockIdentity>().ThisColumn, hit.transform.GetComponent<BlockIdentity>().ThisRow), FocusCount, TwoFocusBlock);
                         }
                     }
                     break;
@@ -43,6 +42,7 @@ public class HoldGameState : Istate
                                     Controller.GameMap.FingerLifted(new Vector2(hit1.transform.GetComponent<BlockIdentity>().ThisColumn, hit1.transform.GetComponent<BlockIdentity>().ThisRow));
                                     TwoFocusBlock[FocusCount] = new Vector2(hit1.transform.GetComponent<BlockIdentity>().ThisColumn, hit1.transform.GetComponent<BlockIdentity>().ThisRow);
                                     FocusCount++;
+                                    Controller.ChangeState(StateEnum.Free_State);
                                     return;
                                 case 1:
                                     if (new Vector2(hit1.transform.GetComponent<BlockIdentity>().ThisColumn, hit1.transform.GetComponent<BlockIdentity>().ThisRow) != TwoFocusBlock[0])
@@ -50,27 +50,40 @@ public class HoldGameState : Istate
                                         Controller.GameMap.FingerLifted(new Vector2(hit1.transform.GetComponent<BlockIdentity>().ThisColumn, hit1.transform.GetComponent<BlockIdentity>().ThisRow));
                                         TwoFocusBlock[FocusCount] = new Vector2(hit1.transform.GetComponent<BlockIdentity>().ThisColumn, hit1.transform.GetComponent<BlockIdentity>().ThisRow);
                                         FocusCount++;
+                                        Controller.ChangeState(StateEnum.Free_State);
                                         if (FocusCount == 2)
                                         {
-                                            Debug.Log("twoBlock!!");
-                                            Controller.GameMap.MixTwoBlock(TwoFocusBlock[0], TwoFocusBlock[1]);
+                                            //Debug.Log("twoBlock!!");
+                                            if (Controller.GameMap.MixTwoBlock(TwoFocusBlock[0], TwoFocusBlock[1], Controller))
+                                            {
+                                                Controller.TurnPoint--;
+                                                //操作動數-1                
+                                                Controller.NowMP = Mathf.Clamp((int)(Controller.NowMP + Controller.GameMap.FindBlock(TwoFocusBlock[1]).ThisBlockLevel), 0, (int)Controller.MaxMP);
+                                                //增加量條
+                                                if (Controller.TurnPoint <= 0)
+                                                {
+                                                    Controller.ChangeState(StateEnum.Attack_State);
+                                                }
+                                            }
                                             FocusCount = 0;
+                                            //Controller.ChangeState(StateEnum.Free_State);
                                         }
+
                                     }
                                     else
                                     {
-                                        Debug.Log("SameBlock!!");
+                                        //Debug.Log("SameBlock!!");
                                     }
                                     return;
-                                default:
-                                    break;
                             }
+
                         }
                         else
                         {
                             TwoFocusBlock = new Vector2[2];
                             FocusCount = 0;
                             Controller.GameMap.RefreshMap();
+                            Controller.ChangeState(StateEnum.Free_State);
                         }
                     }
                     else
@@ -78,6 +91,7 @@ public class HoldGameState : Istate
                         TwoFocusBlock = new Vector2[2];
                         FocusCount = 0;
                         Controller.GameMap.RefreshMap();
+                        Controller.ChangeState(StateEnum.Free_State);
                     }
                     break;
                 default:
@@ -110,6 +124,7 @@ public class HoldGameState : Istate
                             Controller.GameMap.FingerLifted(new Vector2(hit1.transform.GetComponent<BlockIdentity>().ThisColumn, hit1.transform.GetComponent<BlockIdentity>().ThisRow));
                             TwoFocusBlock[FocusCount] = new Vector2(hit1.transform.GetComponent<BlockIdentity>().ThisColumn, hit1.transform.GetComponent<BlockIdentity>().ThisRow);
                             FocusCount++;
+                            Controller.ChangeState(StateEnum.Free_State);
                             return;
                         case 1:
                             if (new Vector2(hit1.transform.GetComponent<BlockIdentity>().ThisColumn, hit1.transform.GetComponent<BlockIdentity>().ThisRow) != TwoFocusBlock[0])
@@ -117,35 +132,40 @@ public class HoldGameState : Istate
                                 Controller.GameMap.FingerLifted(new Vector2(hit1.transform.GetComponent<BlockIdentity>().ThisColumn, hit1.transform.GetComponent<BlockIdentity>().ThisRow));
                                 TwoFocusBlock[FocusCount] = new Vector2(hit1.transform.GetComponent<BlockIdentity>().ThisColumn, hit1.transform.GetComponent<BlockIdentity>().ThisRow);
                                 FocusCount++;
+                                Controller.ChangeState(StateEnum.Free_State); 
                                 if (FocusCount == 2)
                                 {
-                                    Debug.Log("twoBlock!!");
-                                    if (Controller.GameMap.MixTwoBlock(TwoFocusBlock[0], TwoFocusBlock[1]))
+                                    //Debug.Log("twoBlock!!");
+                                    if (Controller.GameMap.MixTwoBlock(TwoFocusBlock[0], TwoFocusBlock[1],Controller))
                                     {
-                                        Controller.TurnPoint--;
+                                        Controller.TurnPoint--;      
+                                        //操作動數-1                
+                                        Controller.NowMP = Mathf.Clamp((int)(Controller.NowMP + Controller.GameMap.FindBlock(TwoFocusBlock[1]).ThisBlockLevel), 0, (int)Controller.MaxMP);
+                                        //增加量條
                                         if (Controller.TurnPoint <= 0)
                                         {
-                                            //進攻擊
-
+                                            Controller.ChangeState(StateEnum.Attack_State);
                                         }
                                     }                           
                                     FocusCount = 0;
+                                    //Controller.ChangeState(StateEnum.Free_State);
                                 }
+                                
                             }
                             else
                             {
-                                Debug.Log("SameBlock!!");
+                                //Debug.Log("SameBlock!!");
                             }
-                            return;
-                        default:
-                            break;
+                            return;                        
                     }
+                    
                 }
                 else
                 {
                     TwoFocusBlock = new Vector2[2];
                     FocusCount = 0;
                     Controller.GameMap.RefreshMap();
+                    Controller.ChangeState(StateEnum.Free_State);
                 }
             }
             else
@@ -153,6 +173,7 @@ public class HoldGameState : Istate
                 TwoFocusBlock = new Vector2[2];
                 FocusCount = 0;
                 Controller.GameMap.RefreshMap();
+                Controller.ChangeState(StateEnum.Free_State);
             }
         }
     }

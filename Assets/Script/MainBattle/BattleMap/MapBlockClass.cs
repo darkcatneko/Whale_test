@@ -8,11 +8,15 @@ public class MapBlockClass
 {
     public WeaponEnum ThisBlockType;
     public float ThisBlockLevel;
+    public int AmmoLeft;
+    public int ShieldLeft;
     public GameObject m_ThisBlockObject;
-    public MapBlockClass(WeaponEnum TBT,float TBE)
+    public MapBlockClass(WeaponEnum TBT,float TBE,int AL,int SL)
     {
         ThisBlockType = TBT;
         ThisBlockLevel = TBE;
+        AmmoLeft = AL;
+        ShieldLeft = SL;
     }
     public void SetRandomMapBlock()
     {

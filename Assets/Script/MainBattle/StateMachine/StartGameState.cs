@@ -10,8 +10,13 @@ public class StartGameState : Istate
         Controller = controller;
         Controller.GameMap.SpawnMap();
         Controller.GameMap.SpawnMapObject(Controller.GameMap.ThisMap);
+        //註冊Boss
+        //Debug.Log(Controller.ThisStage.ThisRoundBoss);
+        Controller.M_BossController.SetBossData(Controller.ThisStage.ThisRoundBoss);//
         //註冊武器 
         InstallWeapon();
+        //註冊主戰者
+        InstallMainFighter();
         //準備開始
         //進入
     }
@@ -25,11 +30,25 @@ public class StartGameState : Istate
 
     }
     public void InstallWeapon()
-    {
-        
+    {        
         for (int i = 0; i < 5; i++)
         {
             Controller.WeaponButton[i].GetComponent<WeaponButtonAction>().ButtonWeapon = new WeaponPackClass(Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]), Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]).Weapon_BreakLevel);
         }
+        for (int i = 0; i < Controller.m_MainPlayer.BringingWeaponID.Length; i++)
+        {
+            Controller.m_MainPlayer.AddWeaponMath(Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]));
+        }
+        Controller.m_MainPlayer.NowArmor = Controller.m_MainPlayer.MaxArmor;
+    }
+    public void InstallMainFighter()
+    {
+        Controller.m_MainPlayer.ThisRoundCharacter = Controller.C_Data.GetCharacterInformation(Controller.m_MainPlayer.ThisRound_MainCharacter_ID);
+        Controller.MaxMP = Controller.m_MainPlayer.ThisRoundCharacter.SkillUseMP;
+        for (int i = 0; i < Controller.C_Data.GetCharacterInformation(Controller.m_MainPlayer.ThisRound_MainCharacter_ID).RuneHoverPoints.Count; i++)
+        {
+            Controller.MainCharacterSkillButton.GetComponent<MainCharacterSkill>().RuneHoverPoints.Add(Controller.C_Data.GetCharacterInformation(Controller.m_MainPlayer.ThisRound_MainCharacter_ID).RuneHoverPoints[i]);
+        }
+        Controller.MainCharacterSkillButton.GetComponent<MainCharacterSkill>().InstallSkill();
     }
 }

@@ -5816,7 +5816,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 272560e03dfd2e24ea442e21b6ff3e59, type: 2}
+      objectReference: {fileID: 2100000, guid: 367f13ff80b30ab438270d4b59cb6102, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 625a9eb6fd7b9aa4281f0e6800a0f15b, type: 3}
 --- !u!1 &1545267720
@@ -7173,7 +7173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.72344446, y: 0.081}
   m_AnchorMax: {x: 0.85170376, y: 0.15485416}
-  m_AnchoredPosition: {x: 3.0000916, y: 1.5}
+  m_AnchoredPosition: {x: 3.000061, y: 1.5}
   m_SizeDelta: {x: 6, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2068777232

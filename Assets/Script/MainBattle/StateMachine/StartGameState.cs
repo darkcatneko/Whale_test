@@ -33,12 +33,19 @@ public class StartGameState : Istate
     {        
         for (int i = 0; i < 5; i++)
         {
-            Controller.WeaponButton[i].GetComponent<WeaponButtonAction>().ButtonWeapon = new WeaponPackClass(Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]), Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]).Weapon_BreakLevel);
+            if (Controller.m_MainPlayer.BringingWeaponID[i]!=999)
+            {
+                Controller.WeaponButton[i].GetComponent<WeaponButtonAction>().ButtonWeapon = new WeaponPackClass(Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]), Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]).Weapon_BreakLevel);
+            }           
         }
         for (int i = 0; i < Controller.m_MainPlayer.BringingWeaponID.Length; i++)
         {
-            Controller.m_MainPlayer.AddWeaponMath(Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]));
-        }
+            if (Controller.m_MainPlayer.BringingWeaponID[i] != 999)
+            {
+                Controller.m_MainPlayer.AddWeaponMath(Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]));
+                Controller.WeaponButton[i].GetComponent<WeaponButtonAction>().InstallWeaponSkill();
+            }           
+        }        
         Controller.m_MainPlayer.NowArmor = Controller.m_MainPlayer.MaxArmor;
     }
     public void InstallMainFighter()

@@ -114,6 +114,13 @@ public class GameController : MonoBehaviour
     private IEnumerator ReadyTurn()
     {
         int delay = 0;
+        for (int i = 0; i < WeaponButton.Length; i++)
+        {
+            if (WeaponButton[i].GetComponent<WeaponButtonAction>().NowCoolDown< WeaponButton[i].GetComponent<WeaponButtonAction>().ButtonWeapon.m_WeaponCD)
+            {
+                WeaponButton[i].GetComponent<WeaponButtonAction>().NowCoolDown = Mathf.Clamp(WeaponButton[i].GetComponent<WeaponButtonAction>().NowCoolDown+1,1, WeaponButton[i].GetComponent<WeaponButtonAction>().ButtonWeapon.m_WeaponCD);
+            }            
+        }
         //M_BossController.DestroyWarning();
         for (int i = 0; i < GameMap.ThisMap.Length; i++)
         {

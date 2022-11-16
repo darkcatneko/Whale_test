@@ -180,7 +180,7 @@ Material:
     - _OutlineDepthOffset: 0
     - _OutlineEnabled: 1
     - _OutlineScale: 1
-    - _OutlineWidth: 2.17
+    - _OutlineWidth: 0.8
     - _OverrideBakedGi: 1
     - _OverrideLightAttenuation: 0
     - _OverrideLightmapDir: 0

@@ -435,3 +435,11 @@ public class MapBlockRow
 {
     public MapBlockClass[] ThisRow = new MapBlockClass[5];
 }
+[System.Serializable]
+
+public class BlockBuff
+{
+    public int BuffRound;
+    public float BuffAmount;
+    //強化種類
+}

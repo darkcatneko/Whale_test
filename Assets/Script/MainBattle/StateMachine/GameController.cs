@@ -114,7 +114,7 @@ public class GameController : MonoBehaviour
     private IEnumerator ReadyTurn()
     {
         int delay = 0;
-        M_BossController.DestroyWarning();
+        //M_BossController.DestroyWarning();
         for (int i = 0; i < GameMap.ThisMap.Length; i++)
         {
             

@@ -4896,7 +4896,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280575233108854602}
   m_LocalRotation: {x: -0, y: -0.7458833, z: -0, w: 0.6660768}
-  m_LocalPosition: {x: 0.77937, y: 2.41, z: 0.0087944}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2867647, y: 0.2867647, z: 0.2867647}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19485,7 +19485,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0

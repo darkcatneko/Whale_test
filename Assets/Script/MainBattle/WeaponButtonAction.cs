@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using System;
 
 public class WeaponButtonAction : MonoBehaviour
 {
     public WeaponPackClass ButtonWeapon;
+    public int NowCoolDown = 0;
     public GameController GM;
     private Vector2 LastFocus = new Vector2 (10,10);
     private Camera MainCam;
+    private Dictionary<int, UnityAction> WeaponSkillData;
+    private UnityEvent WeaponSkill = new UnityEvent();
     public void ButtonAction()
     {
         //Debug.Log(ButtonWeapon.m_WeaponID.ToString());
@@ -15,6 +21,13 @@ public class WeaponButtonAction : MonoBehaviour
     private void Start()
     {
         MainCam = Camera.main;
+        WeaponSkillData = new Dictionary<int, UnityAction>
+        {
+            {0,OnR_SlashWeaponPointerUp},
+            //{1,  },
+            //{2,  },
+            //{3,  }
+        };
     }
     public void OnPointerDown()
     {
@@ -34,6 +47,17 @@ public class WeaponButtonAction : MonoBehaviour
             GM.ChangeState(StateEnum.Free_State);
         }
     }
+    public void InstallWeaponSkill()
+    {
+        if (WeaponSkillData.ContainsKey(ButtonWeapon.m_WeaponID))
+        {
+            WeaponSkill.AddListener(WeaponSkillData[ButtonWeapon.m_WeaponID]);
+        }
+    }
+    public void WeaponSkillButton()
+    {
+        WeaponSkill.Invoke();
+    }
     public void Ondrag()
     {
         Ray ray = MainCam.ScreenPointToRay(Input.mousePosition);//要改回touch
@@ -49,6 +73,64 @@ public class WeaponButtonAction : MonoBehaviour
             }
         }
     }
+    #region R_weapon
+    public IEnumerator R_SlashWeapon_Func(Vector2 Origin)
+    {
+        yield return new WaitForSeconds(4f);
+        for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
+        {
+            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType == WeaponEnum.Slash&& GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel>0)
+            {
+                GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockBuff.BuffAmount = 0.2f;
+                GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockBuff.BuffRound = 1;   
+            }          
+        }
+        GM.GameMap.RefreshMap();
+        NowCoolDown = 0;
+        GM.m_MainPlayer.SkillActivation++;
+        GM.ChangeState(StateEnum.Free_State);
+    }
+    public void OnR_SlashWeaponPointerUp()
+    {
+
+        Ray ray = MainCam.ScreenPointToRay(Input.mousePosition);//要改回touch
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (NowCoolDown == ButtonWeapon.m_WeaponCD)
+            {
+                if (hit.transform.tag == "Block")
+                {
+                    StartCoroutine("R_SlashWeapon_Func", new Vector2(hit.transform.GetComponent<BlockIdentity>().ThisColumn, hit.transform.GetComponent<BlockIdentity>().ThisRow));
+                }
+                else if (LastFocus != new Vector2(10, 10))
+                {
+                    StartCoroutine("R_SlashWeapon_Func", LastFocus);
+                }
+            }
+            else
+            {
+                GM.ChangeState(StateEnum.Free_State);
+            }
+        }
+        else if (LastFocus != new Vector2(10, 10))
+        {
+            if (NowCoolDown == ButtonWeapon.m_WeaponCD)
+            {
+                StartCoroutine("R_SlashWeapon_Func", LastFocus);
+            }
+            else
+            {
+                GM.ChangeState(StateEnum.Free_State);
+            }
+        }
+        LastFocus = new Vector2(10, 10);
+
+        //GM.GameMap.TextTest(GM.GameMap.ThisMap);
+
+
+    }
+    #endregion
     public void OnPointerUp()
     {
         Ray ray = MainCam.ScreenPointToRay(Input.mousePosition);//要改回touch

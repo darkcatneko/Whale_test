@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df724688bd0b74945a71911e99c07333, type: 3}
+  m_Name: Sword
+  m_EditorClassIdentifier: 
+  Unlock: 0
+  Weapon_BreakLevel: 0
+  WeaponID: 0
+  Weapon_Name: Sword
+  WeaponType: 1
+  Durability: 0000000000000000000000000000000000000000
+  Atk: a40100000d02000076020000df02000048030000
+  Armor: 040600008507000006090000870a0000080c0000
+  Heal: 0000000000000000000000000000000000000000
+  Crit: 0000000000000000000000000000000000000000
+  RuneHoverPoints:
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: -1, y: 0}
+  - {x: 0, y: 1}
+  - {x: 0, y: -1}
+  MainSkillCD: 4

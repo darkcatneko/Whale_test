@@ -27,7 +27,19 @@ public class AttackGameState : Istate
                     }
                     else
                     {
-                        Controller.M_BossController.Be_Attack(Controller.m_MainPlayer.Attack, (int)Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockLevel, Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockType, Controller.m_MainPlayer.Buff_Amount);
+                        if (Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockBuff.BuffRound>0)
+                        {
+                            Controller.M_BossController.Be_Attack(Controller.m_MainPlayer.Attack , (int)Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockLevel, Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockType, Controller.m_MainPlayer.Buff_Amount+ Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockBuff.BuffAmount);
+                            Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockBuff.BuffRound--;
+                            if (Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockBuff.BuffRound==0)
+                            {
+                                Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockBuff.BuffAmount = 0;
+                            }
+                        }
+                        else
+                        {
+                            Controller.M_BossController.Be_Attack(Controller.m_MainPlayer.Attack, (int)Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockLevel, Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockType, Controller.m_MainPlayer.Buff_Amount);
+                        }             
                         CharacterPassiveEnergyCharge();
                         if (Controller.GameMap.ThisMap[i].ThisRow[j].AmmoLeft > 0)
                         {

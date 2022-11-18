@@ -10,22 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df724688bd0b74945a71911e99c07333, type: 3}
-  m_Name: Sword
+  m_Name: SSR_GoldenTime
   m_EditorClassIdentifier: 
   Unlock: 0
   Weapon_BreakLevel: 0
-  WeaponID: 0
-  Weapon_Name: Sword
-  WeaponType: 1
+  WeaponID: 14
+  Weapon_Name: "\u91D1\u8F1D\u4E4B\u6642\u7684\u5BF6\u85CF"
+  WeaponType: 0
   Durability: 0000000000000000000000000000000000000000
-  Atk: a40100000d02000076020000df02000048030000
-  Armor: 040600008507000006090000870a0000080c0000
-  Heal: 0000000000000000000000000000000000000000
+  Atk: 0000000000000000000000000000000000000000
+  Armor: c406000075080000240a0000d30b0000820d0000
+  Heal: 24020000ad02000036030000bf03000048040000
   Crit: 0000000000000000000000000000000000000000
   RuneHoverPoints:
   - {x: 0, y: 0}
   - {x: 1, y: 0}
   - {x: -1, y: 0}
-  - {x: 0, y: 1}
-  - {x: 0, y: -1}
-  MainSkillCD: 4
+  MainSkillCD: 5

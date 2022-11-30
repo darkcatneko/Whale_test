@@ -124,6 +124,33 @@ public class GameController : MonoBehaviour
                 WeaponButton[i].GetComponent<WeaponButtonAction>().NowCoolDown = Mathf.Clamp(WeaponButton[i].GetComponent<WeaponButtonAction>().NowCoolDown+1,1, WeaponButton[i].GetComponent<WeaponButtonAction>().ButtonWeapon.m_WeaponCD);
             }            
         }
+        if (WeaponSkillActivation[14])
+        {
+            ///
+            WeaponSkillActivation[14] = false;
+            float buffamount = 0;
+            switch (W_Data.WeaponDataList[14].Weapon_BreakLevel)
+            {
+                case 1:
+                    buffamount = 0.06f;
+                    break;
+                case 2:
+                    buffamount = 0.075f;
+                    break;
+                case 3:
+                    buffamount = 0.09f;
+                    break;
+                case 4:
+                    buffamount = 0.105f;
+                    break;
+                case 5:
+                    buffamount = 0.12f;
+                    break;
+            }
+            m_MainPlayer.Regen_Buff_Amount -= buffamount;
+            Debug.LogWarning("Ä_ÂÃ®ÄªGµ²§ô"+ m_MainPlayer.Regen_Buff_Amount.ToString());
+            ///
+        }
         //M_BossController.DestroyWarning();
         for (int i = 0; i < GameMap.ThisMap.Length; i++)
         {

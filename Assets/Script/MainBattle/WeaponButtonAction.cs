@@ -354,7 +354,7 @@ public class WeaponButtonAction : MonoBehaviour
         for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
         {
             Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
-            GM.GameMap.SpawnSingleMapObject(WeaponEnum.Armor, 2, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), 1, 0, 0, 0);
+            GM.GameMap.SpawnSingleMapObject(WeaponEnum.Armor, 2, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo, 0, 0, 0);
             GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Armor;
         }
         GM.GameMap.RefreshMap();
@@ -380,10 +380,21 @@ public class WeaponButtonAction : MonoBehaviour
                 break;
         }
         GM.m_MainPlayer.Regen_Buff_Amount += buffamount;
+        Debug.LogWarning("寶藏效果開始" + GM.m_MainPlayer.Regen_Buff_Amount.ToString());
         ///
         NowCoolDown = 0;
         SkillActivating = false;
         GM.ChangeState(StateEnum.Free_State);
+    }
+    public IEnumerator SR_knightSwordWeapon_Func(Vector2 Origin)
+    {
+        yield return new WaitForSeconds(4f);
+        for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
+        {
+            Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
+            GM.GameMap.SpawnSingleMapObject(WeaponEnum.Slash, 1, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), 1, 0, 0, 0);
+            GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Slash;
+        }
     }
     #endregion
     public void OnPointerUp()

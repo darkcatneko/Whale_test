@@ -54,62 +54,136 @@ public class BattleMap : MonoBehaviour
                 switch(TM[i].ThisRow[j].ThisBlockType)
                 {
                     case WeaponEnum.Armor:
-                        GenBlock(ArmorBlocks, (int)TM[i].ThisRow[j].ThisBlockLevel, i, j,0,0);
+                        GenBlock(ArmorBlocks, (int)TM[i].ThisRow[j].ThisBlockLevel, i, j,0,0,0,0, WeaponEnum.Armor);
                         break;
                     case WeaponEnum.Slash:
-                        GenBlock(SlashBlocks, (int)TM[i].ThisRow[j].ThisBlockLevel, i, j, 0,0);
+                        GenBlock(SlashBlocks, (int)TM[i].ThisRow[j].ThisBlockLevel, i, j, 0,0, 0, 0, WeaponEnum.Slash);
                         break;
                     case WeaponEnum.Lunge:
-                        GenBlock(LungeBlocks, (int)TM[i].ThisRow[j].ThisBlockLevel, i, j, 0,0);
+                        GenBlock(LungeBlocks, (int)TM[i].ThisRow[j].ThisBlockLevel, i, j, 0,0, 0, 0, WeaponEnum.Lunge);
                         break;
                     case WeaponEnum.Hit:
-                        GenBlock(HitBlocks, (int)TM[i].ThisRow[j].ThisBlockLevel, i, j, 0,0);
+                        GenBlock(HitBlocks, (int)TM[i].ThisRow[j].ThisBlockLevel, i, j, 0,0, 0, 0, WeaponEnum.Hit);
                         break;
                     case WeaponEnum.Penetrate:
-                        GenBlock(PenetrateBlocks, (int)TM[i].ThisRow[j].ThisBlockLevel, i, j, 0,0);
+                        GenBlock(PenetrateBlocks, (int)TM[i].ThisRow[j].ThisBlockLevel, i, j, 0,0, 0, 0, WeaponEnum.Penetrate);
                         break;
                 }
             }
         }
     }
-    public void SpawnSingleMapObject(WeaponEnum This_B_Type,int Level, int Row, int Column, int Ammo,int Shield)
+    public void SpawnSingleMapObject(WeaponEnum This_B_Type,int Level, int Row, int Column, int Ammo,int Shield, int BuffRound , float BuffAmount )
     {
         switch (This_B_Type)
         {
             case WeaponEnum.Armor:
-                GenBlock(ArmorBlocks, Level, Row, Column, Ammo, Shield);
+                GenBlock(ArmorBlocks, Level, Row, Column, Ammo, Shield, BuffRound, BuffAmount, WeaponEnum.Armor);
                 break;
             case WeaponEnum.Slash:
-                GenBlock(SlashBlocks, Level, Row, Column, Ammo, Shield);
+                GenBlock(SlashBlocks, Level, Row, Column, Ammo, Shield, BuffRound, BuffAmount, WeaponEnum.Slash);
                 break;
             case WeaponEnum.Lunge:
-                GenBlock(LungeBlocks, Level, Row, Column, Ammo, Shield);
+                GenBlock(LungeBlocks, Level, Row, Column, Ammo, Shield, BuffRound, BuffAmount, WeaponEnum.Lunge);
                 break;
-            case WeaponEnum.Hit:
-                if (GM.m_MainPlayer.ThisRound_MainCharacter_ID == 1 &&Level>0)
-                {
-                    GenBlock(HitBlocks, Level, Row, Column, Ammo, Shield+1);
-                }
-                else
-                {
-                    GenBlock(HitBlocks, Level, Row, Column, Ammo, Shield);
-                }                
+            case WeaponEnum.Hit:                
+                GenBlock(HitBlocks, Level, Row, Column, Ammo, Shield, BuffRound, BuffAmount, WeaponEnum.Hit);
                 break;
             case WeaponEnum.Penetrate:
-                GenBlock(PenetrateBlocks, Level, Row, Column, Ammo, Shield);
+                GenBlock(PenetrateBlocks, Level, Row, Column, Ammo, Shield, BuffRound, BuffAmount, WeaponEnum.Penetrate);
                 break;
         }
     }
-    public void GenBlock(GameObject[] Array, int Level,int Row, int Column,int Ammo,int Shield)
+    
+    public void GenBlock(GameObject[] Array, int Level,int Row, int Column,int Ammo,int Shield,int BuffRound,float BuffAmount,WeaponEnum ThisType)
     {
+        ///
+        bool[] Checker = new bool[GM.W_Data.WeaponDataList.Count];
+        for (int i = 0; i < GM.m_MainPlayer.BringingWeaponID.Length; i++)
+        {
+            if (GM.m_MainPlayer.BringingWeaponID[i]!=999)
+            {
+                Checker[GM.m_MainPlayer.BringingWeaponID[i]] = true;
+            }            
+        }
+        if (Checker[12]&&Level>0&&ThisType == WeaponEnum.Hit)
+        {
+            Level = Mathf.Clamp(Level+1,0,5);
+        }
+        if (Checker[14]&&Level>0&&ThisType == WeaponEnum.Armor)
+        {
+            if (GM.WeaponSkillActivation[14])
+            {
+                Level = Mathf.Clamp(Level + 1, 0, 5);
+                GM.WeaponSkillActivation[14] = false;
+            }
+            else
+            {
+                int r = UnityEngine.Random.Range(0, 2);               
+                if (r == 0)
+                {
+                    Level = Mathf.Clamp(Level + 1, 0, 5);
+                    GM.WeaponSkillActivation[14] = false;
+                }
+            }
+        }
+        ///
         GameObject B =  Instantiate(Array[Level], new Vector3(MapStartPoint.transform.position.x + 1.2f * Column, 0, MapStartPoint.transform.position.z + 1.2f * Row), Quaternion.identity, Board);
         ThisMap[Row].ThisRow[Column].m_ThisBlockObject = B;
         ThisMap[Row].ThisRow[Column].ThisBlockLevel = Level;
-        ThisMap[Row].ThisRow[Column].AmmoLeft = Ammo;
-        ThisMap[Row].ThisRow[Column].ShieldLeft = Shield;        
+        ThisMap[Row].ThisRow[Column].AmmoLeft = Ammo;       
+        if (GM.m_MainPlayer.ThisRound_MainCharacter_ID == 1 && Level > 0)
+        {
+            ThisMap[Row].ThisRow[Column].ShieldLeft = Shield+1;
+        }
+        else
+        {
+            ThisMap[Row].ThisRow[Column].ShieldLeft = Shield;
+        }
+        ThisMap[Row].ThisRow[Column].ThisBlockBuff = new BlockBuff(BuffRound,BuffAmount);
         B.GetComponent<BlockIdentity>().ThisRow = Row;
         B.GetComponent<BlockIdentity>().ThisColumn = Column;
-    }    
+        
+        ///
+        if (Checker[10])
+        {
+            switch (GM.W_Data.WeaponDataList[10].Weapon_BreakLevel)
+            {
+                case 1:
+                    if (Level>=4)
+                    {
+                        ThisMap[Row].ThisRow[Column].ShieldLeft += 1;
+                    }
+                    break;
+                case 2:
+                    if (Level >= 4)
+                    {
+                        ThisMap[Row].ThisRow[Column].ShieldLeft += 1;
+                    }
+                    break;
+                case 3:
+                    if (Level >= 3)
+                    {
+                        ThisMap[Row].ThisRow[Column].ShieldLeft += 1;
+                    }
+                    break;
+                case 4:
+                    if (Level >= 3)
+                    {
+                        ThisMap[Row].ThisRow[Column].ShieldLeft += 1;
+                    }
+                    break;
+                case 5:
+                    if (Level >= 2)
+                    {
+                        ThisMap[Row].ThisRow[Column].ShieldLeft += 1;
+                    }
+                    break;
+            }
+
+            
+        }
+        ///
+    }
     public void BlockInRange(Vector2[] Rune,Vector2 Origin)
     {
         for (int i = 0; i < ThisMap.Length; i++)
@@ -311,10 +385,10 @@ public class BattleMap : MonoBehaviour
             Destroy(FindBlock(SecondBlock).m_ThisBlockObject);
             //修正等級       
                 //FindBlock(SecondBlock).ThisBlockLevel = Mathf.Clamp(ThisBlockLevel + 1, 0, 6);
-            SpawnSingleMapObject(FindBlock(SecondBlock).ThisBlockType, Mathf.Clamp(ThisBlockLevel + 1, 0, 6), (int)SecondBlock.y, (int)SecondBlock.x, StartAmmo,0);
+            SpawnSingleMapObject(FindBlock(SecondBlock).ThisBlockType, Mathf.Clamp(ThisBlockLevel + 1, 0, 6), (int)SecondBlock.y, (int)SecondBlock.x, StartAmmo,0, 0, 0);
             //生成雜件
             ThisMap[(int)FirstBlock.y].ThisRow[(int)FirstBlock.x].SetRandomMapBlock();
-            SpawnSingleMapObject(ThisMap[(int)FirstBlock.y].ThisRow[(int)FirstBlock.x].ThisBlockType, 0, (int)FirstBlock.y, (int)FirstBlock.x,0,0);
+            SpawnSingleMapObject(ThisMap[(int)FirstBlock.y].ThisRow[(int)FirstBlock.x].ThisBlockType, 0, (int)FirstBlock.y, (int)FirstBlock.x,0,0, 0, 0);
             return true;
         }
         else
@@ -337,13 +411,13 @@ public class BattleMap : MonoBehaviour
                 Destroy(FindBlock(SecondBlock).m_ThisBlockObject);
                 //FindBlock(SecondBlock).ThisBlockLevel = temp1.ThisBlockLevel;
                 FindBlock(SecondBlock).ThisBlockType = temp1.ThisBlockType;
-                SpawnSingleMapObject(temp1.ThisBlockType, (int)temp1.ThisBlockLevel, (int)SecondBlock.y, (int)SecondBlock.x, temp1.AmmoLeft,0);
+                SpawnSingleMapObject(temp1.ThisBlockType, (int)temp1.ThisBlockLevel, (int)SecondBlock.y, (int)SecondBlock.x, temp1.AmmoLeft,0, 0, 0);
                 FindBlock(SecondBlock).ShieldLeft = temp1.ShieldLeft;
 
                 Destroy(FindBlock(FirstBlock).m_ThisBlockObject);
                 //FindBlock(FirstBlock).ThisBlockLevel = tempLev;
                 FindBlock(FirstBlock).ThisBlockType = tempType;
-                SpawnSingleMapObject(tempType, tempLev, (int)FirstBlock.y, (int)FirstBlock.x, tempAmmo,0);
+                SpawnSingleMapObject(tempType, tempLev, (int)FirstBlock.y, (int)FirstBlock.x, tempAmmo,0, 0, 0);
                 FindBlock(FirstBlock).ShieldLeft = tempShield;
                 return true;
             }
@@ -364,7 +438,7 @@ public class BattleMap : MonoBehaviour
         GM.M_BossController.DestroyWarning();
         yield return new WaitForSeconds(1f);
         ThisMap[(int)pos.y].ThisRow[(int)pos.x].SetRandomMapBlock();
-        SpawnSingleMapObject(ThisMap[(int)pos.y].ThisRow[(int)pos.x].ThisBlockType, 0, (int)pos.y, (int)pos.x,0,0);
+        SpawnSingleMapObject(ThisMap[(int)pos.y].ThisRow[(int)pos.x].ThisBlockType, 0, (int)pos.y, (int)pos.x,0,0, 0, 0);
         GameObject A = Instantiate(SpawnBlockPrefab, new Vector3(MapStartPoint.transform.position.x + 1.2f * pos.x, 0.6f, MapStartPoint.transform.position.z + 1.2f * pos.y), Quaternion.identity);
         Destroy(B);
     }
@@ -434,4 +508,17 @@ public class BattleMap : MonoBehaviour
 public class MapBlockRow
 {
     public MapBlockClass[] ThisRow = new MapBlockClass[5];
+}
+[System.Serializable]
+
+public class BlockBuff
+{
+    public int BuffRound;
+    public float BuffAmount;
+    //強化種類
+    public BlockBuff(int R,float A)
+    {
+        BuffRound = R;
+        BuffAmount = A;
+    }
 }

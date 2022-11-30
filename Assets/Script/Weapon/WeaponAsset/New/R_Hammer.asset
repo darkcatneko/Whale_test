@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df724688bd0b74945a71911e99c07333, type: 3}
+  m_Name: R_Hammer
+  m_EditorClassIdentifier: 
+  Unlock: 0
+  Weapon_BreakLevel: 0
+  WeaponID: 2
+  Weapon_Name: "\u9318\u77DB"
+  WeaponType: 3
+  Durability: 0000000000000000000000000000000000000000
+  Atk: 000100004001000080010000c001000000020000
+  Armor: 54050000a9060000fe07000053090000a80a0000
+  Heal: 0000000000000000000000000000000000000000
+  Crit: 0000000000000000000000000000000000000000
+  RuneHoverPoints:
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: -1, y: 0}
+  - {x: 0, y: 1}
+  - {x: 0, y: -1}
+  MainSkillCD: 4

@@ -33,12 +33,75 @@ public class StartGameState : Istate
     {        
         for (int i = 0; i < 5; i++)
         {
-            Controller.WeaponButton[i].GetComponent<WeaponButtonAction>().ButtonWeapon = new WeaponPackClass(Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]), Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]).Weapon_BreakLevel);
+            if (Controller.m_MainPlayer.BringingWeaponID[i]!=999)
+            {
+                Controller.WeaponButton[i].GetComponent<WeaponButtonAction>().ButtonWeapon = new WeaponPackClass(Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]), Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]).Weapon_BreakLevel);
+            }           
         }
         for (int i = 0; i < Controller.m_MainPlayer.BringingWeaponID.Length; i++)
         {
-            Controller.m_MainPlayer.AddWeaponMath(Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]));
+            if (Controller.m_MainPlayer.BringingWeaponID[i] != 999)
+            {
+                Controller.m_MainPlayer.AddWeaponMath(Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]));
+                Controller.WeaponButton[i].GetComponent<WeaponButtonAction>().InstallWeaponSkill();
+            }           
         }
+        ///
+        bool[] Checker = new bool[Controller.W_Data.WeaponDataList.Count];
+        for (int i = 0; i < Controller.m_MainPlayer.BringingWeaponID.Length; i++)
+        {
+            if (Controller.m_MainPlayer.BringingWeaponID[i]!=999)
+            {
+                Checker[Controller.m_MainPlayer.BringingWeaponID[i]] = true;
+            }   
+        }
+        if (Checker[4])
+        {
+            float buffamount = 0;
+            switch (Controller.W_Data.WeaponDataList[4].Weapon_BreakLevel)
+            {
+                case 1:
+                    buffamount = 0.02f;
+                    break;
+                case 2:
+                    buffamount = 0.025f;
+                    break;
+                case 3:
+                    buffamount = 0.03f;
+                    break;
+                case 4:
+                    buffamount = 0.035f;
+                    break;
+                case 5:
+                    buffamount = 0.04f;
+                    break;
+            }
+            Controller.m_MainPlayer.Regen_Buff_Amount += buffamount;
+        }
+        if (Checker[14])
+        {
+            float buffamount = 0;
+            switch (Controller.W_Data.WeaponDataList[4].Weapon_BreakLevel)
+            {
+                case 1:
+                    buffamount = 0.06f;
+                    break;
+                case 2:
+                    buffamount = 0.075f;
+                    break;
+                case 3:
+                    buffamount = 0.09f;
+                    break;
+                case 4:
+                    buffamount = 0.105f;
+                    break;
+                case 5:
+                    buffamount = 0.12f;
+                    break;
+            }
+            Controller.m_MainPlayer.Regen_Buff_Amount += buffamount;
+        }
+        ///
         Controller.m_MainPlayer.NowArmor = Controller.m_MainPlayer.MaxArmor;
     }
     public void InstallMainFighter()

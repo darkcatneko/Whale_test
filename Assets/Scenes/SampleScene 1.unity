@@ -348,7 +348,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 104052414}
         m_TargetAssemblyTypeName: WeaponButtonAction, Assembly-CSharp
-        m_MethodName: OnHover
+        m_MethodName: OnHoverExit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -408,12 +408,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f311c5c66c0986a48b611b44075db4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillActivating: 0
   ButtonWeapon:
     m_WeaponType: 0
     m_WeaponID: 0
     m_Durability: 0
     m_WeaponCD: 0
     m_RuneHoverPoints: []
+  NowCoolDown: 0
   GM: {fileID: 783896124}
 --- !u!114 &104052415
 MonoBehaviour:
@@ -450,7 +452,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 104052414}
           m_TargetAssemblyTypeName: WeaponButtonAction, Assembly-CSharp
-          m_MethodName: OnPointerUp
+          m_MethodName: WeaponSkillButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -476,6 +478,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &171373260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,14 +1211,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
-  m_LocalPosition: {x: 0, y: 8.5, z: -9.5}
+  m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
+  m_LocalPosition: {x: 0, y: 8.43, z: -9.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2699,12 +2705,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f311c5c66c0986a48b611b44075db4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillActivating: 0
   ButtonWeapon:
     m_WeaponType: 0
     m_WeaponID: 0
     m_Durability: 0
     m_WeaponCD: 0
     m_RuneHoverPoints: []
+  NowCoolDown: 1
   GM: {fileID: 783896124}
 --- !u!114 &666055570
 MonoBehaviour:
@@ -3115,7 +3123,7 @@ MonoBehaviour:
   ThisStage: {fileID: 11400000, guid: 433daaa2d21bc6849b46ca79155dc387, type: 2}
   GameMap: {fileID: 783896125}
   m_MainPlayer: {fileID: 11400000, guid: 85e0400e9f0a138409867985bbf8a655, type: 2}
-  W_Data: {fileID: 11400000, guid: 6b43f02833061c64283176dec8df7aa8, type: 2}
+  W_Data: {fileID: 11400000, guid: 77ad2328886a5ce4b8b830df868eb036, type: 2}
   C_Data: {fileID: 11400000, guid: 2b1d2848fb8c0554bb8559ae792da649, type: 2}
   WeaponButton:
   - {fileID: 104052411}
@@ -3129,9 +3137,11 @@ MonoBehaviour:
   TPLog: {fileID: 0}
   StateLog: {fileID: 1432085431}
   Test_1: {fileID: 11400000, guid: 49c5e4e77644c8648bb4f6d2bcb64e7d, type: 2}
+  HitCount: 0
   TurnPoint: 0
   MaxMP: 0
   NowMP: 60
+  WeaponSkillActivation: 000000000000000000000000000000
 --- !u!114 &783896125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3152,130 +3162,205 @@ MonoBehaviour:
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
   - ThisRow:
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
   - ThisRow:
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
   - ThisRow:
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
   - ThisRow:
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
+      ThisBlockBuff:
+        BuffRound: 0
+        BuffAmount: 0
   ArmorBlocks:
   - {fileID: 140169022252136846, guid: f60a226df7660ae4dafd28de8999f8b9, type: 3}
   - {fileID: 6167549587299672550, guid: f6b16167925c1d94c95e0e5af4aaf17d, type: 3}
@@ -3817,12 +3902,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f311c5c66c0986a48b611b44075db4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillActivating: 0
   ButtonWeapon:
     m_WeaponType: 0
     m_WeaponID: 0
     m_Durability: 0
     m_WeaponCD: 0
     m_RuneHoverPoints: []
+  NowCoolDown: 1
   GM: {fileID: 783896124}
 --- !u!114 &866110292
 MonoBehaviour:
@@ -5183,12 +5270,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f311c5c66c0986a48b611b44075db4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillActivating: 0
   ButtonWeapon:
     m_WeaponType: 0
     m_WeaponID: 0
     m_Durability: 0
     m_WeaponCD: 0
     m_RuneHoverPoints: []
+  NowCoolDown: 1
   GM: {fileID: 783896124}
 --- !u!114 &1357458722
 MonoBehaviour:
@@ -5387,12 +5476,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f311c5c66c0986a48b611b44075db4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillActivating: 0
   ButtonWeapon:
     m_WeaponType: 0
     m_WeaponID: 0
     m_Durability: 0
     m_WeaponCD: 0
     m_RuneHoverPoints: []
+  NowCoolDown: 1
   GM: {fileID: 783896124}
 --- !u!114 &1409668976
 MonoBehaviour:
@@ -5608,7 +5699,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1467547016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6319,7 +6410,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -4.970764, y: 0}
   m_SizeDelta: {x: 0.0584, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7232,7 +7323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2079559311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7532,7 +7623,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c5ca73172445741438f7c0cc0d7867fa, type: 2}
+  - {fileID: 2100000, guid: c4d03769073d822449b23206160659a5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7952,7 +8043,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1213dade2ec814d44a91b9018303d3f4, type: 2}
+  - {fileID: 2100000, guid: c4d03769073d822449b23206160659a5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8327,7 +8418,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c5ca73172445741438f7c0cc0d7867fa, type: 2}
+  - {fileID: 2100000, guid: c4d03769073d822449b23206160659a5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

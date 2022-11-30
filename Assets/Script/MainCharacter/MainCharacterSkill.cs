@@ -87,7 +87,7 @@ public class MainCharacterSkill : MonoBehaviour
             if (GM.NowMP == GM.MaxMP)
             {
                 if (hit.transform.tag == "Block")
-                {
+                {                    
                     StartCoroutine("SlashMainCharacterFunc", new Vector2(hit.transform.GetComponent<BlockIdentity>().ThisColumn, hit.transform.GetComponent<BlockIdentity>().ThisRow));                  
                 }
                 else if (LastFocus != new Vector2(10, 10))
@@ -133,7 +133,7 @@ public class MainCharacterSkill : MonoBehaviour
         for (int i = 0; i < RuneHoverPoints.Count; i++)
         {
             Destroy(GM.GameMap.FindBlock(RuneHoverPoints[i] + Origin).m_ThisBlockObject);
-            GM.GameMap.SpawnSingleMapObject(WeaponEnum.Slash, 2, (int)(RuneHoverPoints[i].y + Origin.y), (int)(RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo,0);
+            GM.GameMap.SpawnSingleMapObject(WeaponEnum.Slash, 2, (int)(RuneHoverPoints[i].y + Origin.y), (int)(RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo,0, 0, 0);
             GM.GameMap.FindBlock(RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Slash;
         }
         GM.m_MainPlayer.SkillActivation++;
@@ -187,13 +187,13 @@ public class MainCharacterSkill : MonoBehaviour
             if (RuneHoverPoints[i] == new Vector2(0,0))
             {
                 Destroy(GM.GameMap.FindBlock(RuneHoverPoints[i] + Origin).m_ThisBlockObject);
-                GM.GameMap.SpawnSingleMapObject(WeaponEnum.Hit, 3, (int)(RuneHoverPoints[i].y + Origin.y), (int)(RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo,0);
+                GM.GameMap.SpawnSingleMapObject(WeaponEnum.Hit, 3, (int)(RuneHoverPoints[i].y + Origin.y), (int)(RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo,0, 0, 0);
                 GM.GameMap.FindBlock(RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Hit;
             }
             else
             {
                 Destroy(GM.GameMap.FindBlock(RuneHoverPoints[i] + Origin).m_ThisBlockObject);
-                GM.GameMap.SpawnSingleMapObject(WeaponEnum.Hit, 1, (int)(RuneHoverPoints[i].y + Origin.y), (int)(RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo,0);
+                GM.GameMap.SpawnSingleMapObject(WeaponEnum.Hit, 1, (int)(RuneHoverPoints[i].y + Origin.y), (int)(RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo,0, 0, 0);
                 GM.GameMap.FindBlock(RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Hit;
             }            
         }
@@ -216,7 +216,7 @@ public class MainCharacterSkill : MonoBehaviour
             if (RuneHoverPoints[i] == new Vector2(0, 0))
             {
                 Destroy(GM.GameMap.FindBlock(RuneHoverPoints[i] + Origin).m_ThisBlockObject);
-                GM.GameMap.SpawnSingleMapObject(WeaponEnum.Lunge, Mathf.Clamp(ToolCount,1,5), (int)(RuneHoverPoints[i].y + Origin.y), (int)(RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo, 0);
+                GM.GameMap.SpawnSingleMapObject(WeaponEnum.Lunge, Mathf.Clamp(ToolCount,1,5), (int)(RuneHoverPoints[i].y + Origin.y), (int)(RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo, 0, 0, 0);
                 GM.GameMap.FindBlock(RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Lunge;
             }
             else
@@ -224,7 +224,7 @@ public class MainCharacterSkill : MonoBehaviour
                 Vector2 pos = RuneHoverPoints[i] + Origin;
                 Destroy(GM.GameMap.FindBlock(pos).m_ThisBlockObject);
                 GM.GameMap.ThisMap[(int)pos.y].ThisRow[(int)pos.x].SetRandomMapBlock();
-                GM.GameMap.SpawnSingleMapObject(GM.GameMap.ThisMap[(int)pos.y].ThisRow[(int)pos.x].ThisBlockType, 0, (int)pos.y, (int)pos.x, 0, 0);
+                GM.GameMap.SpawnSingleMapObject(GM.GameMap.ThisMap[(int)pos.y].ThisRow[(int)pos.x].ThisBlockType, 0, (int)pos.y, (int)pos.x, 0, 0, 0, 0);
             }
         }
         GM.TurnPoint++;

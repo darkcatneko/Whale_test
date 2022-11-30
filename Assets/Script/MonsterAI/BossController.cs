@@ -88,14 +88,200 @@ public class BossController : MonoBehaviour
                 LevelAtk = 10.5f;
                 break;
         }
+        ///
+        bool[] Checker = new bool[GameMaster.W_Data.WeaponDataList.Count];
+        for (int i = 0; i < GameMaster.m_MainPlayer.BringingWeaponID.Length; i++)
+        {
+            if (GameMaster.m_MainPlayer.BringingWeaponID[i] != 999)
+            {
+                Checker[GameMaster.m_MainPlayer.BringingWeaponID[i]] = true;
+            }
+        }
+        if (Checker[0] && type == WeaponEnum.Slash)
+        {
+            float buffamount = 0;
+            switch (GameMaster.W_Data.WeaponDataList[0].Weapon_BreakLevel)
+            {
+                case 1:
+                    buffamount = 0.02f;
+                    break;
+                case 2:
+                    buffamount = 0.025f;
+                    break;
+                case 3:
+                    buffamount = 0.03f;
+                    break;
+                case 4:
+                    buffamount = 0.035f;
+                    break;
+                case 5:
+                    buffamount = 0.04f;
+                    break;
+            }
+            Buff += buffamount;
+        }
+        if (Checker[1] && type == WeaponEnum.Lunge)
+        {
+            float buffamount = 0;
+            switch (GameMaster.W_Data.WeaponDataList[1].Weapon_BreakLevel)
+            {
+                case 1:
+                    buffamount = 0.02f;
+                    break;
+                case 2:
+                    buffamount = 0.025f;
+                    break;
+                case 3:
+                    buffamount = 0.03f;
+                    break;
+                case 4:
+                    buffamount = 0.035f;
+                    break;
+                case 5:
+                    buffamount = 0.04f;
+                    break;
+            }
+            Buff += buffamount;
+        }
+        if (Checker[2] && type == WeaponEnum.Hit)
+        {
+            float buffamount = 0;
+            switch (GameMaster.W_Data.WeaponDataList[2].Weapon_BreakLevel)
+            {
+                case 1:
+                    buffamount = 0.02f;
+                    break;
+                case 2:
+                    buffamount = 0.025f;
+                    break;
+                case 3:
+                    buffamount = 0.03f;
+                    break;
+                case 4:
+                    buffamount = 0.035f;
+                    break;
+                case 5:
+                    buffamount = 0.04f;
+                    break;
+            }
+            Buff += buffamount;
+        }
+        if (Checker[3] && type == WeaponEnum.Penetrate)
+        {
+            float buffamount = 0;
+            switch (GameMaster.W_Data.WeaponDataList[3].Weapon_BreakLevel)
+            {
+                case 1:
+                    buffamount = 0.02f;
+                    break;
+                case 2:
+                    buffamount = 0.025f;
+                    break;
+                case 3:
+                    buffamount = 0.03f;
+                    break;
+                case 4:
+                    buffamount = 0.035f;
+                    break;
+                case 5:
+                    buffamount = 0.04f;
+                    break;
+            }
+            Buff += buffamount;
+        }
+        if (Checker[12] && type == WeaponEnum.Hit)
+        {
+            float buffamount = 0;
+            switch (GameMaster.W_Data.WeaponDataList[12].Weapon_BreakLevel)
+            {
+                case 1:
+                    buffamount = 0.06f;
+                    break;
+                case 2:
+                    buffamount = 0.075f;
+                    break;
+                case 3:
+                    buffamount = 0.09f;
+                    break;
+                case 4:
+                    buffamount = 0.105f;
+                    break;
+                case 5:
+                    buffamount = 0.12f;
+                    break;
+            }
+            Buff += buffamount;
+        }
+        if (Checker[13])
+        {
+            int HitNeed = 0;
+            switch(GameMaster.W_Data.WeaponDataList[13].Weapon_BreakLevel)
+            {
+                case 1:
+                    HitNeed = 9;
+                    break;
+                case 2:
+                    HitNeed = 8;
+                    break;
+                case 3:
+                    HitNeed = 7;
+                    break;
+                case 4:
+                    HitNeed = 6;
+                    break;
+                case 5:
+                    HitNeed = 5;
+                    break;
+            }
+            GameMaster.HitCount++;
+            if (GameMaster.HitCount == HitNeed)
+            {
+                GameMaster.HitCount = 0;
+                GameMaster.NowMP = Mathf.Clamp((int)GameMaster.NowMP + 1, 0, (int)GameMaster.MaxMP);
+            }
+        }
+
+        ///
         Damage = Atk * LevelAtk * resistance[(int)type-1] * Buff ;
         //Debug.LogError(Damage);
         Damage = CharacterPassiveCheck(type, Damage,level);
         //Debug.LogWarning(Damage);
         Damage = Mathf.Clamp(Damage - DEF, 1, Damage);
         Damage = Mathf.RoundToInt(Damage);
+        CharacterPassiveExtraAttackCheck(Damage);                     
         NowHealth -= Damage;
-        CharacterPassiveExtraAttackCheck(Damage);
+        ///攻擊後
+        if (Checker[11])
+        {
+            float buffamount = 0;
+            switch (GameMaster.W_Data.WeaponDataList[3].Weapon_BreakLevel)
+            {
+                case 1:
+                    buffamount = 0.12f;
+                    break;
+                case 2:
+                    buffamount = 0.15f;
+                    break;
+                case 3:
+                    buffamount = 0.18f;
+                    break;
+                case 4:
+                    buffamount = 0.21f;
+                    break;
+                case 5:
+                    buffamount = 0.24f;
+                    break;
+            }
+            int r = UnityEngine.Random.Range(1, 11);
+            if (r < 4)
+            {
+                Debug.Log("回血成功");
+                GameMaster.m_MainPlayer.NowArmor = Mathf.FloorToInt(Mathf.Clamp(GameMaster.m_MainPlayer.NowArmor + Damage * buffamount, 0, GameMaster.m_MainPlayer.MaxArmor));
+            }
+
+
+        }
+        ///
         Debug.Log("我打出了" + Damage + "點傷害");
     }
     public float CharacterPassiveCheck(WeaponEnum DamageType,float Damage,float WeaponLevel)

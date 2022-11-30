@@ -30,10 +30,12 @@ public class GameController : MonoBehaviour
 
     #endregion
     #region GameUseMath
+    public int HitCount = 0;
     public int TurnPoint = 0;
     public int MaxMP = 0;
-    public int NowMP = 0;   
+    public int NowMP = 0;
     #endregion
+    [SerializeField] public bool[] WeaponSkillActivation = new bool[15];
 
 
 
@@ -52,7 +54,8 @@ public class GameController : MonoBehaviour
             {StateEnum.Defence_State, new DefenceGameState()},
             {StateEnum.Setting_State, new SettingGameState()},
             {StateEnum.Ready_State, new ReadyTurnState()},
-            {StateEnum.Skill_State, new SkillGameState()}
+            {StateEnum.Skill_State, new SkillGameState()},
+            {StateEnum.Animation_State, new AnimationState()}
         };       
     }
 
@@ -114,6 +117,13 @@ public class GameController : MonoBehaviour
     private IEnumerator ReadyTurn()
     {
         int delay = 0;
+        for (int i = 0; i < WeaponButton.Length; i++)
+        {
+            if (WeaponButton[i].GetComponent<WeaponButtonAction>().NowCoolDown< WeaponButton[i].GetComponent<WeaponButtonAction>().ButtonWeapon.m_WeaponCD)
+            {
+                WeaponButton[i].GetComponent<WeaponButtonAction>().NowCoolDown = Mathf.Clamp(WeaponButton[i].GetComponent<WeaponButtonAction>().NowCoolDown+1,1, WeaponButton[i].GetComponent<WeaponButtonAction>().ButtonWeapon.m_WeaponCD);
+            }            
+        }
         //M_BossController.DestroyWarning();
         for (int i = 0; i < GameMap.ThisMap.Length; i++)
         {
@@ -164,7 +174,7 @@ public class GameController : MonoBehaviour
                 if (GameMap.FindBlock(Pos).ThisBlockType == WeaponEnum.Slash&& GameMap.FindBlock(Pos).ThisBlockLevel > 0&&m_MainPlayer.SkillActivation == 0)
                 {                    
                     Destroy(GameMap.FindBlock(Pos).m_ThisBlockObject);
-                    GameMap.SpawnSingleMapObject(WeaponEnum.Slash, (int)GameMap.FindBlock(Pos).ThisBlockLevel-1, (int)Pos.y, (int)Pos.x, GameMap.StartAmmo,0);
+                    GameMap.SpawnSingleMapObject(WeaponEnum.Slash, (int)GameMap.FindBlock(Pos).ThisBlockLevel-1, (int)Pos.y, (int)Pos.x, GameMap.StartAmmo,0,0,0);
                 }
                 return true;
         }

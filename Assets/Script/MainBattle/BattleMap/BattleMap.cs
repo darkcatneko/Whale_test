@@ -6,6 +6,7 @@ using TMPro;
 public class BattleMap : MonoBehaviour
 {
     [SerializeField]private GameController GM;
+    private MapBlockClass False = new MapBlockClass(WeaponEnum.None,0,0,0);
 
     public MapBlockRow[] ThisMap = new MapBlockRow[5];
     //之後改成addressable
@@ -21,6 +22,10 @@ public class BattleMap : MonoBehaviour
     #region 破壞特效
     [SerializeField] GameObject DestroyBlockPrefab;
     [SerializeField] GameObject SpawnBlockPrefab;
+    #endregion
+    #region 一回合一次
+    public bool CanActivateWeapon14 = true;
+    public bool CanActivateWeapon12 = true;
     #endregion
 
 
@@ -73,7 +78,7 @@ public class BattleMap : MonoBehaviour
         }
     }
     public void SpawnSingleMapObject(WeaponEnum This_B_Type,int Level, int Row, int Column, int Ammo,int Shield, int BuffRound , float BuffAmount )
-    {
+    {       
         switch (This_B_Type)
         {
             case WeaponEnum.Armor:
@@ -96,6 +101,7 @@ public class BattleMap : MonoBehaviour
     
     public void GenBlock(GameObject[] Array, int Level,int Row, int Column,int Ammo,int Shield,int BuffRound,float BuffAmount,WeaponEnum ThisType)
     {
+        ThisMap[Row].ThisRow[Column].ThisBlockBuff = new List<BlockBuff>();
         ///
         bool[] Checker = new bool[GM.W_Data.WeaponDataList.Count];
         for (int i = 0; i < GM.m_MainPlayer.BringingWeaponID.Length; i++)
@@ -105,31 +111,39 @@ public class BattleMap : MonoBehaviour
                 Checker[GM.m_MainPlayer.BringingWeaponID[i]] = true;
             }            
         }
-        if (Checker[12]&&Level>0&&ThisType == WeaponEnum.Hit)
-        {
-            Level = Mathf.Clamp(Level+1,0,5);
+        if (Checker[12]&&Level>0&&ThisType == WeaponEnum.Hit && CanActivateWeapon12)
+        {        
+            int r = UnityEngine.Random.Range(0, 100);
+            if (r < 15)
+            {
+                Level = Mathf.Clamp(Level + 1, 0, 5);
+                CanActivateWeapon12 = false;
+            }
         }
-        if (Checker[14]&&Level>0&&ThisType == WeaponEnum.Armor)
+        if (Checker[14]&&Level>0&&ThisType == WeaponEnum.Armor&&CanActivateWeapon14)
         {
+
             if (GM.WeaponSkillActivation[14])
             {
                 Level = Mathf.Clamp(Level + 1, 0, 5);
                 GM.WeaponSkillActivation[14] = false;
+                CanActivateWeapon14 = false;
             }
             else
             {
-                int r = UnityEngine.Random.Range(0, 2);               
-                if (r == 0)
+                int r = UnityEngine.Random.Range(0, 100);               
+                if (r <15)
                 {
                     Level = Mathf.Clamp(Level + 1, 0, 5);
                     GM.WeaponSkillActivation[14] = false;
+                    CanActivateWeapon14 = false;
                 }
             }
         }
         ///
         GameObject B =  Instantiate(Array[Level], new Vector3(MapStartPoint.transform.position.x + 1.2f * Column, 0, MapStartPoint.transform.position.z + 1.2f * Row), Quaternion.identity, Board);
         ThisMap[Row].ThisRow[Column].m_ThisBlockObject = B;
-        ThisMap[Row].ThisRow[Column].ThisBlockLevel = Level;
+        ThisMap[Row].ThisRow[Column].ThisBlockLevel = Level;        
         ThisMap[Row].ThisRow[Column].AmmoLeft = Ammo;       
         if (GM.m_MainPlayer.ThisRound_MainCharacter_ID == 1 && Level > 0)
         {
@@ -138,15 +152,15 @@ public class BattleMap : MonoBehaviour
         else
         {
             ThisMap[Row].ThisRow[Column].ShieldLeft = Shield;
-        }
-        ThisMap[Row].ThisRow[Column].ThisBlockBuff = new BlockBuff(BuffRound,BuffAmount);
+        }        
+        ThisMap[Row].ThisRow[Column].ThisBlockBuff.Add(new BlockBuff(BuffRound, BuffAmount));
         B.GetComponent<BlockIdentity>().ThisRow = Row;
         B.GetComponent<BlockIdentity>().ThisColumn = Column;
         
         ///
         if (Checker[10])
         {
-            switch (GM.W_Data.WeaponDataList[10].Weapon_BreakLevel)
+            switch (GM.W_Data.WeaponDataList[10].Weapon_BreakLevel+1)
             {
                 case 1:
                     if (Level>=4)
@@ -398,7 +412,11 @@ public class BattleMap : MonoBehaviour
             {
                 temp1 = FindBlock(FirstBlock);
                 int tempLev = (int)FindBlock(SecondBlock).ThisBlockLevel; WeaponEnum tempType = FindBlock(SecondBlock).ThisBlockType; int tempAmmo = FindBlock(SecondBlock).AmmoLeft;
-                int tempShield = FindBlock(SecondBlock).ShieldLeft;
+                int tempShield = FindBlock(SecondBlock).ShieldLeft;List<BlockBuff> tempBuff = new List<BlockBuff>();
+                foreach (var item in FindBlock(SecondBlock).ThisBlockBuff)
+                {
+                    tempBuff.Add(item);
+                }
                 if (tempLev > 0)
                 {
                     tempAmmo = StartAmmo;
@@ -413,12 +431,14 @@ public class BattleMap : MonoBehaviour
                 FindBlock(SecondBlock).ThisBlockType = temp1.ThisBlockType;
                 SpawnSingleMapObject(temp1.ThisBlockType, (int)temp1.ThisBlockLevel, (int)SecondBlock.y, (int)SecondBlock.x, temp1.AmmoLeft,0, 0, 0);
                 FindBlock(SecondBlock).ShieldLeft = temp1.ShieldLeft;
+                FindBlock(SecondBlock).ThisBlockBuff = temp1.ThisBlockBuff;
 
                 Destroy(FindBlock(FirstBlock).m_ThisBlockObject);
                 //FindBlock(FirstBlock).ThisBlockLevel = tempLev;
                 FindBlock(FirstBlock).ThisBlockType = tempType;
                 SpawnSingleMapObject(tempType, tempLev, (int)FirstBlock.y, (int)FirstBlock.x, tempAmmo,0, 0, 0);
                 FindBlock(FirstBlock).ShieldLeft = tempShield;
+                FindBlock(FirstBlock).ThisBlockBuff = tempBuff;
                 return true;
             }
             RefreshMap();
@@ -444,7 +464,11 @@ public class BattleMap : MonoBehaviour
     }
     public MapBlockClass FindBlock(Vector2 Position)
     {
-        return ThisMap[(int)Position.y].ThisRow[(int)Position.x];       
+        if (Position.x < 5 && Position.y < 5 && Position.x > -1 && Position.y > -1)
+        {
+            return ThisMap[(int)Position.y].ThisRow[(int)Position.x];
+        }
+        else return False;
     }
     public void RefreshMap()
     {
@@ -515,10 +539,18 @@ public class BlockBuff
 {
     public int BuffRound;
     public float BuffAmount;
+    public string BuffSpecialName;
     //強化種類
     public BlockBuff(int R,float A)
     {
         BuffRound = R;
         BuffAmount = A;
+        BuffSpecialName = "";
+    }
+    public BlockBuff(int R, float A,string N)
+    {
+        BuffRound = R;
+        BuffAmount = A;
+        BuffSpecialName = N;
     }
 }

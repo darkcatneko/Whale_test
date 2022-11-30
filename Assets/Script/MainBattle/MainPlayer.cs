@@ -28,8 +28,10 @@ public class MainPlayer : ScriptableObject
         Heal += thisweapon.Heal[thisweapon.Weapon_BreakLevel];
         Crit += thisweapon.Crit[thisweapon.Weapon_BreakLevel];
     }
-    public void Regenerate(int level)
-    {
+    public void Regenerate(int level,float BuffAmount)
+    {        
+        float Buff;
+        Buff = Regen_Buff_Amount + BuffAmount;        
         float Regen = 0;
         float LevelReg = 0;
         switch (level)
@@ -62,5 +64,7 @@ public class MainPlayer : ScriptableObject
         NowArmor = 0;
         Heal = 0;
         Crit = 0;
+        Buff_Amount = 1;
+        Regen_Buff_Amount = 1;
     }
 }

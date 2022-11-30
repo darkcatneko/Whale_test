@@ -11,7 +11,7 @@ public class MapBlockClass
     public int AmmoLeft;
     public int ShieldLeft;
     public GameObject m_ThisBlockObject;
-    public BlockBuff ThisBlockBuff; 
+    public List<BlockBuff>  ThisBlockBuff = new List<BlockBuff>(); 
     public MapBlockClass(WeaponEnum TBT,float TBE,int AL,int SL)
     {
         ThisBlockType = TBT;

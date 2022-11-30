@@ -32,7 +32,13 @@ public class WeaponButtonAction : MonoBehaviour
             {10,  ()=>{BasicPointerUpFunc("SSR_SlashWeapon_Func"); }},
             {11,  ()=>{BasicPointerUpFunc("SSR_SakuraDreamWeapon_Func"); }},
             {12,  ()=>{BasicPointerUpFunc("SSR_PunishmentWeapon_Func"); }},
-            {13,  ()=>{BasicPointerUpFunc("SSR_RequiemWeapon_Func"); }}
+            {13,  ()=>{BasicPointerUpFunc("SSR_RequiemWeapon_Func"); }},
+            {14,  ()=>{BasicPointerUpFunc("SSR_GoldenTimeWeapon_Func"); }},
+            {5,  ()=>{BasicPointerUpFunc("SR_knightSwordWeapon_Func"); }},
+            {6,  ()=>{BasicPointerUpFunc("SR_knightSpearWeapon_Func"); }},
+            {7,  ()=>{BasicPointerUpFunc("SR_knightHammerWeapon_Func"); }},
+            //{8,  ()=>{BasicPointerUpFunc("SR_knightSwordWeapon_Func"); }},
+            //{9,  ()=>{BasicPointerUpFunc("SR_knightSwordWeapon_Func"); }}
         };
     }
     public void OnPointerDown()
@@ -88,13 +94,16 @@ public class WeaponButtonAction : MonoBehaviour
         yield return new WaitForSeconds(4f);
         for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
         {
-            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType == WeaponEnum.Slash&& GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel>0)
+            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType!=WeaponEnum.None)
             {
-                GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockBuff.BuffAmount = 0.2f;
-                GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockBuff.BuffRound = 1;   
-            }          
+                if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType == WeaponEnum.Slash && GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel > 0)
+                {
+                    GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockBuff.Add(new BlockBuff(1, 0.2f));
+                }
+            }                     
         }
         GM.GameMap.RefreshMap();
+        GM.WeaponSkillActivation[0] = true;
         NowCoolDown = 0;
         SkillActivating = false;
         GM.ChangeState(StateEnum.Free_State);
@@ -104,14 +113,18 @@ public class WeaponButtonAction : MonoBehaviour
         yield return new WaitForSeconds(4f);
         for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
         {
-            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType == WeaponEnum.Lunge && GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel > 0)
+            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType != WeaponEnum.None)
             {
-                Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
-                GM.GameMap.SpawnSingleMapObject(WeaponEnum.Lunge, (int)GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel+1, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo, 0, 0, 0);
-                GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Lunge;
-            }
+                if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType == WeaponEnum.Lunge && GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel > 0)
+                {
+                    Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
+                    GM.GameMap.SpawnSingleMapObject(WeaponEnum.Lunge, (int)GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel + 1, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo, 0, 0, 0);
+                    GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Lunge;
+                }
+            }            
         }
         GM.GameMap.RefreshMap();
+        GM.WeaponSkillActivation[1] = true;
         NowCoolDown = 0;
         SkillActivating = false;
         GM.ChangeState(StateEnum.Free_State);
@@ -121,13 +134,16 @@ public class WeaponButtonAction : MonoBehaviour
         yield return new WaitForSeconds(4f);
         for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
         {
-            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType == WeaponEnum.Hit && GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel > 0)
+            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType!= WeaponEnum.None)
             {
-                GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockBuff.BuffAmount = 0.2f;
-                GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockBuff.BuffRound = 1;
-            }
+                if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType == WeaponEnum.Hit && GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel > 0)
+                {
+                    GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockBuff.Add(new BlockBuff(1, 0.2f));
+                }
+            }           
         }
         GM.GameMap.RefreshMap();
+        GM.WeaponSkillActivation[2] = true;
         NowCoolDown = 0;
         SkillActivating = false;
         GM.ChangeState(StateEnum.Free_State);
@@ -137,14 +153,19 @@ public class WeaponButtonAction : MonoBehaviour
         yield return new WaitForSeconds(4f);
         for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
         {
-            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType == WeaponEnum.Penetrate && GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel > 0)
+            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType != WeaponEnum.None)
             {
-                Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
-                GM.GameMap.SpawnSingleMapObject(WeaponEnum.Penetrate, (int)GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel + 1, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo, 0, 0, 0);
-                GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Penetrate;
+                if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType == WeaponEnum.Penetrate && GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel > 0)
+                {
+                    Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
+                    GM.GameMap.SpawnSingleMapObject(WeaponEnum.Penetrate, (int)GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel + 1, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo, 0, 0, 0);
+                    GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Penetrate;
+                }
             }
+            
         }
         GM.GameMap.RefreshMap();
+        GM.WeaponSkillActivation[3] = true;
         NowCoolDown = 0;
         SkillActivating = false;
         GM.ChangeState(StateEnum.Free_State);
@@ -154,14 +175,19 @@ public class WeaponButtonAction : MonoBehaviour
         yield return new WaitForSeconds(4f);
         for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
         {
-            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType == WeaponEnum.Penetrate && GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel > 0)
+            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType != WeaponEnum.None)
             {
-                Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
-                GM.GameMap.SpawnSingleMapObject(WeaponEnum.Penetrate,1, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo, 0, 0, 0);
-                GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Armor;
+                if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType == WeaponEnum.Penetrate && GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel > 0)
+                {
+                    Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
+                    GM.GameMap.SpawnSingleMapObject(WeaponEnum.Penetrate, 1, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo, 0, 0, 0);
+                    GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Armor;
+                }
             }
+            
         }
         GM.GameMap.RefreshMap();
+        GM.WeaponSkillActivation[4] = true;
         NowCoolDown = 0;
         SkillActivating = false;
         GM.ChangeState(StateEnum.Free_State);
@@ -172,12 +198,16 @@ public class WeaponButtonAction : MonoBehaviour
         RaycastHit hit;
         if (SkillActivating == false)
         {
+            //Debug.Log(0);
             if (Physics.Raycast(ray, out hit))
             {
+                //Debug.Log(1);
                 if (NowCoolDown == ButtonWeapon.m_WeaponCD)
                 {
+                    //Debug.Log(2);
                     if (hit.transform.tag == "Block")
                     {
+                        //Debug.Log(3);
                         GM.ChangeState(StateEnum.Animation_State);
                         SkillActivating = true;
                         StartCoroutine(FuncName, new Vector2(hit.transform.GetComponent<BlockIdentity>().ThisColumn, hit.transform.GetComponent<BlockIdentity>().ThisRow));
@@ -208,14 +238,13 @@ public class WeaponButtonAction : MonoBehaviour
                 }
                 else
                 {
-
                     GM.ChangeState(StateEnum.Free_State);
                 }
             }
             else if (LastFocus == new Vector2(10, 10)&& SkillActivating == false)
             {
                 GM.ChangeState(StateEnum.Free_State);
-            }
+            }           
         }
         
         LastFocus = new Vector2(10, 10);
@@ -229,19 +258,23 @@ public class WeaponButtonAction : MonoBehaviour
         yield return new WaitForSeconds(4f);
         for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
         {
-            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType == WeaponEnum.Slash && GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel > 0)
+            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType != WeaponEnum.None)
             {
-                Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
-                GM.GameMap.SpawnSingleMapObject(WeaponEnum.Slash,4, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), 2, 0, 0, 0);
-                GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Slash;
-            }
-            else if(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType != WeaponEnum.Slash && GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel > 0)
-            {
-                Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
-                GM.GameMap.SpawnSingleMapObject(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType, 0, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), 0, 0, 0, 0);
-            }
+                if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType == WeaponEnum.Slash && GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel > 0)
+                {
+                    Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
+                    GM.GameMap.SpawnSingleMapObject(WeaponEnum.Slash, 4, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), 2, 0, 0, 0);
+                    GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Slash;
+                }
+                else if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType != WeaponEnum.Slash && GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel > 0)
+                {
+                    Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
+                    GM.GameMap.SpawnSingleMapObject(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType, 0, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), 0, 0, 0, 0);
+                }
+            }           
         }
         GM.GameMap.RefreshMap();
+        GM.WeaponSkillActivation[10] = true;
         NowCoolDown = 0;
         SkillActivating = false;
         GM.ChangeState(StateEnum.Free_State);
@@ -251,19 +284,23 @@ public class WeaponButtonAction : MonoBehaviour
         yield return new WaitForSeconds(4f);
         for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
         {
+            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType != WeaponEnum.None)
+            {
                 Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
-                GM.GameMap.SpawnSingleMapObject(WeaponEnum.Lunge,1, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x),1, 0, 0, 0);
-                GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Slash;                    
+                GM.GameMap.SpawnSingleMapObject(WeaponEnum.Lunge, 1, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), 1, 0, 0, 0);
+                GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Slash;
+            }
+                           
         }
         for (int i = 0; i < GM.GameMap.ThisMap.Length; i++)
         {
             for (int j = 0; j < GM.GameMap.ThisMap[i].ThisRow.Length; j++)
             {
-                GM.GameMap.ThisMap[i].ThisRow[j].ThisBlockBuff.BuffAmount += 0.3f;
-                GM.GameMap.ThisMap[i].ThisRow[j].ThisBlockBuff.BuffRound += 1;
+                GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockBuff.Add(new BlockBuff(1, 0.3f));
             }
         }
         GM.GameMap.RefreshMap();
+        GM.WeaponSkillActivation[11] = true;
         NowCoolDown = 0;
         SkillActivating = false;
         GM.ChangeState(StateEnum.Free_State);
@@ -272,8 +309,11 @@ public class WeaponButtonAction : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
         for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
-        {            
-            GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ShieldLeft+=1;
+        {
+            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType != WeaponEnum.None)
+            {
+                GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ShieldLeft += 1;
+            }           
         }
         List<Vector2> Temp = new List<Vector2>();
         for (int i = 0; i < GM.GameMap.ThisMap.Length; i++)
@@ -318,6 +358,7 @@ public class WeaponButtonAction : MonoBehaviour
         }
         
         GM.GameMap.RefreshMap();
+        GM.WeaponSkillActivation[12] = true;
         NowCoolDown = 0;
         SkillActivating = false;
         GM.ChangeState(StateEnum.Free_State);
@@ -327,9 +368,12 @@ public class WeaponButtonAction : MonoBehaviour
         yield return new WaitForSeconds(4f);
         for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
         {
-            Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
-            GM.GameMap.SpawnSingleMapObject(WeaponEnum.Penetrate, 1, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), 1, 0, 0, 0);
-            GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Penetrate;
+            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType != WeaponEnum.None)
+            {
+                Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
+                GM.GameMap.SpawnSingleMapObject(WeaponEnum.Penetrate, 1, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), 1, 0, 0, 0);
+                GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Penetrate;
+            }            
         }
         for (int i = 0; i < GM.GameMap.ThisMap.Length; i++)
         {
@@ -344,6 +388,7 @@ public class WeaponButtonAction : MonoBehaviour
             }
         }
         GM.GameMap.RefreshMap();
+        GM.WeaponSkillActivation[13] = true;
         NowCoolDown = 0;
         SkillActivating = false;
         GM.ChangeState(StateEnum.Free_State);
@@ -353,15 +398,18 @@ public class WeaponButtonAction : MonoBehaviour
         yield return new WaitForSeconds(4f);
         for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
         {
-            Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
-            GM.GameMap.SpawnSingleMapObject(WeaponEnum.Armor, 2, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo, 0, 0, 0);
-            GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Armor;
+            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType!=WeaponEnum.None)
+            {
+                Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
+                GM.GameMap.SpawnSingleMapObject(WeaponEnum.Armor, 2, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo, 0, 0, 0);
+                GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Armor;
+            }           
         }
         GM.GameMap.RefreshMap();
         ///
         GM.WeaponSkillActivation[14] = true;
         float buffamount = 0;
-        switch (GM.W_Data.WeaponDataList[14].Weapon_BreakLevel)
+        switch (GM.W_Data.WeaponDataList[14].Weapon_BreakLevel+1)
         {
             case 1:
                 buffamount = 0.06f;
@@ -391,9 +439,116 @@ public class WeaponButtonAction : MonoBehaviour
         yield return new WaitForSeconds(4f);
         for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
         {
-            Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
-            GM.GameMap.SpawnSingleMapObject(WeaponEnum.Slash, 1, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), 1, 0, 0, 0);
-            GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Slash;
+            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType!=WeaponEnum.None)
+            {
+                Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
+                GM.GameMap.SpawnSingleMapObject(WeaponEnum.Slash, 1, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), 1, 0, 0, 0);
+                GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Slash;
+            }
+            
+        }
+        GM.GameMap.RefreshMap();
+        GM.WeaponSkillActivation[5] = true;
+        NowCoolDown = 0;
+        SkillActivating = false;
+        GM.ChangeState(StateEnum.Free_State);
+    }
+    public IEnumerator SR_knightSpearWeapon_Func(Vector2 Origin)
+    {
+        yield return new WaitForSeconds(4f);
+        for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
+        {
+            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType != WeaponEnum.None)
+            {
+                if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel > 0)
+                {
+                    Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
+                    GM.GameMap.SpawnSingleMapObject(WeaponEnum.Lunge, (int)GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo, 0, 0, 0);
+                    GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Lunge;
+                }
+            }
+                    
+        }
+        GM.GameMap.RefreshMap();
+        GM.WeaponSkillActivation[6] = true;
+        NowCoolDown = 0;
+        SkillActivating = false;
+        GM.ChangeState(StateEnum.Free_State);
+    }
+    public IEnumerator SR_knightHammerWeapon_Func(Vector2 Origin)
+    {
+        yield return new WaitForSeconds(4f);
+        for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
+        {
+            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType != WeaponEnum.None)
+            {
+                if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel > 0)
+                {
+                    if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType == WeaponEnum.Hit)
+                    {
+                        GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockBuff.Add(new BlockBuff(1, 0.3f));
+                    }
+                    else
+                    {
+                        GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockBuff.Add(new BlockBuff(1, 0.15f));
+                    }
+                }
+            }
+
+        }
+        GM.GameMap.RefreshMap();
+        GM.WeaponSkillActivation[7] = true;
+        NowCoolDown = 0;
+        SkillActivating = false;
+        GM.ChangeState(StateEnum.Free_State);
+    }
+    public IEnumerator SR_knightBowWeapon_Func(Vector2 Origin)
+    {
+        yield return new WaitForSeconds(4f);
+        for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
+        {
+            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType != WeaponEnum.None)
+            {
+                if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel > 0)
+                {
+                    if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType == WeaponEnum.Penetrate)
+                    {
+                        GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockBuff.Add(new BlockBuff(1,0f,"KnightBow"));
+                    }                    
+                }
+            }
+
+        }
+        GM.GameMap.RefreshMap();
+        GM.WeaponSkillActivation[8] = true;
+        NowCoolDown = 0;
+        SkillActivating = false;
+        GM.ChangeState(StateEnum.Free_State);
+    }
+    public IEnumerator SR_knightShieldWeapon_Func(Vector2 Origin)
+    {
+        yield return new WaitForSeconds(4f);
+        for (int i = 0; i < ButtonWeapon.m_RuneHoverPoints.Count; i++)
+        {
+            if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType != WeaponEnum.None)
+            {
+                if (GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockLevel > 0)
+                {
+                    if (ButtonWeapon.m_RuneHoverPoints[i] == Vector2.zero)
+                    {
+                        Destroy(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).m_ThisBlockObject);
+                        GM.GameMap.SpawnSingleMapObject(WeaponEnum.Armor, 2, (int)(ButtonWeapon.m_RuneHoverPoints[i].y + Origin.y), (int)(ButtonWeapon.m_RuneHoverPoints[i].x + Origin.x), GM.GameMap.StartAmmo, 0, 0, 0);
+                        GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Armor;
+                        GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockBuff.Add(new BlockBuff(1, 0.25f));
+                    }
+                    else if(GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockType == WeaponEnum.Armor)
+                    {
+                        GM.GameMap.FindBlock(ButtonWeapon.m_RuneHoverPoints[i] + Origin).ThisBlockBuff.Add(new BlockBuff(1, 0.25f));
+                    }
+                    
+                }
+            }
+
         }
     }
     #endregion

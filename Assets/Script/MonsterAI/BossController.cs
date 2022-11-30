@@ -17,7 +17,10 @@ public class BossController : MonoBehaviour
     public List<GameObject> WarningPrefabs = new List<GameObject>();
     [SerializeField] GameObject WarningPrefab;
     #endregion
-
+    #region 武器一回合一次
+    public int Weapon5CanActivate = 2;
+    public int Weapon6Passive = 3;
+    #endregion
     #region BossStat
     public int CD_To_Next_Attack;
     public float MaxHealth; public float NowHealth;
@@ -66,7 +69,16 @@ public class BossController : MonoBehaviour
         resistance[3] = res3;
         resistance[4] = res4;
     }
-    public void Be_Attack(float Atk,int level,WeaponEnum type,float Buff )
+    public void CharacterPassiveEnergyCharge()
+    {
+        switch (GameMaster.m_MainPlayer.ThisRound_MainCharacter_ID)
+        {
+            case 3:
+                GameMaster.NowMP = Mathf.Clamp(GameMaster.NowMP + 1, 0, GameMaster.MaxMP);
+                return;
+        }
+    }
+    public void Be_Attack(float Atk, int level, WeaponEnum type, float Buff)
     {
         float Damage = 0;
         float LevelAtk = 0;
@@ -97,10 +109,18 @@ public class BossController : MonoBehaviour
                 Checker[GameMaster.m_MainPlayer.BringingWeaponID[i]] = true;
             }
         }
+        bool WeaponActivate = false;
+        for (int i = 0; i < GameMaster.WeaponSkillActivation.Length; i++)
+        {
+            if (GameMaster.WeaponSkillActivation[i])
+            {
+                WeaponActivate = true;
+            }
+        }
         if (Checker[0] && type == WeaponEnum.Slash)
         {
             float buffamount = 0;
-            switch (GameMaster.W_Data.WeaponDataList[0].Weapon_BreakLevel)
+            switch (GameMaster.W_Data.WeaponDataList[0].Weapon_BreakLevel + 1)
             {
                 case 1:
                     buffamount = 0.02f;
@@ -123,7 +143,7 @@ public class BossController : MonoBehaviour
         if (Checker[1] && type == WeaponEnum.Lunge)
         {
             float buffamount = 0;
-            switch (GameMaster.W_Data.WeaponDataList[1].Weapon_BreakLevel)
+            switch (GameMaster.W_Data.WeaponDataList[1].Weapon_BreakLevel + 1)
             {
                 case 1:
                     buffamount = 0.02f;
@@ -146,7 +166,7 @@ public class BossController : MonoBehaviour
         if (Checker[2] && type == WeaponEnum.Hit)
         {
             float buffamount = 0;
-            switch (GameMaster.W_Data.WeaponDataList[2].Weapon_BreakLevel)
+            switch (GameMaster.W_Data.WeaponDataList[2].Weapon_BreakLevel + 1)
             {
                 case 1:
                     buffamount = 0.02f;
@@ -169,7 +189,7 @@ public class BossController : MonoBehaviour
         if (Checker[3] && type == WeaponEnum.Penetrate)
         {
             float buffamount = 0;
-            switch (GameMaster.W_Data.WeaponDataList[3].Weapon_BreakLevel)
+            switch (GameMaster.W_Data.WeaponDataList[3].Weapon_BreakLevel + 1)
             {
                 case 1:
                     buffamount = 0.02f;
@@ -192,7 +212,7 @@ public class BossController : MonoBehaviour
         if (Checker[12] && type == WeaponEnum.Hit)
         {
             float buffamount = 0;
-            switch (GameMaster.W_Data.WeaponDataList[12].Weapon_BreakLevel)
+            switch (GameMaster.W_Data.WeaponDataList[12].Weapon_BreakLevel + 1)
             {
                 case 1:
                     buffamount = 0.06f;
@@ -215,7 +235,7 @@ public class BossController : MonoBehaviour
         if (Checker[13])
         {
             int HitNeed = 0;
-            switch(GameMaster.W_Data.WeaponDataList[13].Weapon_BreakLevel)
+            switch (GameMaster.W_Data.WeaponDataList[13].Weapon_BreakLevel + 1)
             {
                 case 1:
                     HitNeed = 9;
@@ -240,21 +260,44 @@ public class BossController : MonoBehaviour
                 GameMaster.NowMP = Mathf.Clamp((int)GameMaster.NowMP + 1, 0, (int)GameMaster.MaxMP);
             }
         }
-
+        if (Checker[7]&& (WeaponActivate || GameMaster.m_MainPlayer.SkillActivation > 0))
+        {
+            float buffamount = 0;
+            switch (GameMaster.W_Data.WeaponDataList[7].Weapon_BreakLevel + 1)
+            {
+                case 1:
+                    buffamount = 0.12f;
+                    break;
+                case 2:
+                    buffamount = 0.15f;
+                    break;
+                case 3:
+                    buffamount = 0.18f;
+                    break;
+                case 4:
+                    buffamount = 0.21f;
+                    break;
+                case 5:
+                    buffamount = 0.24f;
+                    break;
+            }
+            Buff += buffamount;
+        }
         ///
-        Damage = Atk * LevelAtk * resistance[(int)type-1] * Buff ;
+        Damage = Atk * LevelAtk * resistance[(int)type - 1] * Buff;
         //Debug.LogError(Damage);
-        Damage = CharacterPassiveCheck(type, Damage,level);
+        Damage = CharacterPassiveCheck(type, Damage, level);
         //Debug.LogWarning(Damage);
         Damage = Mathf.Clamp(Damage - DEF, 1, Damage);
         Damage = Mathf.RoundToInt(Damage);
-        CharacterPassiveExtraAttackCheck(Damage);                     
+        CharacterPassiveExtraAttackCheck(Damage);
+        CharacterPassiveEnergyCharge();
         NowHealth -= Damage;
         ///攻擊後
         if (Checker[11])
         {
             float buffamount = 0;
-            switch (GameMaster.W_Data.WeaponDataList[3].Weapon_BreakLevel)
+            switch (GameMaster.W_Data.WeaponDataList[3].Weapon_BreakLevel + 1)
             {
                 case 1:
                     buffamount = 0.12f;
@@ -280,6 +323,62 @@ public class BossController : MonoBehaviour
             }
 
 
+        }
+        
+        if ((Checker[5] && Weapon5CanActivate > 0) && (WeaponActivate||GameMaster.m_MainPlayer.SkillActivation>0))
+        {
+            int ManaGain = 0;
+            switch (GameMaster.W_Data.WeaponDataList[5].Weapon_BreakLevel)
+            {
+                case 0:
+                    ManaGain = 1;
+                    break;
+                case 1:
+                    ManaGain = 1;
+                    break;
+                case 2:
+                    ManaGain = 2;
+                    break;
+                case 3:
+                    ManaGain = 2;
+                    break;
+                case 4:
+                    ManaGain = 3;
+                    break;
+            }
+
+
+            GameMaster.NowMP = Mathf.Clamp((int)GameMaster.NowMP + ManaGain, 0, (int)GameMaster.MaxMP);
+            Weapon5CanActivate -= 1;
+        }
+        if (Checker[6]&&type == WeaponEnum.Lunge&& Weapon6Passive > 0)
+        {
+            int Chance = 0;
+            switch (GameMaster.W_Data.WeaponDataList[6].Weapon_BreakLevel)
+            {
+                case 0:
+                    Chance = 40;
+                    break;
+                case 1:
+                    Chance = 50;
+                    break;
+                case 2:
+                    Chance = 60;
+                    break;
+                case 3:
+                    Chance = 70;
+                    break;
+                case 4:
+                    Chance = 80;
+                    break;
+            }
+            int r = UnityEngine.Random.Range(0, 100);
+            if (r<Chance)
+            {
+                GameMaster.NowMP = Mathf.Clamp((int)GameMaster.NowMP + 1, 0, (int)GameMaster.MaxMP);
+                Weapon6Passive -= 1;
+            }
+           
         }
         ///
         Debug.Log("我打出了" + Damage + "點傷害");
@@ -333,6 +432,7 @@ public class BossController : MonoBehaviour
         if (GameMaster.GameMap.FindBlock(Vc).ShieldLeft>0)
         {
             GameMaster.GameMap.FindBlock(Vc).ShieldLeft--;
+            GameMaster.M_BossController.DestroyWarning();
         }
         else
         {

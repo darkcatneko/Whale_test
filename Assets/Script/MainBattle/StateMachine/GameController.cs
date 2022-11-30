@@ -35,6 +35,9 @@ public class GameController : MonoBehaviour
     public int MaxMP = 0;
     public int NowMP = 0;
     #endregion
+    #region 一回合一次
+    public bool CanActivateWeapon8Passive = true;
+    #endregion
     [SerializeField] public bool[] WeaponSkillActivation = new bool[15];
 
 
@@ -116,6 +119,12 @@ public class GameController : MonoBehaviour
     }
     private IEnumerator ReadyTurn()
     {
+        ///一回合一次
+        M_BossController.Weapon5CanActivate = 2;
+        M_BossController.Weapon6Passive = 3;
+        GameMap.CanActivateWeapon14 = true;
+        GameMap.CanActivateWeapon12 = true;
+        ///
         int delay = 0;
         for (int i = 0; i < WeaponButton.Length; i++)
         {
@@ -129,7 +138,7 @@ public class GameController : MonoBehaviour
             ///
             WeaponSkillActivation[14] = false;
             float buffamount = 0;
-            switch (W_Data.WeaponDataList[14].Weapon_BreakLevel)
+            switch (W_Data.WeaponDataList[14].Weapon_BreakLevel + 1)
             {
                 case 1:
                     buffamount = 0.06f;
@@ -150,6 +159,10 @@ public class GameController : MonoBehaviour
             m_MainPlayer.Regen_Buff_Amount -= buffamount;
             Debug.LogWarning("寶藏效果結束"+ m_MainPlayer.Regen_Buff_Amount.ToString());
             ///
+        }
+        for (int i = 0; i < WeaponSkillActivation.Length; i++)//武器發動重整
+        {
+            WeaponSkillActivation[i] = false;
         }
         //M_BossController.DestroyWarning();
         for (int i = 0; i < GameMap.ThisMap.Length; i++)

@@ -279,7 +279,7 @@ public class MainCharacterSkill : MonoBehaviour
             if (GM.GameMap.FindBlock(RuneHoverPoints[i] + Origin).ThisBlockLevel>0)
             {
                 Debug.Log("¬ï³z§Þ¯àÃB¥~§ðÀ»");
-                GM.M_BossController.Be_Attack(GM.m_MainPlayer.Attack, (int)GM.GameMap.FindBlock(RuneHoverPoints[i] + Origin).ThisBlockLevel, WeaponEnum.Penetrate, GM.m_MainPlayer.Buff_Amount);
+                GM.M_BossController.Be_Attack(GM.m_MainPlayer.Attack, (int)GM.GameMap.FindBlock(RuneHoverPoints[i] + Origin).ThisBlockLevel, WeaponEnum.Penetrate, GM.m_MainPlayer.Buff_Amount);               
             }           
         }
         GM.m_MainPlayer.SkillActivation++;

@@ -58,7 +58,7 @@ public class StartGameState : Istate
         if (Checker[4])
         {
             float buffamount = 0;
-            switch (Controller.W_Data.WeaponDataList[4].Weapon_BreakLevel)
+            switch (Controller.W_Data.WeaponDataList[4].Weapon_BreakLevel+1)
             {
                 case 1:
                     buffamount = 0.02f;
@@ -81,7 +81,7 @@ public class StartGameState : Istate
         if (Checker[14])
         {
             float buffamount = 0;
-            switch (Controller.W_Data.WeaponDataList[4].Weapon_BreakLevel)
+            switch (Controller.W_Data.WeaponDataList[14].Weapon_BreakLevel+1)
             {
                 case 1:
                     buffamount = 0.06f;

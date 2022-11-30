@@ -348,7 +348,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 104052414}
         m_TargetAssemblyTypeName: WeaponButtonAction, Assembly-CSharp
-        m_MethodName: OnHover
+        m_MethodName: OnHoverExit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -408,6 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f311c5c66c0986a48b611b44075db4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillActivating: 0
   ButtonWeapon:
     m_WeaponType: 0
     m_WeaponID: 0
@@ -477,6 +478,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &171373260
 GameObject:
   m_ObjectHideFlags: 0
@@ -2700,6 +2705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f311c5c66c0986a48b611b44075db4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillActivating: 0
   ButtonWeapon:
     m_WeaponType: 0
     m_WeaponID: 0
@@ -3131,9 +3137,11 @@ MonoBehaviour:
   TPLog: {fileID: 0}
   StateLog: {fileID: 1432085431}
   Test_1: {fileID: 11400000, guid: 49c5e4e77644c8648bb4f6d2bcb64e7d, type: 2}
+  HitCount: 0
   TurnPoint: 0
   MaxMP: 0
   NowMP: 60
+  WeaponSkillActivation: 000000000000000000000000000000
 --- !u!114 &783896125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3894,6 +3902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f311c5c66c0986a48b611b44075db4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillActivating: 0
   ButtonWeapon:
     m_WeaponType: 0
     m_WeaponID: 0
@@ -5261,6 +5270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f311c5c66c0986a48b611b44075db4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillActivating: 0
   ButtonWeapon:
     m_WeaponType: 0
     m_WeaponID: 0
@@ -5466,6 +5476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f311c5c66c0986a48b611b44075db4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillActivating: 0
   ButtonWeapon:
     m_WeaponType: 0
     m_WeaponID: 0

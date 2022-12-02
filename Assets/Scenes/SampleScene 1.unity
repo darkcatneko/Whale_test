@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 97019702d9ec2a747a4185e725bf04cf,
     type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: ebed71b3a936c5f41b7afc065c813391,
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 51598e8d19a57440dbe233967cd429da,
     type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -2993,6 +2993,7 @@ MonoBehaviour:
   TurnPoint: 0
   MaxMP: 0
   NowMP: 60
+  CanActivateWeapon8Passive: 1
   WeaponSkillActivation: 000000000000000000000000000000
 --- !u!114 &783896125
 MonoBehaviour:
@@ -3014,205 +3015,155 @@ MonoBehaviour:
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
   - ThisRow:
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
   - ThisRow:
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
   - ThisRow:
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
   - ThisRow:
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
     - ThisBlockType: 0
       ThisBlockLevel: 0
       AmmoLeft: 0
       ShieldLeft: 0
       m_ThisBlockObject: {fileID: 0}
-      ThisBlockBuff:
-        BuffRound: 0
-        BuffAmount: 0
+      ThisBlockBuff: []
   ArmorBlocks:
   - {fileID: 140169022252136846, guid: f60a226df7660ae4dafd28de8999f8b9, type: 3}
   - {fileID: 6167549587299672550, guid: f6b16167925c1d94c95e0e5af4aaf17d, type: 3}
@@ -3255,6 +3206,8 @@ MonoBehaviour:
     type: 3}
   SpawnBlockPrefab: {fileID: 3266096839139299307, guid: 7c863e18001dd5342aa9ac1e88a10478,
     type: 3}
+  CanActivateWeapon14: 1
+  CanActivateWeapon12: 1
 --- !u!4 &783896126
 Transform:
   m_ObjectHideFlags: 0
@@ -3301,6 +3254,8 @@ MonoBehaviour:
   WarningPrefabs: []
   WarningPrefab: {fileID: 1760678893031156401, guid: a0847ac2dad240942a3d60fe3ffa7661,
     type: 3}
+  Weapon5CanActivate: 2
+  Weapon6Passive: 3
   CD_To_Next_Attack: 0
   MaxHealth: 0
   NowHealth: 0

@@ -67,7 +67,7 @@ Material:
     - _WobbleX: 0
     - _WobbleZ: 0
     m_Colors:
-    - Color_001dae7028864d6db4952f7e7606b163: {r: 41.220184, g: 59.1959, b: 55.476788,
+    - Color_001dae7028864d6db4952f7e7606b163: {r: 41.379528, g: 79.03117, b: 71.76507,
         a: 0}
     - Color_2ecce2f80db44436bfd47e846ebc6aa0: {r: 0.6132076, g: 0, b: 0, a: 0}
     - Color_a20220b4afeb4628bec5863043bf4c0c: {r: 0.7647059, g: 0.31527656, b: 0,

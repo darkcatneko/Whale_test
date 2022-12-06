@@ -103,7 +103,7 @@ public class BattleMap : MonoBehaviour
     {
         ThisMap[Row].ThisRow[Column].ThisBlockBuff = new List<BlockBuff>();
         ///
-        bool[] Checker = new bool[GM.W_Data.WeaponDataList.Count];
+        bool[] Checker = new bool[GM.W_Data.WeaponDataList.Count];        
         for (int i = 0; i < GM.m_MainPlayer.BringingWeaponID.Length; i++)
         {
             if (GM.m_MainPlayer.BringingWeaponID[i]!=999)
@@ -145,7 +145,7 @@ public class BattleMap : MonoBehaviour
         ThisMap[Row].ThisRow[Column].m_ThisBlockObject = B;
         ThisMap[Row].ThisRow[Column].ThisBlockLevel = Level;        
         ThisMap[Row].ThisRow[Column].AmmoLeft = Ammo;       
-        if (GM.m_MainPlayer.ThisRound_MainCharacter_ID == 1 && Level > 0)
+        if (GM.m_MainPlayer.ThisRound_MainCharacter_ID == 1 && Level > 0&&ThisType == WeaponEnum.Hit)
         {
             ThisMap[Row].ThisRow[Column].ShieldLeft = Shield+1;
         }

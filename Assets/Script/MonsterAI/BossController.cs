@@ -483,4 +483,9 @@ public class BossController : MonoBehaviour
         }        
         WarningPrefabs = new List<GameObject>();
     }
+    public void BossAnimation(int BossID, int MoveId)
+    {
+        GameMaster.TimeLine.playableAsset = GameMaster.M_Data.MonsterList[BossID].BossAttacks[MoveId];
+        GameMaster.TimeLine.Play();
+    }
 }

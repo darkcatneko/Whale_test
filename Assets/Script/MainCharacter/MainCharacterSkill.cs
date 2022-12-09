@@ -13,7 +13,7 @@ public class MainCharacterSkill : MonoBehaviour
     public List<Vector2> RuneHoverPoints = new List<Vector2>();
     private Dictionary<int, UnityAction> MainCharacterSkillData;
     private UnityEvent SkillEvent = new UnityEvent();
-    private void Start()
+    private void Awake()
     {
         MainCam = Camera.main;
         MainCharacterSkillData = new Dictionary<int, UnityAction>
@@ -23,6 +23,10 @@ public class MainCharacterSkill : MonoBehaviour
             {2, OnLungeMainPointerUp },
             {3, OnAssassinMainCharacterPointerUp }
         };
+    }
+    private void Start()
+    {
+        
                
     }
     public void OnPointerDown()

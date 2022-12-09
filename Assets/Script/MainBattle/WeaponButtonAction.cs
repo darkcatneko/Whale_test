@@ -19,7 +19,7 @@ public class WeaponButtonAction : MonoBehaviour
     {
         //Debug.Log(ButtonWeapon.m_WeaponID.ToString());
     }
-    private void Start()
+    private void Awake()
     {
         MainCam = Camera.main;
         WeaponSkillData = new Dictionary<int, Action>
@@ -40,6 +40,10 @@ public class WeaponButtonAction : MonoBehaviour
             //{8,  ()=>{BasicPointerUpFunc("SR_knightSwordWeapon_Func"); }},
             //{9,  ()=>{BasicPointerUpFunc("SR_knightSwordWeapon_Func"); }}
         };
+    }
+    private void Start()
+    {
+        
     }
     public void OnPointerDown()
     {
@@ -64,6 +68,7 @@ public class WeaponButtonAction : MonoBehaviour
     }
     public void InstallWeaponSkill()
     {
+        Debug.Log(ButtonWeapon.m_WeaponID);
         if (WeaponSkillData.ContainsKey(ButtonWeapon.m_WeaponID))
         {
             WeaponSkill.AddListener(WeaponSkillData[ButtonWeapon.m_WeaponID].Invoke);

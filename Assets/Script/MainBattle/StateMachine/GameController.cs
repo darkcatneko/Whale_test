@@ -5,6 +5,7 @@ using System.Linq;
 using System;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Playables;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private StateEnum currentState;
@@ -16,7 +17,9 @@ public class GameController : MonoBehaviour
     public BattleMap GameMap;
     public MainPlayer m_MainPlayer;
     public WeaponData W_Data;
-    public MainCharacterData C_Data;    
+    public MainCharacterData C_Data;
+    public MonsterData M_Data;
+    public PlayableDirector TimeLine;
     #region Canvas
     public Button[] WeaponButton = new Button[5];
     public Button MainCharacterSkillButton;

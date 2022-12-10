@@ -27,7 +27,7 @@ public class StartGameState : Istate
     }
     public void OnStateExit()
     {
-
+        
     }
     public void InstallWeapon()
     {        

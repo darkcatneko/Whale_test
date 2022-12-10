@@ -241,4 +241,8 @@ public class GameController : MonoBehaviour
     {
         return currentState;
     }
+    public void CallStartCoroutine(IEnumerator Func)
+    {
+        StartCoroutine(Func);
+    }    
 }

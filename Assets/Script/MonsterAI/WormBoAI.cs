@@ -125,11 +125,13 @@ public class WormBoAI : BossIstate
         {
             if (SpecialMove3Unmove == false)
             {
+                Controller.BossAnimation(0, 0);
                 Debug.Log("垂死大反擊");
                 Controller.BossAttackDamage(3f);
             }
             else
             {
+                Controller.BossAnimation(0, 0);
                 Debug.Log("垂死小反擊");
                 Controller.BossAttackDamage(1f);
             }

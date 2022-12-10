@@ -15,3 +15,4 @@ MonoBehaviour:
   BossName: WormBO
   BossAttacks:
   - {fileID: 11400000, guid: 04e4019784cdbf6419e36ebfcda7fea2, type: 2}
+  BossIdle: {fileID: 11400000, guid: 6423b6736b726254388bba68f3b00751, type: 2}

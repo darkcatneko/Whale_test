@@ -485,7 +485,18 @@ public class BossController : MonoBehaviour
     }
     public void BossAnimation(int BossID, int MoveId)
     {
+        GameMaster.TimeLine.extrapolationMode = UnityEngine.Playables.DirectorWrapMode.Hold;
         GameMaster.TimeLine.playableAsset = GameMaster.M_Data.MonsterList[BossID].BossAttacks[MoveId];
         GameMaster.TimeLine.Play();
+    }
+    public void BossIdleAnimation(int BossID)
+    {
+        GameMaster.TimeLine.playableAsset = GameMaster.M_Data.MonsterList[BossID].BossIdle;
+        GameMaster.TimeLine.Play();
+        GameMaster.TimeLine.extrapolationMode = UnityEngine.Playables.DirectorWrapMode.Loop;
+    }
+    public float BossAnimationTime(int BossID, int MoveId)
+    {
+        return (float)GameMaster.M_Data.MonsterList[BossID].BossAttacks[MoveId].duration;
     }
 }

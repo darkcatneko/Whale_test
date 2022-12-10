@@ -8,4 +8,6 @@ public class MonsterScriptableObject : ScriptableObject
 {
     public string BossName;
     public List<PlayableAsset> BossAttacks = new List<PlayableAsset>();
+    public PlayableAsset BossIdle;
+  
 }

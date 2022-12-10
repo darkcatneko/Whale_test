@@ -98,6 +98,7 @@ public class GameController : MonoBehaviour
         M_BossController.BossNormalAttack();
         Debug.Log("©µ®É"+M_BossController.AttackUsedTime);
         yield return new WaitForSeconds(M_BossController.AttackUsedTime);
+        M_BossController.BossIdleAnimation((int)ThisStage.ThisRoundBoss);
         M_BossController.AttackUsedTime = 0;
         if (M_BossController.GetBoss() == Boss.MainBoss&&M_BossController.NowSkillName == "SpecialAttackE")
         {

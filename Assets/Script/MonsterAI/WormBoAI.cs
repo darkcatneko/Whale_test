@@ -168,7 +168,7 @@ public class WormBoAI : BossIstate
                         if (a <= 30)
                         {
                             Debug.Log("´¶§ðA¹w¥ü");
-                            BossAction.AddListener(() => { Controller.BossAnimation(0, 0);  Controller.AttackUsedTime = 3f; Controller.BossAttackDamage(1.2f); BossAction.RemoveAllListeners(); });//´¶§ðAÅF¥X
+                            BossAction.AddListener(() => { Controller.BossAnimation(0, 0);  Controller.AttackUsedTime = Controller.BossAnimationTime(0, 0); Controller.BossAttackDamage(1.2f); BossAction.RemoveAllListeners(); });//´¶§ðAÅF¥X
                         }
                         else if (a <= 60)
                         {

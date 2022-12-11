@@ -99,6 +99,7 @@ public class GameController : MonoBehaviour
         Debug.Log("©µ®É"+M_BossController.AttackUsedTime);
         yield return new WaitForSeconds(M_BossController.AttackUsedTime);
         M_BossController.BossIdleAnimation((int)ThisStage.ThisRoundBoss);
+        yield return new WaitForSeconds(1.2f);
         M_BossController.AttackUsedTime = 0;
         if (M_BossController.GetBoss() == Boss.MainBoss&&M_BossController.NowSkillName == "SpecialAttackE")
         {

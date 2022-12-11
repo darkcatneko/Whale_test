@@ -184,7 +184,8 @@ public class WormBoAI : BossIstate
                             //´¶§ðB¹w¥ü
                             BossAction.AddListener(() =>
                             {
-                                Controller.AttackUsedTime = 3f;
+                                Controller.BossAnimation(0, 1);
+                                Controller.AttackUsedTime = Controller.BossAnimationTime(0, 1);
                                 Controller.BossAttackDamage(0.7f);
                                 for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                                 {
@@ -197,7 +198,7 @@ public class WormBoAI : BossIstate
                         }
                         else
                         {
-                            TargetOneBlockMove(1f);
+                            TargetOneBlockMove(1f,1);
                             //´¶§ðCÅF¥X
                         }
                     }
@@ -324,7 +325,7 @@ public class WormBoAI : BossIstate
                             if (a == 0)
                             {
                                 Debug.Log("´¶§ðA_UP¹w¥ü");
-                                TargetOneBlockMove(1.2f);//´¶§ðAÅF¥X
+                                TargetOneBlockMove(1.2f,0);//´¶§ðAÅF¥X
                             }
                             else if (a == 1)
                             {
@@ -518,7 +519,7 @@ public class WormBoAI : BossIstate
         }
         return Temp;
     }
-    private void TargetOneBlockMove(float Damage)
+    private void TargetOneBlockMove(float Damage,int AnimationType)
     {
         List<Vector2> temp = new List<Vector2>();
         for (int i = 0; i < Controller.GameMaster.GameMap.ThisMap.Length; i++)
@@ -540,6 +541,8 @@ public class WormBoAI : BossIstate
         }
         BossAction.AddListener(() =>
         {
+            Controller.BossAnimation(0, AnimationType);
+            Controller.AttackUsedTime = Controller.BossAnimationTime(0, AnimationType);
             Controller.AttackUsedTime = 3f;
             Controller.BossAttackDamage(Damage);
             if (Controller.BlockReadyToBreak.Count > 0)

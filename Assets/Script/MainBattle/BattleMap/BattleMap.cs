@@ -452,7 +452,7 @@ public class BattleMap : MonoBehaviour
     public IEnumerator DestroyAndRefreshSingleBlockIEnumerator(Vector2 pos)
     {       
         FindBlock(pos).m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 1);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(GM.M_BossController.AttackUsedTime);
         Destroy(FindBlock(pos).m_ThisBlockObject);
         GameObject B = Instantiate(DestroyBlockPrefab, new Vector3(MapStartPoint.transform.position.x + 1.2f * pos.x, 0.6f, MapStartPoint.transform.position.z + 1.2f * pos.y), Quaternion.identity);
         GM.M_BossController.DestroyWarning();

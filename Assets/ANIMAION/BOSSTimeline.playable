@@ -484,7 +484,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: -7124998095142726004}
-    m_Duration: 5
+    m_Duration: 4.5
     m_TimeScale: 1
     m_ParentTrack: {fileID: -7588692688630673398}
     m_EaseInDuration: 0
@@ -682,7 +682,7 @@ MonoBehaviour:
     m_Start: 1.4166666666666667
     m_ClipIn: 0
     m_Asset: {fileID: 7750564071726799554}
-    m_Duration: 5
+    m_Duration: 3.083333333333333
     m_TimeScale: 1
     m_ParentTrack: {fileID: 1368744981792323928}
     m_EaseInDuration: 0
@@ -856,7 +856,7 @@ MonoBehaviour:
     m_Start: 1.4166666666666667
     m_ClipIn: 0
     m_Asset: {fileID: -8501848387468765110}
-    m_Duration: 5
+    m_Duration: 3.083333333333333
     m_TimeScale: 1
     m_ParentTrack: {fileID: 5499909193362830292}
     m_EaseInDuration: 0

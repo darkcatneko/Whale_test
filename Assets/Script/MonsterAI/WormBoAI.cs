@@ -56,7 +56,7 @@ public class WormBoAI : BossIstate
             {
                 for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                 {
-                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.AttackUsedTime);                    
+                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.BossAnimationTime(0, 1));                    
                 }
             }
             
@@ -111,7 +111,7 @@ public class WormBoAI : BossIstate
             {
                 for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                 {
-                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.AttackUsedTime);
+                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.BossAnimationTime(0, 1));
                 }
             }
             
@@ -556,7 +556,7 @@ public class WormBoAI : BossIstate
             {
                 for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                 {
-                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.AttackUsedTime);
+                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.BossAnimationTime(0, AnimationType));
                 }
             }
             

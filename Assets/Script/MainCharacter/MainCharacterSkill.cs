@@ -129,7 +129,7 @@ public class MainCharacterSkill : MonoBehaviour
             {
                 if (GM.GameMap.ThisMap[i].ThisRow[j].ThisBlockLevel > 0)
                 {
-                    GM.GameMap.DestroyAndRefreshSingleBlock(new Vector2(j, i));
+                    GM.GameMap.DestroyAndRefreshSingleBlock(new Vector2(j, i),0f);
                 }
             }
         }

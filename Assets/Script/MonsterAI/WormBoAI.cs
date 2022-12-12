@@ -49,13 +49,14 @@ public class WormBoAI : BossIstate
         }
         BossAction.AddListener(() =>
         {
-            Controller.AttackUsedTime += 3f;
+            Controller.BossAnimation(0,1);
+            Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
             Controller.BossAttackDamage(2f);
             if (Controller.BlockReadyToBreak.Count > 0)
             {
                 for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                 {
-                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);                    
+                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.AttackUsedTime);                    
                 }
             }
             
@@ -103,13 +104,14 @@ public class WormBoAI : BossIstate
         }
         BossAction.AddListener(() =>
         {
-            Controller.AttackUsedTime += 3f;
+            Controller.BossAnimation(0, 1);
+            Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
             Controller.BossAttackDamage(1.2f);
             if (Controller.BlockReadyToBreak.Count > 0)
             {
                 for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                 {
-                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
+                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.AttackUsedTime);
                 }
             }
             
@@ -135,8 +137,8 @@ public class WormBoAI : BossIstate
                 Debug.Log("««¦º¤p¤ÏÀ»");
                 Controller.BossAttackDamage(1f);
             }
-            Controller.AttackUsedTime += 3f;
-            
+            Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
+
             Controller.BlockReadyToBreak = new List<Vector2>();
             BossAction.RemoveAllListeners();
         });
@@ -168,7 +170,7 @@ public class WormBoAI : BossIstate
                         if (a <= 30)
                         {
                             Debug.Log("´¶§ðA¹w¥ü");
-                            BossAction.AddListener(() => { Controller.BossAnimation(0, 0);  Controller.AttackUsedTime = Controller.BossAnimationTime(0, 0); Controller.BossAttackDamage(1.2f); BossAction.RemoveAllListeners(); });//´¶§ðAÅF¥X
+                            BossAction.AddListener(() => { Controller.BossAnimation(0, 0);  Controller.AttackUsedTime += Controller.BossAnimationTime(0, 0); Controller.BossAttackDamage(1.2f); BossAction.RemoveAllListeners(); });//´¶§ðAÅF¥X
                         }
                         else if (a <= 60)
                         {
@@ -185,11 +187,11 @@ public class WormBoAI : BossIstate
                             BossAction.AddListener(() =>
                             {
                                 Controller.BossAnimation(0, 1);
-                                Controller.AttackUsedTime = Controller.BossAnimationTime(0, 1);
+                                Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
                                 Controller.BossAttackDamage(0.7f);
                                 for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                                 {
-                                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
+                                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.BossAnimationTime(0, 1));
                                 }
                                 
                                 Controller.BlockReadyToBreak = new List<Vector2>();
@@ -252,12 +254,13 @@ public class WormBoAI : BossIstate
                                 }
                                 BossAction.AddListener(() =>
                                 {
-                                    Controller.AttackUsedTime += 3f;
+                                    Controller.BossAnimation(0, 1);
+                                    Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
                                     Controller.BossAttackDamage(0.6f);
                                     Controller.BossAttackDamage(0.6f);
                                     for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                                     {
-                                        Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
+                                        Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.BossAnimationTime(0, 2));
                                     }
                                     
                                     Controller.BlockReadyToBreak = new List<Vector2>();
@@ -308,11 +311,12 @@ public class WormBoAI : BossIstate
                                 }
                                 BossAction.AddListener(() =>
                                 {
-                                    Controller.AttackUsedTime += 3f;
+                                    Controller.BossAnimation(0, 1);
+                                    Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
                                     Controller.BossAttackDamage(1.5f);
                                     for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                                     {
-                                        Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
+                                        Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.BossAnimationTime(0, 2));
                                     }
                                     
                                     Controller.BlockReadyToBreak = new List<Vector2>();
@@ -372,11 +376,12 @@ public class WormBoAI : BossIstate
                                 //´¶§ðB¹w¥ü
                                 BossAction.AddListener(() =>
                                 {
-                                    Controller.AttackUsedTime += 3f;
+                                    Controller.BossAnimation(0,1);
+                                    Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
                                     Controller.BossAttackDamage(0.7f);
                                     for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                                     {
-                                        Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
+                                        Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.BossAnimationTime(0, 1));
                                     }
                                    
                                     Controller.BlockReadyToBreak = new List<Vector2>();
@@ -414,13 +419,14 @@ public class WormBoAI : BossIstate
                                 }
                                 BossAction.AddListener(() =>
                                 {
-                                    Controller.AttackUsedTime += 3f;
+                                    Controller.BossAnimation(0, 1);
+                                    Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
                                     Controller.BossAttackDamage(1f);
                                     if (Controller.BlockReadyToBreak.Count > 0)
                                     {
                                         for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                                         {
-                                            Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
+                                            Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.BossAnimationTime(0, 1));
                                         }
                                     }
                                     
@@ -462,7 +468,6 @@ public class WormBoAI : BossIstate
         Vector2[] Temp = new Vector2[5];
         if (Controller.NowHealth<=Controller.MaxHealth/2f&&InRage == false)
         {
-            Controller.AttackUsedTime += 7f;
             //¶i¨g¼É
             InRage = true;
             Controller.ATK = 2000f;
@@ -486,14 +491,16 @@ public class WormBoAI : BossIstate
             }
             for (int i = 0; i < Temp.Length; i++)
             {
-                Controller.BossBreakSingleBlock(Temp[i]);
+                Controller.BossBreakSingleBlock(Temp[i], Controller.BossAnimationTime(0, 1));
             }
             //µ¹¶Ë®`
             for (int i = 0; i < 5; i++)
             {
                 Controller.BossAttackDamage(0.2f);
             }
-            Controller.WaitMoveFunction(() => { BossAction.Invoke();}, 3f);
+            Controller.BossAnimation(0, 2);
+            Controller.AttackUsedTime += Controller.BossAnimationTime(0, 2);
+            Controller.WaitMoveFunction(() => { BossAction.Invoke();}, Controller.BossAnimationTime(0, 2));
             return true;
         }
         return false;
@@ -542,14 +549,14 @@ public class WormBoAI : BossIstate
         BossAction.AddListener(() =>
         {
             Controller.BossAnimation(0, AnimationType);
-            Controller.AttackUsedTime = Controller.BossAnimationTime(0, AnimationType);
+            Controller.AttackUsedTime += Controller.BossAnimationTime(0, AnimationType);
             Controller.AttackUsedTime = 3f;
             Controller.BossAttackDamage(Damage);
             if (Controller.BlockReadyToBreak.Count > 0)
             {
                 for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                 {
-                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i]);
+                    Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.AttackUsedTime);
                 }
             }
             

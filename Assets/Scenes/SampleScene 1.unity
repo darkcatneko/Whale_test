@@ -2520,7 +2520,7 @@ PrefabInstance:
     - target: {fileID: 7959359084032641917, guid: 769e7120f46365749964b1f06ff13233,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 769e7120f46365749964b1f06ff13233, type: 3}
@@ -5801,7 +5801,7 @@ PlayableDirector:
   m_GameObject: {fileID: 3802956628091646913}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 04e4019784cdbf6419e36ebfcda7fea2, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 6423b6736b726254388bba68f3b00751, type: 2}
   m_InitialState: 1
   m_WrapMode: 1
   m_DirectorUpdateMode: 1
@@ -5828,15 +5828,15 @@ PlayableDirector:
   - key: {fileID: 8126696753914519199, guid: 2a0b9477b408e6b44ba80a6292ed0d54, type: 2}
     value: {fileID: 0}
   - key: {fileID: -6716268564908422806, guid: b510a6bf1c6650f4ca72d7569e100144, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1467564794}
   - key: {fileID: 3792470971110532415, guid: 6423b6736b726254388bba68f3b00751, type: 2}
     value: {fileID: 1467564794}
   - key: {fileID: -8750513480296372965, guid: 6423b6736b726254388bba68f3b00751, type: 2}
     value: {fileID: 927889746}
   - key: {fileID: -4932922363285066708, guid: a0604fcb504900b4ba10966706f993a1, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1467564794}
   - key: {fileID: -1270944483196281264, guid: a0604fcb504900b4ba10966706f993a1, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 927889746}
   m_ExposedReferences:
     m_References:
     - 75feacc0107faf14e82faf4c2ad8dec4: {fileID: 1066604789}

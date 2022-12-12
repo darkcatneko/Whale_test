@@ -427,7 +427,7 @@ public class BossController : MonoBehaviour
         GameMaster.m_MainPlayer.NowArmor -= Mathf.FloorToInt(Percentage * GameMaster.m_MainPlayer.MaxArmor);
         Debug.Log("Boss打出了" + Mathf.FloorToInt(Percentage * GameMaster.m_MainPlayer.MaxArmor) + "點傷害");
     }
-    public void BossBreakSingleBlock(Vector2 Vc)
+    public void BossBreakSingleBlock(Vector2 Vc,float Time)
     {
         if (GameMaster.GameMap.FindBlock(Vc).ShieldLeft>0)
         {
@@ -436,10 +436,22 @@ public class BossController : MonoBehaviour
         }
         else
         {
-            GameMaster.GameMap.DestroyAndRefreshSingleBlock(Vc);
+            GameMaster.GameMap.DestroyAndRefreshSingleBlock(Vc,Time);
         }       
     }
-    public void BossBreakSingleBlock_MutiHit(Vector2 Vc,int hit)
+    public void BossBreakSingleBlock(Vector2 Vc)
+    {
+        if (GameMaster.GameMap.FindBlock(Vc).ShieldLeft > 0)
+        {
+            GameMaster.GameMap.FindBlock(Vc).ShieldLeft--;
+            GameMaster.M_BossController.DestroyWarning();
+        }
+        else
+        {
+            GameMaster.GameMap.DestroyAndRefreshSingleBlock(Vc, 0);
+        }
+    }
+    public void BossBreakSingleBlock_MutiHit(Vector2 Vc,int hit,float Time)
     {
         if(GameMaster.GameMap.FindBlock(Vc).ShieldLeft- hit > 0)
         {
@@ -447,7 +459,18 @@ public class BossController : MonoBehaviour
         }
         else
         {
-            GameMaster.GameMap.DestroyAndRefreshSingleBlock(Vc);
+            GameMaster.GameMap.DestroyAndRefreshSingleBlock(Vc, Time);
+        }
+    }
+    public void BossBreakSingleBlock_MutiHit(Vector2 Vc, int hit)
+    {
+        if (GameMaster.GameMap.FindBlock(Vc).ShieldLeft - hit > 0)
+        {
+            GameMaster.GameMap.FindBlock(Vc).ShieldLeft -= hit;
+        }
+        else
+        {
+            GameMaster.GameMap.DestroyAndRefreshSingleBlock(Vc, 0);
         }
     }
     public Boss GetBoss()

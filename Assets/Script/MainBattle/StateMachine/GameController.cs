@@ -188,7 +188,7 @@ public class GameController : MonoBehaviour
                 if (GameMap.ThisMap[i].ThisRow[j].AmmoLeft <= 0 && GameMap.ThisMap[i].ThisRow[j].ThisBlockLevel > 0)
                 {
                     delay++;
-                    GameMap.DestroyAndRefreshSingleBlock(new Vector2(j, i));
+                    GameMap.DestroyAndRefreshSingleBlock(new Vector2(j, i),0f);
                 }
             }
         }

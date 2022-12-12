@@ -445,14 +445,16 @@ public class BattleMap : MonoBehaviour
             return false;
         }
     }
-    public void DestroyAndRefreshSingleBlock(Vector2 pos)
+    public void DestroyAndRefreshSingleBlock(Vector2 pos,float DestroyTime)
     {
-        StartCoroutine("DestroyAndRefreshSingleBlockIEnumerator", pos);
+        object[] OBJ = new object[2] { pos, DestroyTime };
+        StartCoroutine("DestroyAndRefreshSingleBlockIEnumerator", OBJ);
     }
-    public IEnumerator DestroyAndRefreshSingleBlockIEnumerator(Vector2 pos)
-    {       
+    public IEnumerator DestroyAndRefreshSingleBlockIEnumerator(object[] OBJ)
+    {
+        Vector2 pos = (Vector2)OBJ[0];
         FindBlock(pos).m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 1);
-        yield return new WaitForSeconds(GM.M_BossController.AttackUsedTime);
+        yield return new WaitForSeconds((float)OBJ[1]);
         Destroy(FindBlock(pos).m_ThisBlockObject);
         GameObject B = Instantiate(DestroyBlockPrefab, new Vector3(MapStartPoint.transform.position.x + 1.2f * pos.x, 0.6f, MapStartPoint.transform.position.z + 1.2f * pos.y), Quaternion.identity);
         GM.M_BossController.DestroyWarning();

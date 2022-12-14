@@ -512,6 +512,10 @@ public class BossController : MonoBehaviour
         GameMaster.TimeLine.playableAsset = GameMaster.M_Data.MonsterList[BossID].BossAttacks[MoveId];
         GameMaster.TimeLine.Play();
     }
+    public GameObject MonsterVFX(int BossID, int VFXID)
+    {
+        return GameMaster.M_Data.MonsterList[BossID].MonsterVFXPrefab[VFXID];
+    }
     public void BossIdleAnimation(int BossID)
     {
         GameMaster.TimeLine.playableAsset = GameMaster.M_Data.MonsterList[BossID].BossIdle;

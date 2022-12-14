@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GunBulletTrail
-  m_Shader: {fileID: 4800000, guid: 6eb86e4931b506a408fd1477edec61ea, type: 3}
+  m_Shader: {fileID: 4800000, guid: d0d1fd1e0a8a302438a8dfaa0601857a, type: 3}
   m_ValidKeywords:
   - ADDITIVECONFIG_ON
   - TRAILWIDTH_ON
@@ -121,7 +121,7 @@ Material:
     - _DistortionScrollXSpeed: 0
     - _DistortionScrollYSpeed: 0
     - _DstMode: 1
-    - _EditorDrawers: 60
+    - _EditorDrawers: 57
     - _FadeAmount: -0.1
     - _FadeBurnGlow: 5
     - _FadeBurnWidth: 0.01
@@ -221,7 +221,7 @@ Material:
     - _WaveX: 0
     - _WaveY: 0.5
     - _ZTestMode: 4
-    - _ZWrite: 0
+    - _ZWrite: 1
     m_Colors:
     - _BackFaceTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -236,7 +236,7 @@ Material:
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _Shape2Color: {r: 1, g: 1, b: 1, a: 1}
     - _Shape3Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ShapeColor: {r: 1.0052354, g: 4.0209417, b: 63.999992, a: 1}
+    - _ShapeColor: {r: 0, g: 1.9941025, b: 12.397497, a: 1}
   m_BuildTextureStacks: []
 --- !u!28 &28761834029838142
 Texture2D:

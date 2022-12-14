@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4034330707756052910
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 0
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -20,12 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BOSS
-  m_Shader: {fileID: -6465566751694194690, guid: 939d5b92715c4204f9688620b6173431,
+  m_Name: CRASTAL
+  m_Shader: {fileID: -6465566751694194690, guid: 4f39495ac05eaf9408cb5bad86b6cc7d,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -34,14 +21,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _galaxy:
-        m_Texture: {fileID: 8900000, guid: ab8c45f42aa6a7742a6d379e87ef813d, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _star:
-        m_Texture: {fileID: 8900000, guid: 3675d0c3c874f6b479bab57eb7e68c90, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -56,21 +35,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BUILTIN_QueueControl: 0
-    - _BUILTIN_QueueOffset: 0
+    - _BottoLine: 0.676
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _fresnelnoisepower: 8.03
-    - _fresnelpower: 1.94
-    - _fresnelscalee: 20
-    - _fresnelspeed: -0.05
+    - _TopLine: 0.421
+    - _metalic: 0.554
+    - _smoothing: 0.641
     m_Colors:
-    - _fresncolor: {r: 31.49804, g: 12.54902, b: 10.541177, a: 0}
-    - _galaxycolor: {r: 0, g: 7.18397, b: 5.9427605, a: 0}
-    - _starcolor: {r: 3.0483944, g: 0, b: 13.23279, a: 0}
-    - _staroffset: {r: 0.5, g: 0, b: 0, a: 0}
+    - _BaseColor: {r: 0, g: 0, b: 0, a: 0}
+    - _Bottoncolor: {r: 6.792454, g: 7.405865, b: 32, a: 0}
+    - _TOPColor: {r: 16.42453, g: 0, b: 28.966898, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &1097776325223656018
+--- !u!114 &6490988059423095500
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

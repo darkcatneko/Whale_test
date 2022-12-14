@@ -35,7 +35,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_672a3ad1f2cc4fe394635be8de9d759f:
-        m_Texture: {fileID: 2800000, guid: 554881d8fdbdb6c4cb661b8649beba1e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9ef2297a08ef33e449f1311decf30d1f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_42e7c5922d694fa1b00eff0a11439dc1_Texture_1:
@@ -67,7 +67,7 @@ Material:
     - _WobbleX: 0
     - _WobbleZ: 0
     m_Colors:
-    - Color_001dae7028864d6db4952f7e7606b163: {r: 41.379528, g: 79.03117, b: 71.76507,
+    - Color_001dae7028864d6db4952f7e7606b163: {r: 25.44472, g: 28.21045, b: 35.216965,
         a: 0}
     - Color_2ecce2f80db44436bfd47e846ebc6aa0: {r: 0.6132076, g: 0, b: 0, a: 0}
     - Color_a20220b4afeb4628bec5863043bf4c0c: {r: 0.7647059, g: 0.31527656, b: 0,

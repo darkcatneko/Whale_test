@@ -439,6 +439,25 @@ public class BossController : MonoBehaviour
             GameMaster.GameMap.DestroyAndRefreshSingleBlock(Vc,Time);
         }       
     }
+    public void BossVFXSpawnFunc_Invoke(Vector2 Vc, float Time, int BossID, int VFXID, VFXStyle Style)
+    {
+        object[] OBJS = new object[5] { Vc, Time, BossID, VFXID, Style };
+        Debug.Log(909009090);
+        StartCoroutine("BossVFXSpawnFunc", OBJS);
+    }
+    public IEnumerator BossVFXSpawnFunc(object[] OBJS)
+    {
+        Vector2 Vc =(Vector2) OBJS[0]; float Time = (float)OBJS[1]; int BossID = (int)OBJS[2]; int VFXID = (int)OBJS[3]; VFXStyle Style = (VFXStyle)OBJS[4];
+
+        switch (Style)
+        {
+            case VFXStyle.Spot:
+                yield return new WaitForSeconds(Time);
+                Instantiate(GameMaster.M_Data.MonsterList[BossID].MonsterVFXPrefab[VFXID], new Vector3(GameMaster.GameMap.MapStartPoint.transform.position.x + 1.2f * Vc.x,0f, GameMaster.GameMap.MapStartPoint.transform.position.z + 1.2f * Vc.y), Quaternion.identity);
+                break;
+        }
+
+    }
     public void BossBreakSingleBlock(Vector2 Vc)
     {
         if (GameMaster.GameMap.FindBlock(Vc).ShieldLeft > 0)
@@ -512,6 +531,10 @@ public class BossController : MonoBehaviour
         GameMaster.TimeLine.playableAsset = GameMaster.M_Data.MonsterList[BossID].BossAttacks[MoveId];
         GameMaster.TimeLine.Play();
     }
+    public GameObject MonsterVFX(int BossID, int VFXID)
+    {
+        return GameMaster.M_Data.MonsterList[BossID].MonsterVFXPrefab[VFXID];
+    }
     public void BossIdleAnimation(int BossID)
     {
         GameMaster.TimeLine.playableAsset = GameMaster.M_Data.MonsterList[BossID].BossIdle;
@@ -523,3 +546,10 @@ public class BossController : MonoBehaviour
         return (float)GameMaster.M_Data.MonsterList[BossID].BossAttacks[MoveId].duration;
     }
 }
+public enum VFXStyle
+{
+    X_Only,
+    Y_Only,
+    Spot,
+}
+

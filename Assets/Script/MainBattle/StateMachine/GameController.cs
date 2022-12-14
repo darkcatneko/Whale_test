@@ -121,7 +121,7 @@ public class GameController : MonoBehaviour
             }
             M_BossController.NowSkillName = "";
         }
-        Debug.Log("準備跳轉");
+        Debug.LogWarning("準備跳轉");
         ChangeState(StateEnum.Ready_State);
     }
     public void ReadyTurnFunc()

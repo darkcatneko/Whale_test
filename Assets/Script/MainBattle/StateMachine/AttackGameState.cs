@@ -52,6 +52,7 @@ public class AttackGameState : Istate
         ///  
         return BuffAmount;
     }
+    public float AttackVFXDelayTime = 0;
         public void OnStateEnter(GameController controller)
     {
         Debug.Log("¶i§ðÀ»");
@@ -62,10 +63,13 @@ public class AttackGameState : Istate
     }
     public IEnumerator AttackCall()
     {
+        int BlockNeedToCheck = 25;
         for (int i = 0; i < Controller.GameMap.ThisMap.Length; i++)
         {
             for (int j = 0; j < Controller.GameMap.ThisMap[i].ThisRow.Length; j++)
             {
+                BlockNeedToCheck--;
+                yield return null;
                 if (Controller.GameMap.ThisMap[i].ThisRow[j].ThisBlockLevel > 0)
                 {
                     yield return new WaitForSeconds(0.2f);
@@ -231,7 +235,10 @@ public class AttackGameState : Istate
         }
         BossSpecialCheck();
         TowerCount = new int[5];
-        Controller.ChangeState(StateEnum.Defence_State);
+        if (BlockNeedToCheck ==0)
+        {
+            Controller.ChangeState(StateEnum.Defence_State);
+        }       
     }
     public void OnStateStay()
     {

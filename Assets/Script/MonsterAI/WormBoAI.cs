@@ -25,6 +25,7 @@ public class WormBoAI : BossIstate
     public void BossChooseSpecialMoveA()
     {
         Debug.Log("¯S®í¦æ°ÊA");
+        Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
         SpecialMove1 = true;
         List<Vector2> temp = new List<Vector2>();
         for (int i = 0; i < Controller.GameMaster.GameMap.ThisMap.Length; i++)
@@ -50,7 +51,7 @@ public class WormBoAI : BossIstate
         BossAction.AddListener(() =>
         {
             Controller.BossAnimation(0,1);
-            Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
+            
             Controller.BossAttackDamage(2f);
             if (Controller.BlockReadyToBreak.Count > 0)
             {
@@ -67,6 +68,7 @@ public class WormBoAI : BossIstate
     public void BossChooseSpecialMoveB()
     {
         Debug.Log("¯S®í¦æ°ÊB");
+        Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
         SpecialMove2 = true;
         List<Vector2> temp = new List<Vector2>();
         for (int i = 0; i < Controller.GameMaster.GameMap.ThisMap.Length; i++)
@@ -105,7 +107,7 @@ public class WormBoAI : BossIstate
         BossAction.AddListener(() =>
         {
             Controller.BossAnimation(0, 1);
-            Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
+            
             Controller.BossAttackDamage(1.2f);
             if (Controller.BlockReadyToBreak.Count > 0)
             {
@@ -170,11 +172,13 @@ public class WormBoAI : BossIstate
                         if (a <= 30)
                         {
                             Debug.Log("´¶§ðA¹w¥ü");
-                            BossAction.AddListener(() => { Controller.BossAnimation(0, 0);  Controller.AttackUsedTime += Controller.BossAnimationTime(0, 0); Controller.BossAttackDamage(1.2f); BossAction.RemoveAllListeners(); });//´¶§ðAÅF¥X
+                            Controller.AttackUsedTime += Controller.BossAnimationTime(0, 0);
+                            BossAction.AddListener(() => { Controller.BossAnimation(0, 0);   Controller.BossAttackDamage(1.2f); BossAction.RemoveAllListeners(); });//´¶§ðAÅF¥X
                         }
                         else if (a <= 60)
                         {
                             Debug.Log("´¶§ðB¹w¥ü");
+                            Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
                             Vector2[] temp = new Vector2[5];
                             temp = Random5Block();
                             for (int i = 0; i < 5; i++)
@@ -187,11 +191,11 @@ public class WormBoAI : BossIstate
                             BossAction.AddListener(() =>
                             {
                                 Controller.BossAnimation(0, 1);
-                                Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
                                 Controller.BossAttackDamage(0.7f);
                                 for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                                 {
                                     Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.BossAnimationTime(0, 1));
+                                    Controller.BossVFXSpawnFunc_Invoke(Controller.BlockReadyToBreak[i], Controller.BossAnimationTime(0, 1)-0.2f, 0, 0, VFXStyle.Spot);
                                 }
                                 
                                 Controller.BlockReadyToBreak = new List<Vector2>();
@@ -213,6 +217,7 @@ public class WormBoAI : BossIstate
                             if (b==0)
                             {
                                 Debug.Log("´¶§ðD¹w¥ü");
+                                Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
                                 int Row = Random.Range(0, 5);
                                 for (int i = 0; i < 5; i++)
                                 {
@@ -255,7 +260,7 @@ public class WormBoAI : BossIstate
                                 BossAction.AddListener(() =>
                                 {
                                     Controller.BossAnimation(0, 1);
-                                    Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
+                                    
                                     Controller.BossAttackDamage(0.6f);
                                     Controller.BossAttackDamage(0.6f);
                                     for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
@@ -270,6 +275,7 @@ public class WormBoAI : BossIstate
                             else
                             {
                                 Debug.Log("´¶§ðE¹w¥ü");
+                                Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
                                 int Column = Random.Range(0, 5);
                                 for (int i = 0; i < 5; i++)
                                 {
@@ -312,7 +318,7 @@ public class WormBoAI : BossIstate
                                 BossAction.AddListener(() =>
                                 {
                                     Controller.BossAnimation(0, 1);
-                                    Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
+                                    
                                     Controller.BossAttackDamage(1.5f);
                                     for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                                     {
@@ -334,6 +340,7 @@ public class WormBoAI : BossIstate
                             else if (a == 1)
                             {
                                 Debug.Log("´¶§ðB_UP¹w¥ü");
+                                Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
                                 Vector2[] temp1 = new Vector2[5];
                                 temp1 = Random5Block();
                                 for (int i = 0; i < 5; i++)
@@ -377,7 +384,7 @@ public class WormBoAI : BossIstate
                                 BossAction.AddListener(() =>
                                 {
                                     Controller.BossAnimation(0,1);
-                                    Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
+                                    
                                     Controller.BossAttackDamage(0.7f);
                                     for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                                     {
@@ -391,6 +398,7 @@ public class WormBoAI : BossIstate
                             else
                             {
                                 Debug.Log("´¶§ðC_UP¹w¥ü");
+                                Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
                                 List<Vector2> temp = new List<Vector2>();
                                 for (int i = 0; i < Controller.GameMaster.GameMap.ThisMap.Length; i++)
                                 {
@@ -420,7 +428,7 @@ public class WormBoAI : BossIstate
                                 BossAction.AddListener(() =>
                                 {
                                     Controller.BossAnimation(0, 1);
-                                    Controller.AttackUsedTime += Controller.BossAnimationTime(0, 1);
+                                   
                                     Controller.BossAttackDamage(1f);
                                     if (Controller.BlockReadyToBreak.Count > 0)
                                     {
@@ -528,6 +536,7 @@ public class WormBoAI : BossIstate
     }
     private void TargetOneBlockMove(float Damage,int AnimationType)
     {
+        Controller.AttackUsedTime += Controller.BossAnimationTime(0, AnimationType);
         List<Vector2> temp = new List<Vector2>();
         for (int i = 0; i < Controller.GameMaster.GameMap.ThisMap.Length; i++)
         {
@@ -549,14 +558,14 @@ public class WormBoAI : BossIstate
         BossAction.AddListener(() =>
         {
             Controller.BossAnimation(0, AnimationType);
-            Controller.AttackUsedTime += Controller.BossAnimationTime(0, AnimationType);
-            Controller.AttackUsedTime = 3f;
+           
             Controller.BossAttackDamage(Damage);
             if (Controller.BlockReadyToBreak.Count > 0)
             {
                 for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                 {
                     Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.BossAnimationTime(0, AnimationType));
+                    Controller.BossVFXSpawnFunc_Invoke(Controller.BlockReadyToBreak[i], Controller.BossAnimationTime(0, 1) - 0.2f, 0, 0, VFXStyle.Spot);
                 }
             }
             

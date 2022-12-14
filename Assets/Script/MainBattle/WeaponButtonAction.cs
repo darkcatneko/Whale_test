@@ -68,7 +68,7 @@ public class WeaponButtonAction : MonoBehaviour
     }
     public void InstallWeaponSkill()
     {
-        Debug.Log(ButtonWeapon.m_WeaponID);
+        //Debug.Log(ButtonWeapon.m_WeaponID);
         if (WeaponSkillData.ContainsKey(ButtonWeapon.m_WeaponID))
         {
             WeaponSkill.AddListener(WeaponSkillData[ButtonWeapon.m_WeaponID].Invoke);

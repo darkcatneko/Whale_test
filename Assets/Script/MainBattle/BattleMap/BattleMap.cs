@@ -141,7 +141,7 @@ public class BattleMap : MonoBehaviour
             }
         }
         ///
-        GameObject B =  Instantiate(Array[Level], new Vector3(MapStartPoint.transform.position.x + 1.2f * Column, 0, MapStartPoint.transform.position.z + 1.2f * Row), Quaternion.identity, Board);
+        GameObject B =  Instantiate(Array[Level], new Vector3(MapStartPoint.transform.position.x + 1.2f * Column, 0, MapStartPoint.transform.position.z + 1.2f * Row), Array[Level].transform.rotation, Board);
         ThisMap[Row].ThisRow[Column].m_ThisBlockObject = B;
         ThisMap[Row].ThisRow[Column].ThisBlockLevel = Level;        
         ThisMap[Row].ThisRow[Column].AmmoLeft = Ammo;       

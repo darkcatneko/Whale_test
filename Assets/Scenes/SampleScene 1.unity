@@ -1381,6 +1381,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1487,6 +1488,19 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0767950bced94ce49871faa31e8e2295, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pixelSize: 0
 --- !u!1 &357634139
 GameObject:
   m_ObjectHideFlags: 0
@@ -3196,35 +3210,35 @@ MonoBehaviour:
         BuffAmount: 0
         BuffSpecialName: 
   ArmorBlocks:
-  - {fileID: 140169022252136846, guid: f60a226df7660ae4dafd28de8999f8b9, type: 3}
+  - {fileID: 9086474528585708084, guid: 9b05a2fde8d40c84185dd4e97a9e8775, type: 3}
   - {fileID: 6167549587299672550, guid: f6b16167925c1d94c95e0e5af4aaf17d, type: 3}
   - {fileID: 8426804878645720084, guid: f015ac55f13c0b941b57b6b5e982fad9, type: 3}
   - {fileID: 1980339929995732401, guid: 8e7fade2f73966f4a9d46d80ead01fb0, type: 3}
   - {fileID: 3245008692381896628, guid: 9e7f73b15a5a2c04183a70b1b206de58, type: 3}
   - {fileID: 5272416925968643181, guid: a2bddb292c0ee40418b48f52f403a83d, type: 3}
   SlashBlocks:
-  - {fileID: 7675393789896559473, guid: 41edad7865aa9d54898eedc02970c516, type: 3}
+  - {fileID: 2978601708741325893, guid: 58fa6a3b95123364cae663db38493f25, type: 3}
   - {fileID: 2758786810155334211, guid: 434b2335698fedd469b17a28e54d3a47, type: 3}
-  - {fileID: 3842051413925177694, guid: 00d5a5e9de65ef342a25a615ba8e84a6, type: 3}
+  - {fileID: 4615382795178137196, guid: 39b3a10a17d097b46871bacc4af6aa51, type: 3}
   - {fileID: 8300881936963648877, guid: 390205c1511aa2143959a3630b03b2c4, type: 3}
   - {fileID: 3642556319552701134, guid: 74c18f767e2de6b40a9d7d3d255016b6, type: 3}
   - {fileID: 2805444010677461339, guid: d9206dbf70daae346a313ca8a1f5bcbe, type: 3}
   LungeBlocks:
-  - {fileID: 6535032478113550289, guid: 06c10c97e782222489081383d593d960, type: 3}
+  - {fileID: 4335841878509968106, guid: 8bdc9f0c4b64c574eb222c8c3b030856, type: 3}
   - {fileID: 8903278546402174229, guid: 134d41ff9e807cc4b9c4441188bb6393, type: 3}
   - {fileID: 4738486621486673249, guid: 95f40a01b2e8a5f4ea4529dd902d2fcd, type: 3}
   - {fileID: 8188184689591428495, guid: 4421aa2795a63ac479552dd06d613f01, type: 3}
   - {fileID: 6148934635215063130, guid: 99a2257fe6af85b4896e3c9ef755d3d8, type: 3}
   - {fileID: 5011314406565604147, guid: c443e84ae8b2b9c438d859bd61d4ea1b, type: 3}
   HitBlocks:
-  - {fileID: 5594615628072223186, guid: 5cdc3f7e15a9ba5469c90c7b6882b8be, type: 3}
+  - {fileID: 6073118642548728427, guid: 66cb97d590117b9429f4beeabd3790dc, type: 3}
   - {fileID: 919462491908403819, guid: 3fb621a3d5d3f014cb569528685ea6b3, type: 3}
   - {fileID: 7166539283246584732, guid: 22e83efbe8fe52c4e86b21bbb9e743ff, type: 3}
   - {fileID: 7834560987730166678, guid: 2d16bf47f7d334442b9d5a09fa191801, type: 3}
   - {fileID: 2983713063247413239, guid: f87fbd76f8bb1094c8f6def1c6a924b0, type: 3}
   - {fileID: 6527344449874741957, guid: eabd426f90fadcb478b5551217bb6d70, type: 3}
   PenetrateBlocks:
-  - {fileID: 1031493240503758516, guid: af4f00aedeb864d4d919343c5ac16fd8, type: 3}
+  - {fileID: 6069561993104156668, guid: 6e384f80520c26b4dbd049373bfdb72c, type: 3}
   - {fileID: 786062010775747346, guid: b21dba68d7879ed4ba7375d7ad647dab, type: 3}
   - {fileID: 5929962914095384168, guid: 9d41c59451a481243bf9e45b6245380f, type: 3}
   - {fileID: 1212491403838538164, guid: 39f7ac53b7f651246872490e3e5c1729, type: 3}
@@ -3590,7 +3604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &1111002327
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -3645,7 +3659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &1267881864
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -6023,8 +6037,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5619632666958158168}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0.12, z: 0.24}
-  m_LocalScale: {x: 79.671005, y: 103.29345, z: 116.63835}
+  m_LocalPosition: {x: -0, y: -0.3422, z: 0.24}
+  m_LocalScale: {x: 79.671005, y: 103.29345, z: 7.126603}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 543450652982469289}
@@ -6270,7 +6284,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5464157935858785102
 Transform:
   m_ObjectHideFlags: 0
@@ -11224,6 +11238,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BOSS_STAR
       objectReference: {fileID: 0}
+    - target: {fileID: 6940479210747673926, guid: ed51e0e4dd7f6924fb21dcf48bc2a63d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed51e0e4dd7f6924fb21dcf48bc2a63d, type: 3}
 --- !u!1001 &8622425429971786883
@@ -11237,6 +11256,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BOW_ATK_VFX 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3924516325833119400, guid: 59ba6cf48296132438dd3323edfc6b49,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3924516325833119403, guid: 59ba6cf48296132438dd3323edfc6b49,
         type: 3}

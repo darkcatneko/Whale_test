@@ -21,19 +21,15 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: blink
-  m_Shader: {fileID: 4800000, guid: 2a230514c860643f69b6a4d1871d3825, type: 3}
-  m_ValidKeywords:
-  - DR_OUTLINE_ON
-  - _DETAILMAPBLENDINGMODE_MULTIPLY
-  - _NORMALMAP
-  - _TEXTUREBLENDINGMODE_MULTIPLY
+  m_Shader: {fileID: -6465566751694194690, guid: 5f12eef5cefa91243ac164b7f6908b51,
+    type: 3}
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 6
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3

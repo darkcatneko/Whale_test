@@ -27,6 +27,10 @@ public class BattleMap : MonoBehaviour
     public bool CanActivateWeapon14 = true;
     public bool CanActivateWeapon12 = true;
     #endregion
+    #region 選取特效
+    [SerializeField] Material BlockBase;
+    [SerializeField] Material Blink;
+    #endregion
 
 
     void Start()

@@ -8,9 +8,6 @@
         },
         {
             "m_Id": "ef7fca275717429ea13cc4e5ae34db9e"
-        },
-        {
-            "m_Id": "18d9ac366d754cabb8a2e5dff8a59a05"
         }
     ],
     "m_Keywords": [],
@@ -443,32 +440,6 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture3DShaderProperty",
-    "m_ObjectId": "18d9ac366d754cabb8a2e5dff8a59a05",
-    "m_Guid": {
-        "m_GuidSerialized": "5aee50bd-b37c-4ef4-8d97-bc2ce07994db"
-    },
-    "m_Name": "Texture3D",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Texture3D",
-    "m_DefaultReferenceName": "_Texture3D",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
-        "m_Guid": ""
-    },
-    "m_Modifiable": true
 }
 
 {
@@ -1684,9 +1655,6 @@
         },
         {
             "m_Id": "ef7fca275717429ea13cc4e5ae34db9e"
-        },
-        {
-            "m_Id": "18d9ac366d754cabb8a2e5dff8a59a05"
         }
     ]
 }
@@ -1745,10 +1713,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -31.938392639160158,
-            "y": 323.9463806152344,
-            "width": 0.0,
-            "height": 0.0
+            "x": -111.99999237060547,
+            "y": 288.0,
+            "width": 208.0,
+            "height": 302.00006103515627
         }
     },
     "m_Slots": [
@@ -1884,7 +1852,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"65c8552320523d74096efc792d7288f5\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"c2c81ef1b96efe8419908dfb1f5a7414\",\"type\":3}}",
         "m_Guid": ""
     },
     "isMainTexture": false,

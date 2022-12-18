@@ -24,7 +24,7 @@ public class WeaponButtonAction : MonoBehaviour
         MainCam = Camera.main;
         WeaponSkillData = new Dictionary<int, Action>
         {
-            { 0,()=>{BasicPointerUpFunc("R_SlashWeapon_Func"); } },
+            {0,()=>{BasicPointerUpFunc("R_SlashWeapon_Func"); } },
             {1, ()=>{BasicPointerUpFunc("R_SpearWeapon_Func"); } },
             {2, ()=>{BasicPointerUpFunc("R_HammerWeapon_Func"); }},
             {3,  ()=>{BasicPointerUpFunc("R_BowWeapon_Func"); }},

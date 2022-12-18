@@ -238,7 +238,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorGradingDark: {r: 0.9999999, g: 0.9790575, b: 0, a: 1}
     - _ColorGradingLight: {r: 5.992157, g: 0, b: 3.9215686, a: 1}
-    - _ColorGradingMiddle: {r: 0, g: 0.8947125, b: 43.169876, a: 1}
+    - _ColorGradingMiddle: {r: 0, g: 0.45204055, b: 21.584936, a: 1}
     - _DepthGlowColor: {r: 1, g: 1, b: 1, a: 1}
     - _FadeBurnColor: {r: 1, g: 1, b: 0, a: 1}
     - _FrontFaceTint: {r: 1, g: 1, b: 1, a: 1}

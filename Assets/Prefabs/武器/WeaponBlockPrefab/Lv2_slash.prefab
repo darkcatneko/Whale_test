@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2318668984919821706}
   - component: {fileID: 951696315765651900}
   m_Layer: 0
-  m_Name: Lv_2_slash
+  m_Name: Lv2_slash
   m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

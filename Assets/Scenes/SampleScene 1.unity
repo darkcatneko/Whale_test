@@ -3253,6 +3253,8 @@ MonoBehaviour:
     type: 3}
   CanActivateWeapon14: 1
   CanActivateWeapon12: 1
+  BlockBase: {fileID: 0}
+  Blink: {fileID: 0}
 --- !u!4 &783896126
 Transform:
   m_ObjectHideFlags: 0

@@ -64,7 +64,9 @@ public class GameController : MonoBehaviour
             {StateEnum.Setting_State, new SettingGameState()},
             {StateEnum.Ready_State, new ReadyTurnState()},
             {StateEnum.Skill_State, new SkillGameState()},
-            {StateEnum.Animation_State, new AnimationState()}
+            {StateEnum.Animation_State, new AnimationState()},
+             {StateEnum.Win_State, new WinState()},
+              {StateEnum.Lose_State, new LoseState()}
         };       
     }
 
@@ -96,6 +98,11 @@ public class GameController : MonoBehaviour
     public IEnumerator BossAttackFullFunction()
     {
         M_BossController.BossNormalAttack();
+        if (m_MainPlayer.NowArmor<=0)
+        {
+            ChangeState(StateEnum.Lose_State);
+            yield break;
+        }
         Debug.Log("延時"+M_BossController.AttackUsedTime);
         yield return new WaitForSeconds(M_BossController.AttackUsedTime);
         M_BossController.BossIdleAnimation((int)ThisStage.ThisRoundBoss);
@@ -129,7 +136,7 @@ public class GameController : MonoBehaviour
         StartCoroutine("ReadyTurn");
     }
     private IEnumerator ReadyTurn()
-    {
+    {        
         ///一回合一次
         M_BossController.Weapon5CanActivate = 2;
         M_BossController.Weapon6Passive = 3;

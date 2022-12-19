@@ -235,6 +235,11 @@ public class AttackGameState : Istate
         }
         BossSpecialCheck();
         TowerCount = new int[5];
+        if (Controller.M_BossController.NowHealth<=0)
+        {
+            Controller.ChangeState(StateEnum.Win_State);
+            yield break;
+        }
         if (BlockNeedToCheck ==0)
         {
             Controller.ChangeState(StateEnum.Defence_State);

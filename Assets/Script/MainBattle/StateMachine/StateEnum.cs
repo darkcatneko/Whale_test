@@ -10,6 +10,8 @@ public enum StateEnum
     Ready_State,
     Skill_State,
     Animation_State,
+    Win_State,
+    Lose_State,
     NOTHING
 }
    

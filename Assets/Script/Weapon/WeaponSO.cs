@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class WeaponSO : ScriptableObject
 {
     public bool Unlock;
+    public int Owned;
     public int Weapon_BreakLevel;
     public int WeaponID;
     public string Weapon_Name;
@@ -22,5 +23,12 @@ public class WeaponSO : ScriptableObject
     //MainSkill
     public int MainSkillCD;
     //Story
+
+    public void Install(bool savebool, int saveown,int savebreak)
+    {
+        Unlock = savebool;
+        Owned = saveown;
+        Weapon_BreakLevel = savebreak;
+    }
 }
 

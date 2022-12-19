@@ -102,7 +102,7 @@ public class WormBoAI : BossIstate
             }
             Controller.GenWarning(temp[spot]);
             Controller.BlockReadyToBreak.Add(temp[spot]);
-            Controller.GameMaster.GameMap.FindBlock(temp[spot]).m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 1, 1);
+            //Controller.GameMaster.GameMap.FindBlock(temp[spot]).m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 1, 1);
         }
         BossAction.AddListener(() =>
         {
@@ -265,7 +265,7 @@ public class WormBoAI : BossIstate
                                     Controller.BossAttackDamage(0.6f);
                                     for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                                     {
-                                        Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.BossAnimationTime(0, 2));
+                                        Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.BossAnimationTime(0, 1));
                                     }
                                     
                                     Controller.BlockReadyToBreak = new List<Vector2>();
@@ -322,7 +322,7 @@ public class WormBoAI : BossIstate
                                     Controller.BossAttackDamage(1.5f);
                                     for (int i = 0; i < Controller.BlockReadyToBreak.Count; i++)
                                     {
-                                        Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.BossAnimationTime(0, 2));
+                                        Controller.BossBreakSingleBlock(Controller.BlockReadyToBreak[i], Controller.BossAnimationTime(0, 1));
                                     }
                                     
                                     Controller.BlockReadyToBreak = new List<Vector2>();

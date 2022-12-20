@@ -5,6 +5,8 @@ using UnityEngine;
 public class LoseState : Istate
 {
     public GameController Controller { get; set; }
+
+   
     public void OnStateEnter(GameController controller)
     {
         Controller = controller;

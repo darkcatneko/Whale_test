@@ -42,7 +42,7 @@ public class PlayerDataSystem : MonoBehaviour
     }
     [ContextMenu("Save")]
     public void Save()
-    {
+    {]
         BinaryFormatter bf = new BinaryFormatter();
         FileStream stream = new FileStream(Application.persistentDataPath + "/Save.ept", FileMode.Create);
         bf.Serialize(stream, ThisPlayer);

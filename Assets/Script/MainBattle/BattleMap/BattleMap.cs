@@ -231,18 +231,18 @@ public class BattleMap : MonoBehaviour
         {
             for (int j = 0; j < ThisMap[i].ThisRow.Length; j++)
             {
-                ThisMap[i].ThisRow[j].m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1);
+                ThisMap[i].ThisRow[j].m_ThisBlockObject.GetComponent<MeshRenderer>().material = BlockBase;
             }
         }
-        ThisMap[(int)Origin.y].ThisRow[(int)Origin.x].m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0);
+        ThisMap[(int)Origin.y].ThisRow[(int)Origin.x].m_ThisBlockObject.GetComponent<MeshRenderer>().material = Blink;
         for (int i = 0; i < FocusCount; i++)
         {
-            ThisMap[(int)BlockFocused[i].y].ThisRow[(int)BlockFocused[i].x].m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(1, 0, 0);
+            ThisMap[(int)BlockFocused[i].y].ThisRow[(int)BlockFocused[i].x].m_ThisBlockObject.GetComponent<MeshRenderer>().material =Blink;
         }
     }
     public void FingerLifted(Vector2 Origin)
     {
-        ThisMap[(int)Origin.y].ThisRow[(int)Origin.x].m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(1, 0, 0);
+        ThisMap[(int)Origin.y].ThisRow[(int)Origin.x].m_ThisBlockObject.GetComponent<MeshRenderer>().material = Blink;
     }
     //public void MixBlock(Vector2[] Rune, Vector2 Origin,WeaponEnum Type)
     //{
@@ -482,7 +482,7 @@ public class BattleMap : MonoBehaviour
         {
             for (int j = 0; j < ThisMap[i].ThisRow.Length; j++)
             {
-                ThisMap[i].ThisRow[j].m_ThisBlockObject.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1);
+                ThisMap[i].ThisRow[j].m_ThisBlockObject.GetComponent<MeshRenderer>().material =BlockBase;
             }
         }       
     }

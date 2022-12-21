@@ -11,11 +11,11 @@ public class PlayerDataSystem : MonoBehaviour
     [SerializeField] WeaponData W_Data;
     private void Awake()
     {
-        Load();
+        
     }
     void Start()
     {
-        
+        Load();
     }
 
     // Update is called once per frame
@@ -25,19 +25,20 @@ public class PlayerDataSystem : MonoBehaviour
     }
     public void CheckNewData()
     {
-        if (ThisPlayer.NewAccount == true)
+        if (ThisPlayer.ThisAccount.NewAccount == true)
         {
-            ThisPlayer.LastLoginYear = DateTime.Now.Year;
-            ThisPlayer.LastLoginMonth = DateTime.Now.Month;
-            ThisPlayer.LastLoginYear = DateTime.Now.Day;
+            ThisPlayer.ThisAccount.LastLoginYear = DateTime.Now.Year;
+            ThisPlayer.ThisAccount.LastLoginMonth = DateTime.Now.Month;
+            ThisPlayer.ThisAccount.LastLoginDay = DateTime.Now.Day;
             for (int i = 0; i < 5; i++)
             {
-                ThisPlayer.M_WeaponSaveFile[i].HaveWeaponOrNot = true;
+                ThisPlayer.ThisAccount.M_WeaponSaveFile[i].HaveWeaponOrNot = true;
             }
-            ThisPlayer.HaveCharactorOrNot[1] = true;
-            ThisPlayer.NowMainCharactor = 1;
-            ThisPlayer.NewAccount = true;
+            ThisPlayer.ThisAccount.HaveCharactorOrNot[1] = true;
+            ThisPlayer.ThisAccount.NowMainCharactor = 1;
+            ThisPlayer.ThisAccount.NewAccount = false;
             Save();
+            Load();
         }
     }
     [ContextMenu("Save")]
@@ -45,7 +46,7 @@ public class PlayerDataSystem : MonoBehaviour
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream stream = new FileStream(Application.persistentDataPath + "/Save.ept", FileMode.Create);
-        bf.Serialize(stream, ThisPlayer);
+        bf.Serialize(stream, ThisPlayer.ThisAccount);
         stream.Close();
         Debug.Log("Save Complete" + Application.dataPath + "/Save.ept");
     }
@@ -56,18 +57,17 @@ public class PlayerDataSystem : MonoBehaviour
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream stream = new FileStream(Application.persistentDataPath + "/Save.ept", FileMode.Open);
-            DeepCopy(ThisPlayer, bf.Deserialize(stream) as PlayerData);
+            DeepCopy(ThisPlayer, bf.Deserialize(stream) as PlayerAccount);
             stream.Close();
             Debug.Log("Load");
-            for (int i = 0; i <ThisPlayer.WeaponBackpack.Length; i++)
+            for (int i = 0; i <ThisPlayer.ThisAccount.WeaponBackpack.Length; i++)
             {
-                M_MainPlayer.BringingWeaponID[i] = ThisPlayer.WeaponBackpack[i];
+                M_MainPlayer.BringingWeaponID[i] = ThisPlayer.ThisAccount.WeaponBackpack[i];
             }
-            M_MainPlayer.ThisRound_MainCharacter_ID = ThisPlayer.NowMainCharactor;
+            M_MainPlayer.ThisRound_MainCharacter_ID = ThisPlayer.ThisAccount.NowMainCharactor;
             for (int i = 0; i < W_Data.WeaponDataList.Count; i++)
             {
-                //W_Data.WeaponDataList[i].Install(ThisPlayer.M_WeaponSaveFile[i].HaveWeaponOrNot)
-
+                W_Data.WeaponDataList[i].Install(ThisPlayer.ThisAccount.M_WeaponSaveFile[i].HaveWeaponOrNot, ThisPlayer.ThisAccount.M_WeaponSaveFile[i].Owned, ThisPlayer.ThisAccount.M_WeaponSaveFile[i].WeaponBreakLevel);
             }
         }
         else
@@ -75,27 +75,30 @@ public class PlayerDataSystem : MonoBehaviour
             CheckNewData();
         }
     }
-
-    public void DeepCopy(PlayerData A, PlayerData B)
+    public void LoginEvent()
     {
-        A.NewAccount = B.NewAccount;
-        A.LastLoginYear = B.LastLoginYear;
-        A.LastLoginMonth = B.LastLoginMonth;
-        A.LastLoginDay = B.LastLoginDay;
-        for (int i = 0; i < A.M_WeaponSaveFile.Count; i++)
+
+    }
+    public void DeepCopy(PlayerData A, PlayerAccount B)
+    {
+        A.ThisAccount.NewAccount = B.NewAccount;
+        A.ThisAccount.LastLoginYear = B.LastLoginYear;
+        A.ThisAccount.LastLoginMonth = B.LastLoginMonth;
+        A.ThisAccount.LastLoginDay = B.LastLoginDay;
+        for (int i = 0; i < A.ThisAccount.M_WeaponSaveFile.Count; i++)
         {
-            A.M_WeaponSaveFile[i].HaveWeaponOrNot = B.M_WeaponSaveFile[i].HaveWeaponOrNot;
-            A.M_WeaponSaveFile[i].Owned = B.M_WeaponSaveFile[i].Owned;
-            A.M_WeaponSaveFile[i].WeaponBreakLevel = B.M_WeaponSaveFile[i].WeaponBreakLevel;
+            A.ThisAccount.M_WeaponSaveFile[i].HaveWeaponOrNot = B.M_WeaponSaveFile[i].HaveWeaponOrNot;
+            A.ThisAccount.M_WeaponSaveFile[i].Owned = B.M_WeaponSaveFile[i].Owned;
+            A.ThisAccount.M_WeaponSaveFile[i].WeaponBreakLevel = B.M_WeaponSaveFile[i].WeaponBreakLevel;
         }
-        for (int i = 0; i < A.HaveCharactorOrNot.Count; i++)
+        for (int i = 0; i < A.ThisAccount.HaveCharactorOrNot.Count; i++)
         {
-            A.HaveCharactorOrNot[i] = B.HaveCharactorOrNot[i];
+            A.ThisAccount.HaveCharactorOrNot[i] = B.HaveCharactorOrNot[i];
         }
-        for (int i = 0; i < A.WeaponBackpack.Length; i++)
+        for (int i = 0; i < A.ThisAccount.WeaponBackpack.Length; i++)
         {
-            A.WeaponBackpack[i] = B.WeaponBackpack[i];
+            A.ThisAccount.WeaponBackpack[i] = B.WeaponBackpack[i];
         }
-        A.NowMainCharactor = B.NowMainCharactor;
+        A.ThisAccount.NowMainCharactor = B.NowMainCharactor;
     }
 }

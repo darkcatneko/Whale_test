@@ -7,6 +7,12 @@ using System.IO;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    public PlayerAccount ThisAccount;    
+    
+}
+[System.Serializable]
+public class PlayerAccount
+{
     public bool NewAccount = true;
     public int LastLoginYear;
     public int LastLoginMonth;
@@ -18,7 +24,7 @@ public class PlayerData : ScriptableObject
     public int[] WeaponBackpack = new int[5] { 0, 1, 2, 3, 4 };
     public int NowMainCharactor = 1;
     public int EntranceTime = 3;
-    
+
 }
 [System.Serializable]
 public class WeaponSaveFile

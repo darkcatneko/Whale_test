@@ -26,6 +26,7 @@ public class BossController : MonoBehaviour
     public float MaxHealth; public float NowHealth;
     public float ATK; public float DEF;
     public float[] resistance = new float[5];
+    public bool BossInRage = false;
     #endregion
 
     private void Awake()
@@ -527,6 +528,17 @@ public class BossController : MonoBehaviour
     }
     public void BossAnimation(int BossID, int MoveId)
     {
+        switch (BossID)
+        {
+            case 0:
+                
+                if (MoveId <=1&&BossInRage == true)
+                {
+                    MoveId = MoveId + 4;
+                }              
+                break;
+        }
+
         GameMaster.TimeLine.extrapolationMode = UnityEngine.Playables.DirectorWrapMode.Hold;
         GameMaster.TimeLine.playableAsset = GameMaster.M_Data.MonsterList[BossID].BossAttacks[MoveId];
         GameMaster.TimeLine.Play();

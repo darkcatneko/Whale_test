@@ -16,8 +16,10 @@ MonoBehaviour:
   MonsterVFXPrefab:
   - {fileID: 6940479210747673926, guid: ed51e0e4dd7f6924fb21dcf48bc2a63d, type: 3}
   BossAttacks:
-  - {fileID: 11400000, guid: 04e4019784cdbf6419e36ebfcda7fea2, type: 2}
+  - {fileID: 11400000, guid: 2ceb8d1975e7c0a4f852fe7b7e1ae824, type: 2}
   - {fileID: 11400000, guid: b510a6bf1c6650f4ca72d7569e100144, type: 2}
   - {fileID: 11400000, guid: a0604fcb504900b4ba10966706f993a1, type: 2}
   - {fileID: 11400000, guid: 2a0b9477b408e6b44ba80a6292ed0d54, type: 2}
+  - {fileID: 11400000, guid: 04e4019784cdbf6419e36ebfcda7fea2, type: 2}
+  - {fileID: 11400000, guid: 8c7108b5cedc42446bc07d5758ed819d, type: 2}
   BossIdle: {fileID: 11400000, guid: 6423b6736b726254388bba68f3b00751, type: 2}

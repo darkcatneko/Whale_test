@@ -11,6 +11,7 @@ public class WeaponSO : ScriptableObject
     public int Weapon_BreakLevel;
     public int WeaponID;
     public string Weapon_Name;
+    public Sprite WeaponImage;
     public WeaponEnum WeaponType;
     public int[] Durability = new int[5];
     public int[] Atk = new int[5];

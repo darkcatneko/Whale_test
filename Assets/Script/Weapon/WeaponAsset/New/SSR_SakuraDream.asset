@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: SSR_SakuraDream
   m_EditorClassIdentifier: 
   Unlock: 0
+  Owned: 0
   Weapon_BreakLevel: 0
   WeaponID: 11
   Weapon_Name: "\u9748\u83EF\u4E4B\u5922"
+  WeaponImage: {fileID: 21300000, guid: 94bcf4a638fd6bc4eb3d71ef81f15ea4, type: 3}
   WeaponType: 2
   Durability: 0000000000000000000000000000000000000000
   Atk: 0002000080020000000300008003000000040000

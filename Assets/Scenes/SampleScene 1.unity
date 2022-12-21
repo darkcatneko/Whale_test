@@ -2009,7 +2009,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1d9a513c9cef4fd488a20420d0aaea02, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e84acf49c081f2b46a2a2019f5818643, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2907,6 +2907,12 @@ MonoBehaviour:
   - {fileID: 366669981}
   - {fileID: 1779197624}
   - {fileID: 147036278}
+  WeaponImage:
+  - {fileID: 609449249}
+  - {fileID: 684603654}
+  - {fileID: 476712258}
+  - {fileID: 2123908029}
+  - {fileID: 1755885506}
   MainCharacterSkillButton: {fileID: 1945504787}
   BossHealth: {fileID: 735816122}
   MyHealth: {fileID: 1734707825}
@@ -3342,6 +3348,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  BossInRage: 0
 --- !u!114 &783896130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6241,23 +6248,23 @@ PlayableDirector:
   - key: {fileID: 2627680655693971590, guid: b510a6bf1c6650f4ca72d7569e100144, type: 2}
     value: {fileID: 0}
   - key: {fileID: -7588692688630673398, guid: 2ceb8d1975e7c0a4f852fe7b7e1ae824, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1467564794}
   - key: {fileID: 5499909193362830292, guid: 2ceb8d1975e7c0a4f852fe7b7e1ae824, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1066604789}
   - key: {fileID: 1368744981792323928, guid: 2ceb8d1975e7c0a4f852fe7b7e1ae824, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1066604790}
   - key: {fileID: -6956996348156059281, guid: 2ceb8d1975e7c0a4f852fe7b7e1ae824, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 927889746}
   - key: {fileID: 3928906790572022945, guid: 2ceb8d1975e7c0a4f852fe7b7e1ae824, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 927889746}
   - key: {fileID: 3792470971110532415, guid: 3166d85a223a19646b394888946c02fe, type: 2}
     value: {fileID: 0}
   - key: {fileID: -989002826045763902, guid: 3166d85a223a19646b394888946c02fe, type: 2}
     value: {fileID: 0}
   - key: {fileID: -6716268564908422806, guid: 8c7108b5cedc42446bc07d5758ed819d, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1467564794}
   - key: {fileID: 2627680655693971590, guid: 8c7108b5cedc42446bc07d5758ed819d, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 927889746}
   m_ExposedReferences:
     m_References:
     - 75feacc0107faf14e82faf4c2ad8dec4: {fileID: 1066604789}

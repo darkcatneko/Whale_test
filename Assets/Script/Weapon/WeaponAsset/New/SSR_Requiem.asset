@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: SSR_Requiem
   m_EditorClassIdentifier: 
   Unlock: 0
+  Owned: 0
   Weapon_BreakLevel: 0
   WeaponID: 13
   Weapon_Name: "\u66AE\u5149\u5B89\u9B42\u66F2"
+  WeaponImage: {fileID: 21300000, guid: 9e624522a2ddd2e44b69e804ca6edfe7, type: 3}
   WeaponType: 4
   Durability: 0000000000000000000000000000000000000000
   Atk: bc0100002b0200009a0200000903000078030000

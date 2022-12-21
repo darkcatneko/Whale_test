@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class StartGameState : Istate
 {
     public GameController Controller { get; set; }
@@ -35,6 +35,11 @@ public class StartGameState : Istate
         {
             if (Controller.m_MainPlayer.BringingWeaponID[i]!=999)
             {
+                if (Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]).WeaponImage!=null)
+                {
+                    Controller.WeaponImage[i].color = new Color(1, 1, 1, 1);
+                    Controller.WeaponImage[i].sprite = Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]).WeaponImage;
+                }               
                 Controller.WeaponButton[i].GetComponent<WeaponButtonAction>().ButtonWeapon = new WeaponPackClass(Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]), Controller.W_Data.GetWeaponInformation(Controller.m_MainPlayer.BringingWeaponID[i]).Weapon_BreakLevel);
             }           
         }

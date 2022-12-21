@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: SSR_Punishment
   m_EditorClassIdentifier: 
   Unlock: 0
+  Owned: 0
   Weapon_BreakLevel: 0
   WeaponID: 12
   Weapon_Name: "\u8056\u7F70"
+  WeaponImage: {fileID: 21300000, guid: 1b3514e8b8725f741a13c68beb21f740, type: 3}
   WeaponType: 3
   Durability: 0000000000000000000000000000000000000000
   Atk: 94010000f90100005e020000c302000028030000

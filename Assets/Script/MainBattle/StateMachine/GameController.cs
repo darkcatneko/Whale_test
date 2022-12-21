@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour
     public PlayableDirector TimeLine;
     #region Canvas
     public Button[] WeaponButton = new Button[5];
+    public Image[] WeaponImage = new Image[5];
     public Button MainCharacterSkillButton;
     public Image BossHealth;
     public Image MyHealth;

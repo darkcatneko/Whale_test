@@ -478,6 +478,7 @@ public class WormBoAI : BossIstate
         {
             //¶i¨g¼É
             InRage = true;
+            Controller.BossInRage = true;
             Controller.ATK = 2000f;
             Controller.DEF = 1200f;
             //¬µª©

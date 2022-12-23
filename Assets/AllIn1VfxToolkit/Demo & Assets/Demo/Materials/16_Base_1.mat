@@ -6,7 +6,7 @@ Texture2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: _ColorRampTexGradientTex{"mode":0,"colorKeys":[{"color":{"r":1.0,"g":1.0,"b":1.0,"a":1.0},"time":0.0},{"color":{"r":0.364705890417099,"g":0.8130413889884949,"b":0.9529411792755127,"a":1.0},"time":0.20294499397277833},{"color":{"r":0.0,"g":0.09369753301143646,"b":0.6039215922355652,"a":1.0},"time":0.5941252708435059},{"color":{"r":0.0,"g":0.48945632576942446,"b":0.5943396091461182,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":0.3205920457839966},{"alpha":0.0,"time":1.0}]}
+  m_Name: _ColorRampTexGradientTex{"mode":0,"colorKeys":[{"color":{"r":0.0,"g":0.06932830810546875,"b":1.0,"a":1.0},"time":0.06764324754476547},{"color":{"r":1.0,"g":0.4841974377632141,"b":0.004716992378234863,"a":1.0},"time":0.7529411911964417}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":0.5686274766921997,"time":0.20881971716880799},{"alpha":1.0,"time":0.7470664381980896},{"alpha":0.8735948801040649,"time":0.9205920696258545},{"alpha":0.0,"time":1.0}]}
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
@@ -41,7 +41,7 @@ Texture2D:
   m_ColorSpace: 0
   m_PlatformBlob: 
   image data: 256
-  _typelessdata: ffffff00f2fbfe0de6f8fd19d9f4fc26ccf0fb33c0ecfa3fb3e9f94ca6e5f8589ae1f7658dddf77280daf67e74d6f58b67d2f4985ccef2a458c6efb155bfebbd51b7e7ca4db0e4d749a9e0e346a1ddf0429ad9fd3e92d5fa3a8bd2f43683ceee337ccbe82f74c7e22b6dc3dc2766c0d6245ebcd12057b8cb1c4fb5c51848b1bf1440aeb91139aab30d31a6ad092aa3a705239fa1021b9c9b001a9a95001e9a8f00229a8900269a83002a9a7d002e9977003299710036996b003a9965003e995f0042995900469953004a994d004d9947005199420055993c00599836005d98300061982a006598240069981e006d9818007198120075980c00799806007d9800
+  _typelessdata: 0012ff000012ff0b0012ff160012ff210012ff2c0413fb370a16f5421018ef4d161be9581c1de3632220dd6e2822d7792e25d2843427cc8f3a2ac6943f2cc097452eba9a4b31b49d5133aea15736a8a45d38a2a7633b9daa693d97ae6f4091b175428bb47a4485b780477fbb864979be8c4c73c1924e6ec4985168c89e5362cba4565cceaa5856d1b05b50d5b65d4ad8bb5f44dbc1623fdec76439e2cd6733e5d3692de8d96c27ebdf6e21efe5711bf2eb7315f5f17610f8f7780afcfc7a04ffff7b01fcff7b01f9ff7b01f6ff7b01f3ff7b01f0ff7b01eeff7b01ebff7b01e8ff7b01e5ff7b01e2ff7b01dfff7b01b2ff7b0186ff7b0159ff7b012dff7b0100
   m_StreamData:
     serializedVersion: 2
     offset: 0
@@ -60,15 +60,15 @@ Material:
   - ADDITIVECONFIG_ON
   - COLORRAMPGRAD_ON
   - COLORRAMP_ON
+  - GLOW_ON
   - HSV_ON
-  - PREMULTIPLYCOLOR_ON
   - SHAPE2CONTRAST_ON
   - SHAPE2_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses: []
@@ -175,7 +175,7 @@ Material:
     - _DistortionPower: 5
     - _DistortionScrollXSpeed: 0
     - _DistortionScrollYSpeed: 0
-    - _DstMode: 10
+    - _DstMode: 1
     - _EditorDrawers: 60
     - _FadeAmount: -0.1
     - _FadeBurnGlow: 5
@@ -186,7 +186,7 @@ Material:
     - _FadeTransition: 0.075
     - _FishEyeUvAmount: 0.35
     - _Glow: 0
-    - _GlowGlobal: 1
+    - _GlowGlobal: 7.93
     - _HandDrawnAmount: 10
     - _HandDrawnSpeed: 5
     - _HsvBright: 2
@@ -204,7 +204,7 @@ Material:
     - _RandomSh1Mult: 1
     - _RandomSh2Mult: 1
     - _RandomSh3Mult: 1
-    - _RenderingMode: 3
+    - _RenderingMode: 1
     - _RimAddAmount: 1
     - _RimBias: 0
     - _RimErodesAlpha: 0
@@ -291,10 +291,10 @@ Material:
     - _DepthGlowColor: {r: 1, g: 1, b: 1, a: 1}
     - _FadeBurnColor: {r: 1, g: 1, b: 0, a: 1}
     - _FrontFaceTint: {r: 1, g: 1, b: 1, a: 1}
-    - _GlowColor: {r: 1, g: 1, b: 1, a: 1}
+    - _GlowColor: {r: 0, g: 1, b: 0.29680824, a: 1}
     - _LightColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _Shape2Color: {r: 1, g: 1, b: 1, a: 1}
     - _Shape3Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ShapeColor: {r: 766.9961, g: 766.9961, b: 766.9961, a: 1}
+    - _ShapeColor: {r: 5.992157, g: 5.992157, b: 5.992157, a: 1}
   m_BuildTextureStacks: []

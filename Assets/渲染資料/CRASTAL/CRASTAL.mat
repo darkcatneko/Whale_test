@@ -35,16 +35,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BottoLine: 0.676
+    - _BottoLine: 0.771
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _TopLine: 0.421
-    - _metalic: 0.554
-    - _smoothing: 0.641
+    - _TopLine: 0.628
+    - _metalic: 0.697
+    - _smoothing: 0.325
     m_Colors:
-    - _BaseColor: {r: 0, g: 0, b: 0, a: 0}
-    - _Bottoncolor: {r: 6.792454, g: 7.405865, b: 32, a: 0}
-    - _TOPColor: {r: 16.42453, g: 0, b: 28.966898, a: 1}
+    - _BaseColor: {r: 39.874332, g: 9.812008, b: 0, a: 0}
+    - _Bottoncolor: {r: 3.8800013, g: 1.0684061, b: 10.740293, a: 0}
+    - _TOPColor: {r: 2.432903, g: 3.6493545, b: 6.453951, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &6490988059423095500
 MonoBehaviour:

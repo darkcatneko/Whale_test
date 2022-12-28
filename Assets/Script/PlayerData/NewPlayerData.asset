@@ -16,9 +16,9 @@ MonoBehaviour:
     NewAccount: 0
     LastLoginYear: 2022
     LastLoginMonth: 12
-    LastLoginDay: 21
-    CoinCount: 0
-    GemCount: 0
+    LastLoginDay: 27
+    CoinCount: 9934
+    GemCount: 15000
     M_WeaponSaveFile:
     - HaveWeaponOrNot: 1
       Owned: 0

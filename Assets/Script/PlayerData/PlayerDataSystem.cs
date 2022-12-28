@@ -30,6 +30,8 @@ public class PlayerDataSystem : MonoBehaviour
             ThisPlayer.ThisAccount.LastLoginYear = DateTime.Now.Year;
             ThisPlayer.ThisAccount.LastLoginMonth = DateTime.Now.Month;
             ThisPlayer.ThisAccount.LastLoginDay = DateTime.Now.Day;
+            ThisPlayer.ThisAccount.CoinCount = 10000;
+            ThisPlayer.ThisAccount.GemCount = 15000;
             for (int i = 0; i < 5; i++)
             {
                 ThisPlayer.ThisAccount.M_WeaponSaveFile[i].HaveWeaponOrNot = true;

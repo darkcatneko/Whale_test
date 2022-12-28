@@ -52,7 +52,7 @@ MonoBehaviour:
     m_Value: 5.5
   focalLength:
     m_OverrideState: 1
-    m_Value: 27
+    m_Value: 1
   bladeCount:
     m_OverrideState: 0
     m_Value: 5
@@ -111,10 +111,10 @@ MonoBehaviour:
   active: 1
   type:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 8
   intensity:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0
   response:
     m_OverrideState: 1
     m_Value: 1
@@ -189,6 +189,28 @@ MonoBehaviour:
   rounded:
     m_OverrideState: 1
     m_Value: 1
+--- !u!114 &-674610596165820461
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5485954d14dfb9a4c8ead8edb0ded5b1, type: 3}
+  m_Name: LiftGammaGain
+  m_EditorClassIdentifier: 
+  active: 0
+  lift:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 1, z: 1, w: 0}
+  gamma:
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 1, z: 1, w: 0}
+  gain:
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 1, z: 1, w: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +232,8 @@ MonoBehaviour:
   - {fileID: -8005065894490991160}
   - {fileID: -9008287092902401401}
   - {fileID: -3272036434336166315}
+  - {fileID: -674610596165820461}
+  - {fileID: 7221093019879256385}
 --- !u!114 &5520786421273073081
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -225,19 +249,44 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 3
   blur:
     m_OverrideState: 1
-    m_Value: 0.72
+    m_Value: 2
   edgePreserve:
     m_OverrideState: 1
-    m_Value: 0.25
+    m_Value: 2
   rangeStart:
     m_OverrideState: 1
     m_Value: 0
   rangeEnd:
     m_OverrideState: 1
     m_Value: 100
+--- !u!114 &7221093019879256385
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf1aba9553839d41ae37dd52e9ebcce, type: 3}
+  m_Name: MotionBlur
+  m_EditorClassIdentifier: 
+  active: 1
+  mode:
+    m_OverrideState: 0
+    m_Value: 0
+  quality:
+    m_OverrideState: 1
+    m_Value: 2
+  intensity:
+    m_OverrideState: 1
+    m_Value: 1
+  clamp:
+    m_OverrideState: 1
+    m_Value: 0.2
 --- !u!114 &7482052500729543118
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -273,8 +322,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   dirtTexture:
-    m_OverrideState: 0
-    m_Value: {fileID: 2800000, guid: 3d5bc4b0b7ad32e4da9d489ad072feae, type: 3}
+    m_OverrideState: 1
+    m_Value: {fileID: 2800000, guid: 32d12087f57044340b342e5fc2414247, type: 3}
   dirtIntensity:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 6.34

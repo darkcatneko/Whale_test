@@ -96,7 +96,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 6a1d2fc5456d36245a6c4bf8268e0b25, type: 3}
+        m_Texture: {fileID: 2800000, guid: bfef40ded0ed22049aefa49dc9602b5d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -108,7 +108,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailMap:
-        m_Texture: {fileID: 2800000, guid: a4886f1a780b0204b9dd9c60e154daa9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7d072a716ee3a5c41bbc39d952cf763a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailMask:
@@ -212,7 +212,7 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _TextureBlendingMode: 0
-    - _TextureImpact: 0.85
+    - _TextureImpact: 1
     - _UnityShadowOcclusion: 1
     - _VertexColorsEnabled: 1
     - _WorkflowMode: 1

@@ -42,9 +42,9 @@ Material:
     - _metalic: 0.697
     - _smoothing: 0.357
     m_Colors:
-    - _BaseColor: {r: 3.34463, g: 13.308841, b: 13.239161, a: 0}
-    - _Bottoncolor: {r: 3.8800013, g: 1.0684061, b: 10.740293, a: 0}
-    - _TOPColor: {r: 9.731612, g: 14.597418, b: 25.815804, a: 1}
+    - _BaseColor: {r: 1.6723157, g: 6.654423, b: 6.619583, a: 0}
+    - _Bottoncolor: {r: 4.917392, g: 1.1172938, b: 13.93331, a: 0}
+    - _TOPColor: {r: 4.865806, g: 7.298709, b: 12.907902, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &6490988059423095500
 MonoBehaviour:

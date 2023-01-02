@@ -83,6 +83,8 @@ public class PlayerDataSystem : MonoBehaviour
     }
     public void DeepCopy(PlayerData A, PlayerAccount B)
     {
+        A.ThisAccount.CoinCount = B.CoinCount;
+        A.ThisAccount.GemCount = B.GemCount;
         A.ThisAccount.NewAccount = B.NewAccount;
         A.ThisAccount.LastLoginYear = B.LastLoginYear;
         A.ThisAccount.LastLoginMonth = B.LastLoginMonth;

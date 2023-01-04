@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df724688bd0b74945a71911e99c07333, type: 3}
   m_Name: R_Hammer
   m_EditorClassIdentifier: 
-  Unlock: 0
+  Unlock: 1
+  Owned: 5
   Weapon_BreakLevel: 0
   WeaponID: 2
   Weapon_Name: "\u9318\u77DB"
+  WeaponImage: {fileID: 0}
+  WeaponCardImage: {fileID: 21300000, guid: 4fad2a18ed3f2654b9187c68fd5e9ff3, type: 3}
+  WeaponBarImage: {fileID: 21300000, guid: 0565af553ba34024e920c8f5815de37c, type: 3}
+  WeaponInfoImage: {fileID: 21300000, guid: 71a6704c7f2c98f4ea57a0a5ffac79a1, type: 3}
+  GachaImage: {fileID: 21300000, guid: e44816ad467226c4d9d64781b9adff6d, type: 3}
   WeaponType: 3
   Durability: 0000000000000000000000000000000000000000
   Atk: 000100004001000080010000c001000000020000

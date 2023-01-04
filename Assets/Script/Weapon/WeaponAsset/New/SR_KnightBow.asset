@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df724688bd0b74945a71911e99c07333, type: 3}
   m_Name: SR_KnightBow
   m_EditorClassIdentifier: 
-  Unlock: 0
+  Unlock: 1
+  Owned: 5
   Weapon_BreakLevel: 0
   WeaponID: 8
   Weapon_Name: "\u5B99\u7FFC\u9A0E\u58EB\u5927\u5F13"
+  WeaponImage: {fileID: 0}
+  WeaponCardImage: {fileID: 21300000, guid: be3f380d4b00ce54baf805e39634ca4e, type: 3}
+  WeaponBarImage: {fileID: 21300000, guid: bbd51eb3aa4ad8a47ab787598e9ad3cf, type: 3}
+  WeaponInfoImage: {fileID: 21300000, guid: ed40a0e8fd99aca4299f83ce47eef021, type: 3}
+  GachaImage: {fileID: 21300000, guid: 4dde73f942ece06488a0d540df9be281, type: 3}
   WeaponType: 4
   Durability: 0000000000000000000000000000000000000000
   Atk: 080100004a0100008c010000ce01000010020000

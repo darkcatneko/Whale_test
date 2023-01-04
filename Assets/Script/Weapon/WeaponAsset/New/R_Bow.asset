@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df724688bd0b74945a71911e99c07333, type: 3}
   m_Name: R_Bow
   m_EditorClassIdentifier: 
-  Unlock: 0
+  Unlock: 1
+  Owned: 5
   Weapon_BreakLevel: 0
   WeaponID: 3
   Weapon_Name: "\u53CD\u66F2\u5F13"
+  WeaponImage: {fileID: 0}
+  WeaponCardImage: {fileID: 21300000, guid: b88cf8cc89b984e4c8831d330c7440cf, type: 3}
+  WeaponBarImage: {fileID: 21300000, guid: 9d9c33b1f927317409ea5dfc9077b2f9, type: 3}
+  WeaponInfoImage: {fileID: 21300000, guid: 5a4a0127dbc63a842b96486aa58965cb, type: 3}
+  GachaImage: {fileID: 21300000, guid: 2648df01b1954f341a33832b3990bfc2, type: 3}
   WeaponType: 4
   Durability: 0000000000000000000000000000000000000000
   Atk: f80000003601000074010000b2010000f0010000

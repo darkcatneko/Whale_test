@@ -15,6 +15,8 @@ MonoBehaviour:
   ID: 2
   Name: 
   CharacterImage: {fileID: 0}
+  CharacterBar: {fileID: 21300000, guid: 77d03d36964c25445aee6b694d4dd30d, type: 3}
+  GachaImage: {fileID: 21300000, guid: 164b5a22b93be6040a28624cc2b0d4e0, type: 3}
   SkillUseMP: 40
   RuneHoverPoints:
   - {x: 0, y: 0}

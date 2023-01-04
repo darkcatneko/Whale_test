@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df724688bd0b74945a71911e99c07333, type: 3}
   m_Name: R_Sword
   m_EditorClassIdentifier: 
-  Unlock: 0
+  Unlock: 1
+  Owned: 5
   Weapon_BreakLevel: 0
   WeaponID: 0
   Weapon_Name: "\u95CA\u528D"
+  WeaponImage: {fileID: 0}
+  WeaponCardImage: {fileID: 21300000, guid: b10469e9cc641b843b52d0eb736a005d, type: 3}
+  WeaponBarImage: {fileID: 21300000, guid: 2aacf8998377a8e479f4cae49c0a1a4a, type: 3}
+  WeaponInfoImage: {fileID: 21300000, guid: d3dca12c54011504bbd82d4237a8d9b9, type: 3}
+  GachaImage: {fileID: 21300000, guid: 48c430bd0aa4b4446a95cc2bfafccb74, type: 3}
   WeaponType: 1
   Durability: 0000000000000000000000000000000000000000
   Atk: 260100006f010000b9010000030200004c020000

@@ -9,6 +9,9 @@ using UnityEngine.Playables;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private StateEnum currentState;
+    [SerializeField] public PlayerData Data;
+    [SerializeField] public PlayerDataSystem playerDataSystem;
+    [SerializeField] public GameObject[] EndPrefab = new GameObject[2]; 
     private Dictionary<StateEnum, Istate> allStateDict;
     public Camera MainCam;
     public BossController M_BossController;
@@ -86,6 +89,10 @@ public class GameController : MonoBehaviour
         //BossHealth.text = M_BossController.NowHealth + " / " + M_BossController.MaxHealth;
         //PlayerHealth.text = m_MainPlayer.NowArmor + " / " + m_MainPlayer.MaxArmor;
         //StateLog.text = GetState().ToString();
+    }
+    public void EndGame(int WL)
+    {
+        Instantiate(EndPrefab[WL]);
     }
     public void ChangeState(StateEnum newState)
     {

@@ -9,6 +9,9 @@ public class MainSceneUiController : MonoBehaviour
     public NowScreen m_NowScreen = NowScreen.MainMenu;
 
     public PlayerData Data;
+    public PlayerDataSystem DataSystem;
+    public WeaponData W_Date;
+    public MainCharacterData MC_Data;
     public TextMeshProUGUI CoinText;
     public TextMeshProUGUI GemText;
     private Vector3 MainPanelStartPos;
@@ -22,11 +25,19 @@ public class MainSceneUiController : MonoBehaviour
 
     [SerializeField] Image RightBarButtonImage;
     [SerializeField] Image LeftBarButtonImage;
-
+    #region Index²Ó¶µ
+    [SerializeField] IndexController indexController;
+    [SerializeField] Image CharacterBar;
+    public int Weapon_OR_CHA = 0;
+    #endregion
+    [SerializeField] GameObject[] ChaPrefabs;
     void Start()
     {
         MainPanelStartPos = MainPanel.transform.position;
         BuyStartPos = BuyPanel.transform.position;
+        CharacterBar.sprite = MC_Data.MainCharacterDataList[Data.ThisAccount.NowMainCharactor].CharacterBar;
+        indexController.CardInstall();
+        WeaponCardInstall();
     }
 
     // Update is called once per frame
@@ -34,6 +45,7 @@ public class MainSceneUiController : MonoBehaviour
     {
         CoinText.text = Data.ThisAccount.CoinCount.ToString();
         GemText.text = Data.ThisAccount.GemCount.ToString();
+
     }
     public void ShopButtonTest()
     {
@@ -41,6 +53,166 @@ public class MainSceneUiController : MonoBehaviour
         LeftBarButtonImage.sprite = BarIcon[2];
         GachaPanel.SetActive(true);
         BasicFadeOut(MainPanel, MainPanelStartPos, NowScreen.ShopMenu);
+    }
+    public void BattleButtonTest()
+    {
+        RightBarButtonImage.sprite = BarIcon[1];
+        LeftBarButtonImage.sprite = BarIcon[0];
+        BattlePanel.SetActive(true);
+        BasicFadeOut(MainPanel, MainPanelStartPos, NowScreen.BattleMenu);
+    }
+    public void IndexButtonTest()
+    {
+        RightBarButtonImage.sprite = BarIcon[0];
+        LeftBarButtonImage.sprite = BarIcon[2];
+        IndexInstall();
+        W_and_CPanel.SetActive(true);
+        BasicFadeOut(MainPanel, MainPanelStartPos, NowScreen.Weapon_and_CharacterMenu);
+    }
+    public void IndexInstall()
+    {
+        if (Weapon_OR_CHA == 1)
+        {
+            Weapon_OR_CHA = 1;
+            indexController.horizontal.spacing = -40;
+            indexController.horizontal.padding.left = 0;
+            indexController.IndexTopBar.sprite = indexController.w_Cha_top[1];
+            for (int i = 0; i < indexController.IndexContent.transform.childCount; i++)
+            {
+                Destroy(indexController.IndexContent.transform.GetChild(i).gameObject);
+            }
+            for (int i = ChaPrefabs.Length - 1; i >= 0; i--)
+            {
+                GameObject OBJ = Instantiate(ChaPrefabs[i], indexController.IndexContent.transform);
+                if (!Data.ThisAccount.HaveCharactorOrNot[i])
+                {
+                    OBJ.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f, 1);
+                }
+                OBJ.GetComponent<C_Button>().ThisButtonID = i;
+                OBJ.GetComponent<Button>().onClick.AddListener(() => { int x = OBJ.GetComponent<C_Button>().ThisButtonID; ChangeCharacter(x); });
+            }
+            indexController.IndexContent.transform.Translate(new Vector3(5000, 0, 0));
+        }
+        else
+        {
+            Weapon_OR_CHA = 0;
+            indexController.horizontal.spacing = 100;
+            indexController.horizontal.padding.left = 128;
+            indexController.IndexTopBar.sprite = indexController.w_Cha_top[0];
+            for (int i = 0; i < indexController.IndexContent.transform.childCount; i++)
+            {
+                Destroy(indexController.IndexContent.transform.GetChild(i).gameObject);
+            }
+            for (int i = W_Date.WeaponDataList.Count - 1; i >= 0; i--)
+            {
+                //Debug.Log(123);
+                GameObject OBJ = Instantiate(indexController.WeaponPrefab, indexController.IndexContent.transform);
+                if (!Data.ThisAccount.M_WeaponSaveFile[i].HaveWeaponOrNot)
+                {
+                    OBJ.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f, 1);
+                }
+                OBJ.GetComponent<Image>().sprite = W_Date.WeaponDataList[i].WeaponBarImage;
+                OBJ.GetComponent<WeaponIndex>().ThisWeaponID = i;
+                OBJ.GetComponent<WeaponIndex>().Unlock = Data.ThisAccount.M_WeaponSaveFile[i].HaveWeaponOrNot;
+                OBJ.GetComponent<Button>().onClick.AddListener(() => { int x = OBJ.GetComponent<WeaponIndex>().ThisWeaponID; WeaponCardPlugin(x); });
+                OBJ.GetComponentsInChildren<Button>()[1].onClick.AddListener(() =>
+                {
+                    indexController.InfoPanel.SetActive(true);
+                    indexController.InfoPanel.GetComponent<Image>().sprite = W_Date.WeaponDataList[OBJ.GetComponent<WeaponIndex>().ThisWeaponID].WeaponInfoImage;
+                });
+            }
+            indexController.IndexContent.transform.Translate(new Vector3(5000, 0, 0));
+        }
+    }
+    public void ChangeIndexFocus()
+    {
+        if (Weapon_OR_CHA == 0)
+        {
+            Weapon_OR_CHA = 1;
+            indexController.horizontal.spacing = -40;
+            indexController.horizontal.padding.left =0;
+            indexController.IndexTopBar.sprite = indexController.w_Cha_top[1];
+            for (int i = 0; i < indexController.IndexContent.transform.childCount; i++)
+            {
+                Destroy(indexController.IndexContent.transform.GetChild(i).gameObject);
+            }
+            for (int i = ChaPrefabs.Length - 1; i >= 0; i--)
+            {
+                GameObject OBJ = Instantiate(ChaPrefabs[i], indexController.IndexContent.transform);
+                if (!Data.ThisAccount.HaveCharactorOrNot[i])
+                {
+                    OBJ.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f, 1);
+                }
+                OBJ.GetComponent<C_Button>().ThisButtonID = i;
+                OBJ.GetComponent<Button>().onClick.AddListener(() => {int x = OBJ.GetComponent<C_Button>().ThisButtonID;  ChangeCharacter(x); });
+            }
+            indexController.IndexContent.transform.Translate(new Vector3(5000, 0, 0));
+        }
+        else
+        {
+            Weapon_OR_CHA = 0;
+            indexController.horizontal.spacing = 100;
+            indexController.horizontal.padding.left =128;
+            indexController.IndexTopBar.sprite = indexController.w_Cha_top[0];
+            for (int i = 0; i < indexController.IndexContent.transform.childCount; i++)
+            {
+                Destroy(indexController.IndexContent.transform.GetChild(i).gameObject);
+            }
+            for (int i = W_Date.WeaponDataList.Count-1; i >= 0; i--)
+            {
+                //Debug.Log(123);
+                GameObject OBJ = Instantiate(indexController.WeaponPrefab, indexController.IndexContent.transform);              
+                if (!Data.ThisAccount.M_WeaponSaveFile[i].HaveWeaponOrNot)
+                {
+                    OBJ.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f, 1);
+                }
+                OBJ.GetComponent<Image>().sprite = W_Date.WeaponDataList[i].WeaponBarImage;
+                OBJ.GetComponent<WeaponIndex>().ThisWeaponID = i;
+                OBJ.GetComponent<WeaponIndex>().Unlock = Data.ThisAccount.M_WeaponSaveFile[i].HaveWeaponOrNot;
+                OBJ.GetComponent<Button>().onClick.AddListener(() => { int x = OBJ.GetComponent<WeaponIndex>().ThisWeaponID; WeaponCardPlugin(x);  });
+                OBJ.GetComponentsInChildren<Button>()[1].onClick.AddListener(() => 
+                {
+                    indexController.InfoPanel.SetActive(true);
+                    indexController.InfoPanel.GetComponent<Image>().sprite = W_Date.WeaponDataList[OBJ.GetComponent<WeaponIndex>().ThisWeaponID].WeaponInfoImage;
+                });
+            }
+            indexController.IndexContent.transform.Translate(new Vector3(5000, 0, 0));
+        }
+    }
+    public void WeaponCardInstall()
+    {
+        for (int i = 0; i < Data.ThisAccount.WeaponBackpack.Length; i++)
+        {
+            if (Data.ThisAccount.WeaponBackpack[i]!=999)
+            {
+                indexController.cards[i].sprite = W_Date.WeaponDataList[Data.ThisAccount.WeaponBackpack[i]].WeaponCardImage;
+            }
+        }
+    }
+    public void WeaponCardPlugin(int weaponID)
+    {
+        if (indexController.NowFoucsWeapon<5&&Data.ThisAccount.M_WeaponSaveFile[weaponID].HaveWeaponOrNot)
+        {
+            for (int i = 0; i < indexController.NowFoucsWeapon; i++)
+            {
+                if (Data.ThisAccount.WeaponBackpack[i] == weaponID)
+                {
+                    return;
+                }
+            }
+            Data.ThisAccount.WeaponBackpack[indexController.NowFoucsWeapon] = weaponID;
+            indexController.NowFoucsWeapon = Mathf.Clamp(indexController.NowFoucsWeapon + 1, 0, 5);
+            WeaponCardInstall();
+        }       
+    }
+    public void WeaponCardRefresh()
+    {
+        for (int i = 0; i < Data.ThisAccount.WeaponBackpack.Length; i++)
+        {
+            Data.ThisAccount.WeaponBackpack[i] = 999;
+            indexController.NowFoucsWeapon = 0;
+            indexController.cards[i].sprite = indexController.cardORI[i];
+        }
     }
     public void MainMenuButton()
     {
@@ -82,6 +254,10 @@ public class MainSceneUiController : MonoBehaviour
 
 
     }
+    public void ClosePanel()
+    {
+        indexController.InfoPanel.SetActive(false);
+    }
     public void BasicFadeOut(GameObject Target, Vector3 TargetOriginPos, NowScreen AfterScreen)
     {
         DOTween.To(() => Target.transform.position, x => Target.transform.position = x, Target.transform.position + new Vector3(2000, 0, 0), 1f).OnComplete(() => { Target.SetActive(false); Target.transform.position = TargetOriginPos; m_NowScreen = AfterScreen; });
@@ -110,7 +286,19 @@ public class MainSceneUiController : MonoBehaviour
             item.DOFade(1, 1f);
         }
     }
-
+    public void ChangeCharacter(int ID)
+    {
+        if (Data.ThisAccount.HaveCharactorOrNot[ID])
+        {
+            CharacterBar.sprite = MC_Data.MainCharacterDataList[ID].CharacterBar;
+            Data.ThisAccount.NowMainCharactor = ID;
+            DataSystem.Save();
+        }
+    }
+    public void Debugger()
+    {
+        Debug.Log("Bruh");
+    }
 }
 
 public enum NowScreen

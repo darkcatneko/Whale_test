@@ -2872,6 +2872,7 @@ GameObject:
   - component: {fileID: 783896128}
   - component: {fileID: 783896129}
   - component: {fileID: 783896130}
+  - component: {fileID: 783896131}
   m_Layer: 0
   m_Name: GameSystem
   m_TagString: Untagged
@@ -2892,6 +2893,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  Data: {fileID: 11400000, guid: 8006b663c21b6a7439cd81aaacefbdf2, type: 2}
+  playerDataSystem: {fileID: 783896131}
+  EndPrefab:
+  - {fileID: 2919178718535159916, guid: 3adf16d84c7de5544bfee21459d1ff93, type: 3}
+  - {fileID: 8850041683213858146, guid: 744883f983bbe3a49882ec225a9d3f7a, type: 3}
   MainCam: {fileID: 0}
   M_BossController: {fileID: 783896129}
   ThisStage: {fileID: 11400000, guid: 433daaa2d21bc6849b46ca79155dc387, type: 2}
@@ -3362,6 +3368,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeLine: {fileID: 3802956628091646912}
+--- !u!114 &783896131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783896123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cd108d1a5c2b6b439bd3ef1a27a3809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ThisPlayer: {fileID: 11400000, guid: 8006b663c21b6a7439cd81aaacefbdf2, type: 2}
+  M_MainPlayer: {fileID: 11400000, guid: 85e0400e9f0a138409867985bbf8a655, type: 2}
+  W_Data: {fileID: 11400000, guid: 77ad2328886a5ce4b8b830df868eb036, type: 2}
 --- !u!1 &824693209
 GameObject:
   m_ObjectHideFlags: 0

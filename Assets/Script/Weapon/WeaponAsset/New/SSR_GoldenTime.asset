@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df724688bd0b74945a71911e99c07333, type: 3}
   m_Name: SSR_GoldenTime
   m_EditorClassIdentifier: 
-  Unlock: 0
-  Owned: 0
+  Unlock: 1
+  Owned: 1
   Weapon_BreakLevel: 0
   WeaponID: 14
   Weapon_Name: "\u91D1\u8F1D\u4E4B\u6642\u7684\u5BF6\u85CF"
   WeaponImage: {fileID: 21300000, guid: 142367fbfff5e8240ba21e4f86e58809, type: 3}
+  WeaponCardImage: {fileID: 21300000, guid: 2202cd6f7e938fe4198f0f83c9f79dd1, type: 3}
+  WeaponBarImage: {fileID: 21300000, guid: e8b244f9697e20d41b2277ebcf75f4f0, type: 3}
+  WeaponInfoImage: {fileID: 21300000, guid: 71701ee583c17fe4aaf6ef9f705fc9fc, type: 3}
+  GachaImage: {fileID: 21300000, guid: 2a464a267cc181f448507ed7c1fa5bb4, type: 3}
   WeaponType: 0
   Durability: 0000000000000000000000000000000000000000
   Atk: 0000000000000000000000000000000000000000

@@ -10,7 +10,8 @@ public class LoseState : Istate
     public void OnStateEnter(GameController controller)
     {
         Controller = controller;
-
+        Controller.playerDataSystem.Save();
+        Controller.EndGame(0);
     }
     public void OnStateStay()
     {

@@ -9,6 +9,11 @@ public class WinState : Istate
     {
         Controller = controller;
         Controller.M_BossController.BossAnimation(0, 3);
+        Controller.Data.ThisAccount.CoinCount += 1000;
+        Controller.Data.ThisAccount.GemCount += 150;
+        Controller.playerDataSystem.Save();
+        Controller.EndGame(1);
+        
     }
     public void OnStateStay()
     {

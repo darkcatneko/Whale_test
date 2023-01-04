@@ -13,28 +13,13 @@ MonoBehaviour:
   m_Name: NewPlayerData
   m_EditorClassIdentifier: 
   ThisAccount:
-    NewAccount: 0
-    LastLoginYear: 2022
-    LastLoginMonth: 12
-    LastLoginDay: 27
-    CoinCount: 9934
-    GemCount: 15000
+    NewAccount: 1
+    LastLoginYear: 0
+    LastLoginMonth: 0
+    LastLoginDay: 0
+    CoinCount: 0
+    GemCount: 0
     M_WeaponSaveFile:
-    - HaveWeaponOrNot: 1
-      Owned: 0
-      WeaponBreakLevel: 0
-    - HaveWeaponOrNot: 1
-      Owned: 0
-      WeaponBreakLevel: 0
-    - HaveWeaponOrNot: 1
-      Owned: 0
-      WeaponBreakLevel: 0
-    - HaveWeaponOrNot: 1
-      Owned: 0
-      WeaponBreakLevel: 0
-    - HaveWeaponOrNot: 1
-      Owned: 0
-      WeaponBreakLevel: 0
     - HaveWeaponOrNot: 0
       Owned: 0
       WeaponBreakLevel: 0
@@ -65,7 +50,22 @@ MonoBehaviour:
     - HaveWeaponOrNot: 0
       Owned: 0
       WeaponBreakLevel: 0
-    HaveCharactorOrNot: 00010000
+    - HaveWeaponOrNot: 0
+      Owned: 0
+      WeaponBreakLevel: 0
+    - HaveWeaponOrNot: 0
+      Owned: 0
+      WeaponBreakLevel: 0
+    - HaveWeaponOrNot: 0
+      Owned: 0
+      WeaponBreakLevel: 0
+    - HaveWeaponOrNot: 0
+      Owned: 0
+      WeaponBreakLevel: 0
+    - HaveWeaponOrNot: 0
+      Owned: 0
+      WeaponBreakLevel: 0
+    HaveCharactorOrNot: 00000000
     WeaponBackpack: 0000000001000000020000000300000004000000
     NowMainCharactor: 1
     EntranceTime: 3

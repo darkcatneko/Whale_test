@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
+using UnityEngine.SceneManagement;
 public class PlayerDataSystem : MonoBehaviour
 {
     [SerializeField] PlayerData ThisPlayer;
@@ -32,9 +33,17 @@ public class PlayerDataSystem : MonoBehaviour
             ThisPlayer.ThisAccount.LastLoginDay = DateTime.Now.Day;
             ThisPlayer.ThisAccount.CoinCount = 10000;
             ThisPlayer.ThisAccount.GemCount = 15000;
+            for (int i = 0; i < 15; i++)
+            {
+                ThisPlayer.ThisAccount.M_WeaponSaveFile[i].HaveWeaponOrNot = false;
+            }
             for (int i = 0; i < 5; i++)
             {
                 ThisPlayer.ThisAccount.M_WeaponSaveFile[i].HaveWeaponOrNot = true;
+            }
+            for (int i = 0; i < ThisPlayer.ThisAccount.HaveCharactorOrNot.Count; i++)
+            {
+                ThisPlayer.ThisAccount.HaveCharactorOrNot[i] = false;
             }
             ThisPlayer.ThisAccount.HaveCharactorOrNot[1] = true;
             ThisPlayer.ThisAccount.NowMainCharactor = 1;
@@ -104,5 +113,38 @@ public class PlayerDataSystem : MonoBehaviour
             A.ThisAccount.WeaponBackpack[i] = B.WeaponBackpack[i];
         }
         A.ThisAccount.NowMainCharactor = B.NowMainCharactor;
+    }
+    public void IntoBattle()
+    {
+        M_MainPlayer.ThisRound_MainCharacter_ID = ThisPlayer.ThisAccount.NowMainCharactor;
+        for (int i = 0; i < ThisPlayer.ThisAccount.WeaponBackpack.Length; i++)
+        {
+            M_MainPlayer.BringingWeaponID[i] = ThisPlayer.ThisAccount.WeaponBackpack[i];
+        }
+        Save();
+        SceneManager.LoadScene(1);
+    }
+    private void OnApplicationQuit()
+    {
+        ThisPlayer.ThisAccount.LastLoginYear =0;
+        ThisPlayer.ThisAccount.LastLoginMonth = 0;
+        ThisPlayer.ThisAccount.LastLoginDay = 0;
+        ThisPlayer.ThisAccount.CoinCount = 10000;
+        ThisPlayer.ThisAccount.GemCount = 15000;        
+        for (int i = 0; i < 15; i++)
+        {
+            ThisPlayer.ThisAccount.M_WeaponSaveFile[i].HaveWeaponOrNot = false;
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            ThisPlayer.ThisAccount.M_WeaponSaveFile[i].HaveWeaponOrNot = true;
+        }
+        for (int i = 0; i < ThisPlayer.ThisAccount.HaveCharactorOrNot.Count; i++)
+        {
+            ThisPlayer.ThisAccount.HaveCharactorOrNot[i] = false;
+        }
+        ThisPlayer.ThisAccount.HaveCharactorOrNot[1] = true;
+        ThisPlayer.ThisAccount.NowMainCharactor = 1;
+        ThisPlayer.ThisAccount.NewAccount = true;
     }
 }

@@ -141,6 +141,7 @@ public class MainCharacterSkill : MonoBehaviour
             GM.GameMap.FindBlock(RuneHoverPoints[i] + Origin).ThisBlockType = WeaponEnum.Slash;
         }
         GM.m_MainPlayer.SkillActivation++;
+        GM.NowMP = 0;
         GM.ChangeState(StateEnum.Free_State);
     }
     public void OnIIresPointerUp()
@@ -202,6 +203,7 @@ public class MainCharacterSkill : MonoBehaviour
             }            
         }
         GM.m_MainPlayer.SkillActivation++;
+        GM.NowMP = 0;
         GM.ChangeState(StateEnum.Free_State);
     }
     public IEnumerator LungeMainCharacterFunc(Vector2 Origin)
@@ -233,6 +235,7 @@ public class MainCharacterSkill : MonoBehaviour
         }
         GM.TurnPoint++;
         GM.m_MainPlayer.SkillActivation++;
+        GM.NowMP = 0;
         GM.ChangeState(StateEnum.Free_State);
     }
     public void OnLungeMainPointerUp()
@@ -287,6 +290,7 @@ public class MainCharacterSkill : MonoBehaviour
             }           
         }
         GM.m_MainPlayer.SkillActivation++;
+        GM.NowMP = 0;
         GM.ChangeState(StateEnum.Free_State);
     }
     public void OnAssassinMainCharacterPointerUp()
@@ -332,5 +336,6 @@ public class MainCharacterSkill : MonoBehaviour
     private void OnApplicationQuit()
     {
         RefreshListener();
+
     }
 }

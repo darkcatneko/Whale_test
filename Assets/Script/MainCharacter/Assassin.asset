@@ -15,6 +15,8 @@ MonoBehaviour:
   ID: 3
   Name: Assassin
   CharacterImage: {fileID: 0}
+  CharacterBar: {fileID: 21300000, guid: 81dc21f792e969343a8f3f80d89c003b, type: 3}
+  GachaImage: {fileID: 21300000, guid: b794f5f16c9466141a15301224ee16b3, type: 3}
   SkillUseMP: 60
   RuneHoverPoints:
   - {x: 0, y: 0}

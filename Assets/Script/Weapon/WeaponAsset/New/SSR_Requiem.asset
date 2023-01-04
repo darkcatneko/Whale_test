@@ -18,6 +18,10 @@ MonoBehaviour:
   WeaponID: 13
   Weapon_Name: "\u66AE\u5149\u5B89\u9B42\u66F2"
   WeaponImage: {fileID: 21300000, guid: 9e624522a2ddd2e44b69e804ca6edfe7, type: 3}
+  WeaponCardImage: {fileID: 21300000, guid: ad0402d27839bd1458596604e05943a6, type: 3}
+  WeaponBarImage: {fileID: 21300000, guid: 693a534c22633064788f38934659eb3f, type: 3}
+  WeaponInfoImage: {fileID: 21300000, guid: 163313fc1a60c03478f04d23246c69eb, type: 3}
+  GachaImage: {fileID: 21300000, guid: 9642681bdb3e373478b4fe0706d4da79, type: 3}
   WeaponType: 4
   Durability: 0000000000000000000000000000000000000000
   Atk: bc0100002b0200009a0200000903000078030000
